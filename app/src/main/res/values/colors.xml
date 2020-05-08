@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#B46FE5</color>
+    <color name="colorPrimaryDark">#AE23D5</color>
+    <color name="colorAccent">#AE23D5</color>
+    <color name="textColor">#763AD5</color>
+    <color name="textTitleColour">#C3CEE5</color>
+    <color name="grey_100">#F5F5F5</color>
+    <color name="white">#FFFFFF</color>
+    <color name="theme_background">#6DE5E5</color>
+    <color name="card_background">#FFF</color>
+    <color name="grey_500">#9E9E9E</color>
+    <color name="list_item_background">#DBC678</color>
+    <color name="black_overlay">#66000000</color>
+    <color name="textColorHint">#AE23D5</color>
+</resources>

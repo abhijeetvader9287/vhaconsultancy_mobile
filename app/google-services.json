@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "371517175983",
+    "firebase_url": "https://vhaconsultancy.firebaseio.com",
+    "project_id": "vhaconsultancy",
+    "storage_bucket": "vhaconsultancy.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:371517175983:android:5c3087b9d07790bd897c5a",
+        "android_client_info": {
+          "package_name": "com.smile.vhaconsultancy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "371517175983-ctc94emmminj7utftbrdsh2b3de2mglr.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.smile.vhaconsultancy",
+            "certificate_hash": "20e54896f8a2c89d2c165c6ff0240870b8bff377"
+          }
+        },
+        {
+          "client_id": "371517175983-r5ica1urjl5crm964gnqr0ajirq38rqc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAdeTF-a8pbtoW2ydx6vL1IHE3-HtGuLGk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "371517175983-r5ica1urjl5crm964gnqr0ajirq38rqc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
