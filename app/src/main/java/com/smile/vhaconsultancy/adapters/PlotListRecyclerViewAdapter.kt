@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.smile.vhaconsultancy.R
+import com.smile.vhaconsultancy.activities.PruningListActivity
 import com.smile.vhaconsultancy.models.Plot
 import com.smile.vhaconsultancy.payment.PaymentMainActivity
 import com.smile.vhaconsultancy.utilities.SharedPref
@@ -38,6 +39,12 @@ class PlotListRecyclerViewAdapter(private val plots: ArrayList<Plot>) : Recycler
                     //SharedPref.Companion.getInstance(this@SplashscreenActivity)?.putSharedPrefString(getString(R.string.userPhoneNumber), currentUser.getPhoneNumber())
                     v?.context?.startActivity(intent)
                 } else {
+                    val intent: Intent? = Intent(v?.context, PruningListActivity::class.java)
+                    SharedPref.Companion.getInstance(v?.context)?.putSharedPrefString(v?.context?.getString(R.string.month), v?.context?.getString(R.string.april))
+                    SharedPref.Companion.getInstance(v?.context)?.putSharedPrefString(v?.context?.getString(R.string._area_in_acre), plot.area.toString());
+                    SharedPref.Companion.getInstance(v?.context)?.putSharedPrefString(v?.context?.getString(R.string.plot_key), plot.plotKey.toString());
+                    //SharedPref.Companion.getInstance(this@SplashscreenActivity)?.putSharedPrefString(getString(R.string.userPhoneNumber), currentUser.getPhoneNumber())
+                    v?.context?.startActivity(intent)
                 }
             } else if (month >= 9 && month <= 10) {
             }

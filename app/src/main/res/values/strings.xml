@@ -166,4 +166,11 @@
     <string name="date_of_pruining">"छाटणीची तारीख: "</string>
     <string name="please_select_date_of_pruining">" कृपया छाटणीची तारीख निवडा !"</string>
     <string name="select_date">"तारीख निवडा "</string>
+    <string name="title_pruning_list">छाटणी यादी</string>
+    <string name="day_after_pruning">छाटणी नंतरचा दिवस:</string>
+    <string name="date_after_pruning">तारीख:</string>
+    <string name="work_spray">"काम / फवारणी:"</string>
+    <string name="fertilizer">रासायनिक खत:</string>
+    <string name="work_spray_done">काम / फवारणी केली</string>
+    <string name="fertilizer_done">रासायनिक खत दिले</string>
 </resources>

@@ -29,6 +29,10 @@
             android:label="@string/title_plot_list"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
+            android:name=".activities.PruningListActivity"
+            android:label="@string/title_pruning_list"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
             android:name=".activities.MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar" />
