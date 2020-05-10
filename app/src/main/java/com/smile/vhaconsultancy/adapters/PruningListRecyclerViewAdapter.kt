@@ -32,24 +32,27 @@ class PruningListRecyclerViewAdapter(private val plots: ArrayList<AprilPruningMo
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val plot = plots[position]
-        holder.txtArea.text = plot.srNo.toString() + ""
-        holder.txtVariety.text = plot.strDate + ""
-        holder.txtDistance.text = plot.work_spray.toString() + ""
-        holder.txtNumerOfVine.text = plot.fertilizer.toString() + ""
-        holder.checkboxFertilizer.isChecked=plot.fertilizer_completed
-        holder.checkboxWork.isChecked=plot.work_spray_completed
+         plots[position]
+        holder.txtArea.text = plots[position].srNo.toString() + ""
+        holder.txtVariety.text = plots[position].strDate + ""
+        holder.txtDistance.text = plots[position].work_spray.toString() + ""
+        holder.txtNumerOfVine.text = plots[position].fertilizer.toString() + ""
+        holder.checkboxFertilizer.isChecked=plots[position].fertilizer_completed
+        holder.checkboxWork.isChecked=plots[position].work_spray_completed
         holder.checkboxWork.setOnCheckedChangeListener { buttonView, isChecked ->
 
-                databasePlotListReference?.child(plot.srNo.toString())?.child("work_spray_completed")?.setValue(isChecked)
+               databasePlotListReference?.child(plots[position].srNo.toString())?.child("work_spray_completed")?.setValue(isChecked)
+            plots[position].work_spray_completed=isChecked
+         //   notifyItemChanged(position)
                 //Do Whatever you want in isChecked
 
         }
         holder.checkboxFertilizer.setOnCheckedChangeListener { buttonView, isChecked ->
 
-                databasePlotListReference?.child(plot.srNo.toString())?.child("fertilizer_completed")?.setValue(isChecked)
+                databasePlotListReference?.child(plots[position].srNo.toString())?.child("fertilizer_completed")?.setValue(isChecked)
                 //Do Whatever you want in isChecked
-
+            plots[position].fertilizer_completed=isChecked
+//            notifyItemChanged(position)
         }
     }
 
@@ -64,6 +67,7 @@ class PruningListRecyclerViewAdapter(private val plots: ArrayList<AprilPruningMo
         val txtNumerOfVine: TextView
         val checkboxWork: CheckBox
         val checkboxFertilizer: CheckBox
+
         override fun toString(): String {
             return super.toString() + " '"
         }
@@ -75,6 +79,7 @@ class PruningListRecyclerViewAdapter(private val plots: ArrayList<AprilPruningMo
             txtNumerOfVine = mView.findViewById<View>(R.id.txtNumerOfVine) as TextView
             checkboxFertilizer = mView.findViewById<View>(R.id.checkboxFertilizer) as CheckBox
             checkboxWork = mView.findViewById<View>(R.id.checkboxWork) as CheckBox
+
         }
     }
 
