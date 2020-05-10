@@ -1,16 +1,13 @@
 package com.smile.vhaconsultancy.adapters
 
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.CheckBox
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.smile.vhaconsultancy.R
 import com.smile.vhaconsultancy.models.AprilPruningModel
-import com.smile.vhaconsultancy.models.Plot
-import com.smile.vhaconsultancy.payment.PaymentMainActivity
-import com.smile.vhaconsultancy.utilities.SharedPref
 import java.util.*
 
 class PruningListRecyclerViewAdapter(private val plots: ArrayList<AprilPruningModel>) : RecyclerView.Adapter<PruningListRecyclerViewAdapter.ViewHolder>() {
@@ -26,7 +23,8 @@ class PruningListRecyclerViewAdapter(private val plots: ArrayList<AprilPruningMo
         holder.txtVariety.text = plot.strDate + ""
         holder.txtDistance.text = plot.work_spray.toString() + ""
         holder.txtNumerOfVine.text = plot.fertilizer.toString() + ""
-
+        holder.checkboxFertilizer.isChecked=plot.fertilizer_completed
+        holder.checkboxWork.isChecked=plot.work_spray_completed
     }
 
     override fun getItemCount(): Int {
@@ -38,6 +36,8 @@ class PruningListRecyclerViewAdapter(private val plots: ArrayList<AprilPruningMo
         val txtVariety: TextView
         val txtDistance: TextView
         val txtNumerOfVine: TextView
+        val checkboxWork: CheckBox
+        val checkboxFertilizer: CheckBox
         override fun toString(): String {
             return super.toString() + " '"
         }
@@ -47,6 +47,8 @@ class PruningListRecyclerViewAdapter(private val plots: ArrayList<AprilPruningMo
             txtVariety = mView.findViewById<View>(R.id.txtVariety) as TextView
             txtDistance = mView.findViewById<View>(R.id.txtDistance) as TextView
             txtNumerOfVine = mView.findViewById<View>(R.id.txtNumerOfVine) as TextView
+            checkboxFertilizer = mView.findViewById<View>(R.id.checkboxFertilizer) as CheckBox
+            checkboxWork = mView.findViewById<View>(R.id.checkboxWork) as CheckBox
         }
     }
 

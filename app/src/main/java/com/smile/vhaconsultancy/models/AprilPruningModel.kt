@@ -12,7 +12,7 @@ class AprilPruningModel {
     var work_spray:String = ""
     var work_spray_completed : Boolean= false
     var fertilizer :String= ""
-    var _ertilizer_completed: Boolean = false
+    var fertilizer_completed: Boolean = false
 
 
 }
