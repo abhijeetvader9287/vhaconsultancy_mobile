@@ -1,10 +1,14 @@
 package com.smile.vhaconsultancy.activities
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
 import android.text.TextUtils
+import android.text.TextWatcher
 import android.util.Log
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.Task
@@ -38,6 +42,20 @@ class PhoneAuthActivity constructor() : AppCompatActivity(), View.OnClickListene
         buttonStartVerification.setOnClickListener(this)
         buttonVerifyPhone.setOnClickListener(this)
         buttonResend.setOnClickListener(this)
+        fieldPhoneNumber.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(p0: Editable?) {
+            }
+
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            }
+
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                if(p0?.length==10)
+                {
+                    hideSoftKeyBoard(this@PhoneAuthActivity,fieldPhoneNumber)
+                }
+            }
+        })
         // [START initialize_auth]
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance()
@@ -93,6 +111,16 @@ class PhoneAuthActivity constructor() : AppCompatActivity(), View.OnClickListene
         // [END phone_auth_callbacks]
     }
 
+    fun hideSoftKeyBoard(context: Context, view: View) {
+        try {
+            val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            imm?.hideSoftInputFromWindow(view.windowToken, InputMethodManager.HIDE_NOT_ALWAYS)
+        } catch (e: Exception) {
+            // TODO: handle exception
+            e.printStackTrace()
+        }
+
+    }
     // [START on_start_check_user]
     public override fun onStart() {
         super.onStart()
