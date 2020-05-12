@@ -116,15 +116,15 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:weightSum="2">
-                <CheckBox
+                <Button
                     android:id="@+id/checkboxWork"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
 
                     android:text="@string/work_spray_done"
-                    android:textColor="@color/textColor"></CheckBox>
-                <CheckBox
+                    android:textColor="@color/white"></Button>
+                <Button
                     android:id="@+id/checkboxFertilizer"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -132,7 +132,7 @@
 
 
                     android:text="@string/fertilizer_done"
-                    android:textColor="@color/textColor"></CheckBox>
+                    android:textColor="@color/white"></Button>
 
 
             </LinearLayout>
