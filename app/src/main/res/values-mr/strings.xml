@@ -177,4 +177,8 @@
     <string name="fertilizer">रासायनिक खत:</string>
     <string name="work_spray_done">काम / फवारणी केली</string>
     <string name="fertilizer_done">रासायनिक खत दिले</string>
+    <string name="later_dates_not_allowed">नंतरच्या तारखांना परवानगी नाही!</string>
+    <string name="Ok">ठीक आहे!</string>
+    <string name="Yes">"होय "</string>
+    <string name="Cancel">"रद्द करा "</string>
 </resources>

@@ -56,11 +56,11 @@ class AddPlotActivity : AppCompatActivity() {
             builder.setIcon(android.R.drawable.ic_dialog_alert)
 
             //performing positive action
-            builder.setPositiveButton("Yes") { dialogInterface, which ->
+            builder.setPositiveButton(getString(R.string.Yes)) { dialogInterface, which ->
                 saveFun();
             }
             //performing cancel action
-            builder.setNeutralButton("Cancel") { dialogInterface, which ->
+            builder.setNeutralButton(getString(R.string.Cancel)) { dialogInterface, which ->
 
             }
 

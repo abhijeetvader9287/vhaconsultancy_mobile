@@ -6,12 +6,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.smile.vhaconsultancy.R
 import com.smile.vhaconsultancy.models.AprilPruningModel
 import com.smile.vhaconsultancy.utilities.SharedPref
+import java.text.SimpleDateFormat
 import java.util.*
 
 class PruningListRecyclerViewAdapter(private val plots: ArrayList<AprilPruningModel>) : RecyclerView.Adapter<PruningListRecyclerViewAdapter.ViewHolder>() {
@@ -40,6 +42,12 @@ class PruningListRecyclerViewAdapter(private val plots: ArrayList<AprilPruningMo
         holder.txtNumerOfVine.text = plots[position].fertilizer.toString() + ""
      //   holder.checkboxFertilizer.isEnabled=!plots[position].fertilizer_completed
        // holder.checkboxWork.isEnabled=!plots[position].work_spray_completed
+        val formatter = SimpleDateFormat()
+        formatter.applyPattern("dd-MMM-yyyy")
+        val datePruning = formatter.parse( plots[position].strDate)
+
+        val dateTo = Calendar.getInstance().time
+
         if(plots[position].fertilizer_completed)
         {
             holder.checkboxFertilizer.setPaintFlags(holder.checkboxFertilizer.getPaintFlags() or Paint.STRIKE_THRU_TEXT_FLAG)
@@ -64,13 +72,38 @@ class PruningListRecyclerViewAdapter(private val plots: ArrayList<AprilPruningMo
 
         }
         holder.checkboxWork.setOnClickListener { buttonView  ->
-            if( !plots[position].work_spray_completed) {
-                databasePlotListReference?.child(plots[position].srNo.toString())?.child("work_spray_completed")?.setValue(true)
-                plots[position].work_spray_completed=true
+
+            if (datePruning.after(dateTo)) {
+                val builder = AlertDialog.Builder(holder.checkboxWork.context)
+                //set title for alert dialog
+                builder.setTitle(R.string.Warning)
+                //set message for alert dialog
+                builder.setMessage(R.string.later_dates_not_allowed)
+                builder.setIcon(android.R.drawable.ic_dialog_alert)
+
+                //performing positive action
+                builder.setPositiveButton(holder.checkboxWork.context.getString(R.string.Ok)) { dialogInterface, which ->
+
+                }
+
+
+                // Create the AlertDialog
+                val alertDialog: AlertDialog = builder.create()
+                // Set other dialog properties
+                alertDialog.setCancelable(false)
+                alertDialog.show()
             }else{
-                databasePlotListReference?.child(plots[position].srNo.toString())?.child("work_spray_completed")?.setValue(false)
-                plots[position].work_spray_completed=false
+                if( !plots[position].work_spray_completed) {
+                    databasePlotListReference?.child(plots[position].srNo.toString())?.child("work_spray_completed")?.setValue(true)
+                    plots[position].work_spray_completed=true
+                }else{
+                    databasePlotListReference?.child(plots[position].srNo.toString())?.child("work_spray_completed")?.setValue(false)
+                    plots[position].work_spray_completed=false
+                }
             }
+
+
+
 
 
          //   notifyItemChanged(position)
@@ -78,15 +111,39 @@ class PruningListRecyclerViewAdapter(private val plots: ArrayList<AprilPruningMo
 
         }
         holder.checkboxFertilizer.setOnClickListener { buttonView  ->
-if(! plots[position].fertilizer_completed) {
-    databasePlotListReference?.child(plots[position].srNo.toString())?.child("fertilizer_completed")?.setValue(true)
-    //Do Whatever you want in isChecked
-    plots[position].fertilizer_completed = true
-}else{
-    databasePlotListReference?.child(plots[position].srNo.toString())?.child("fertilizer_completed")?.setValue(false)
-    //Do Whatever you want in isChecked
-    plots[position].fertilizer_completed = false
-}
+
+            if (datePruning.after(dateTo)) {
+                val builder = AlertDialog.Builder(holder.checkboxWork.context)
+                //set title for alert dialog
+                builder.setTitle(R.string.Warning)
+                //set message for alert dialog
+                builder.setMessage(R.string.later_dates_not_allowed)
+                builder.setIcon(android.R.drawable.ic_dialog_alert)
+
+                //performing positive action
+                builder.setPositiveButton(holder.checkboxWork.context.getString(R.string.Ok)) { dialogInterface, which ->
+
+                }
+
+
+                // Create the AlertDialog
+                val alertDialog: AlertDialog = builder.create()
+                // Set other dialog properties
+                alertDialog.setCancelable(false)
+                alertDialog.show()
+            }else{
+                if(! plots[position].fertilizer_completed) {
+                    databasePlotListReference?.child(plots[position].srNo.toString())?.child("fertilizer_completed")?.setValue(true)
+                    //Do Whatever you want in isChecked
+                    plots[position].fertilizer_completed = true
+                }else{
+                    databasePlotListReference?.child(plots[position].srNo.toString())?.child("fertilizer_completed")?.setValue(false)
+                    //Do Whatever you want in isChecked
+                    plots[position].fertilizer_completed = false
+                }
+            }
+
+
 //            notifyItemChanged(position)
         }
     }

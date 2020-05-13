@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.navigation.ui.AppBarConfiguration
@@ -33,6 +34,36 @@ class MainActivity : AppCompatActivity() {
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayShowTitleEnabled(true)
+
+
+
+        action_profile.setOnClickListener{
+            val i = Intent(this, ProfileActivity::class.java)
+            this.startActivity(i)
+            true
+        }
+         action_add_plot .setOnClickListener {
+            val i = Intent(this, AddPlotActivity::class.java)
+            this.startActivity(i)
+            true
+        }
+        action_list_plot .setOnClickListener {
+            val i = Intent(this, PlotListActivity::class.java)
+            this.startActivity(i)
+            true
+        }
+        action_logout .setOnClickListener {
+            mAuth?.signOut()
+            finishAffinity();
+
+            val i = Intent(this, PhoneAuthActivity::class.java)
+            i.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            this.startActivity(i)
+            true
+        }
+
+
+
         mAuth = FirebaseAuth.getInstance()
 
         database = FirebaseDatabase.getInstance()
@@ -88,7 +119,25 @@ class MainActivity : AppCompatActivity() {
                 val newVersionCode: Long = dataSnapshot.value as Long;
                 if (versionCode != newVersionCode) {
 
-                    Toast.makeText(this@MainActivity, getString(R.string.Please_download_new_app), Toast.LENGTH_LONG).show()
+                    val builder = AlertDialog.Builder(this@MainActivity)
+                    //set title for alert dialog
+                    builder.setTitle(R.string.Warning)
+                    //set message for alert dialog
+                    builder.setMessage(R.string.Please_download_new_app)
+                    builder.setIcon(android.R.drawable.ic_dialog_alert)
+
+                    //performing positive action
+                    builder.setPositiveButton( getString(R.string.Ok)) { dialogInterface, which ->
+
+                    }
+
+
+                    // Create the AlertDialog
+                    val alertDialog: AlertDialog = builder.create()
+                    // Set other dialog properties
+                    alertDialog.setCancelable(false)
+                    alertDialog.show()
+                   // Toast.makeText(this@MainActivity, getString(R.string.Please_download_new_app), Toast.LENGTH_LONG).show()
 
                 }
 
@@ -97,40 +146,7 @@ class MainActivity : AppCompatActivity() {
         });
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.getItemId()) {
-            R.id.action_profile -> {
-                val i = Intent(this, ProfileActivity::class.java)
-                this.startActivity(i)
-                true
-            }
-            R.id.action_add_plot -> {
-                val i = Intent(this, AddPlotActivity::class.java)
-                this.startActivity(i)
-                true
-            }
-            R.id.action_list_plot -> {
-                val i = Intent(this, PlotListActivity::class.java)
-                this.startActivity(i)
-                true
-            }
-            R.id.action_logout -> {
-                mAuth?.signOut()
-                finishAffinity();
 
-                val i = Intent(this, PhoneAuthActivity::class.java)
-                i.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                this.startActivity(i)
-                true
-            }
-            else -> super.onOptionsItemSelected(item)
-        }
-    }
 
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        menuInflater.inflate(R.menu.main, menu)
-        return true
-    }
 
 }

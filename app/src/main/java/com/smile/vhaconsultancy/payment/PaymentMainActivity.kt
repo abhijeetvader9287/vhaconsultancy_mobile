@@ -46,7 +46,7 @@ class PaymentMainActivity : BaseActivity(), View.OnClickListener {
         setContentView(R.layout.activity_payment)
 
         setSupportActionBar(custom_toolbar)
-        supportActionBar?.title = getString(R.string.app_name)
+        supportActionBar?.title = getString(R.string.payment)
 
         userUid = SharedPref.Companion.getInstance(this@PaymentMainActivity)?.getSharedPref(getString(R.string.userUid))
         userPhoneNumber = SharedPref.Companion.getInstance(this@PaymentMainActivity)?.getSharedPref(getString(R.string.userPhoneNumber))
