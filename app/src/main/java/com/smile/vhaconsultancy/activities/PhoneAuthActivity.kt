@@ -50,9 +50,8 @@ class PhoneAuthActivity constructor() : AppCompatActivity(), View.OnClickListene
             }
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                if(p0?.length==10)
-                {
-                    hideSoftKeyBoard(this@PhoneAuthActivity,fieldPhoneNumber)
+                if (p0?.length == 10) {
+                    hideSoftKeyBoard(this@PhoneAuthActivity, fieldPhoneNumber)
                 }
             }
         })
@@ -121,6 +120,7 @@ class PhoneAuthActivity constructor() : AppCompatActivity(), View.OnClickListene
         }
 
     }
+
     // [START on_start_check_user]
     public override fun onStart() {
         super.onStart()

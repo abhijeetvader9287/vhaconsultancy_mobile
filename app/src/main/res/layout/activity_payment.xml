@@ -3,8 +3,8 @@
     xmlns:card_view="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:focusable="true"
     android:background="@drawable/bg_gradient"
+    android:focusable="true"
     android:focusableInTouchMode="true"
     android:orientation="vertical">
 
@@ -12,9 +12,9 @@
         android:id="@+id/custom_toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:titleTextColor="@color/white"
+        android:background="?attr/colorPrimary"
         app:titleMarginStart="70dp"
-        android:background="?attr/colorPrimary" />
+        app:titleTextColor="@color/white" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -53,52 +53,54 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
-                     <LinearLayout
-                         android:layout_width="match_parent"
-                         android:orientation="horizontal"
-                         android:layout_height="wrap_content">
-                         <TextView
-                             android:id="@+id/mobile_et_lable"
-                             android:layout_width="wrap_content"
-                             android:layout_height="wrap_content"
-                             android:layout_marginBottom="10dp"
-                              android:text="@string/mobile_number"
-                             android:imeOptions="actionDone"
-                             android:inputType="phone"
-                             android:maxLines="1"
-                             android:nextFocusDown="@+id/card_name_et"
-                             android:paddingTop="@dimen/dimen_10dp"
-                             android:textColor="@color/payumoney_black"
-                             android:textSize="16sp" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
 
-                         <TextView
-                             android:id="@+id/mobile_et"
-                             android:layout_width="match_parent"
-                             android:layout_height="wrap_content"
-                             android:layout_marginBottom="10dp"
-                             android:imeOptions="actionDone"
-                             android:inputType="phone"
-                             android:maxLines="1"
-                             android:nextFocusDown="@+id/card_name_et"
-                             android:paddingTop="@dimen/dimen_10dp"
-                             android:textColor="@color/payumoney_black"
-                             android:textSize="16sp" />
-                     </LinearLayout>
+                        <TextView
+                            android:id="@+id/mobile_et_lable"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="10dp"
+                            android:imeOptions="actionDone"
+                            android:inputType="phone"
+                            android:maxLines="1"
+                            android:nextFocusDown="@+id/card_name_et"
+                            android:paddingTop="@dimen/dimen_10dp"
+                            android:text="@string/mobile_number"
+                            android:textColor="@color/payumoney_black"
+                            android:textSize="16sp" />
+
+                        <TextView
+                            android:id="@+id/mobile_et"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="10dp"
+                            android:imeOptions="actionDone"
+                            android:inputType="phone"
+                            android:maxLines="1"
+                            android:nextFocusDown="@+id/card_name_et"
+                            android:paddingTop="@dimen/dimen_10dp"
+                            android:textColor="@color/payumoney_black"
+                            android:textSize="16sp" />
+                    </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:orientation="horizontal"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
                         <TextView
                             android:id="@+id/name_et_lable"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="10dp"
-                            android:text="@string/name"
                             android:imeOptions="actionDone"
-                             android:maxLines="1"
+                            android:maxLines="1"
                             android:nextFocusDown="@+id/card_name_et"
                             android:paddingTop="@dimen/dimen_10dp"
+                            android:text="@string/name"
                             android:textColor="@color/payumoney_black"
                             android:textSize="16sp" />
 
@@ -118,18 +120,19 @@
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:orientation="horizontal"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
                         <TextView
                             android:id="@+id/month_et_lable"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="10dp"
-                            android:text="@string/month_mr"
                             android:imeOptions="actionDone"
                             android:maxLines="1"
                             android:nextFocusDown="@+id/card_name_et"
                             android:paddingTop="@dimen/dimen_10dp"
+                            android:text="@string/month_mr"
                             android:textColor="@color/payumoney_black"
                             android:textSize="16sp" />
 
@@ -149,18 +152,19 @@
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:orientation="horizontal"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
                         <TextView
                             android:id="@+id/pruining_date_et_lable"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="10dp"
-                            android:text="@string/date_of_pruining"
                             android:imeOptions="actionDone"
                             android:maxLines="1"
                             android:nextFocusDown="@+id/card_name_et"
                             android:paddingTop="@dimen/dimen_10dp"
+                            android:text="@string/date_of_pruining"
                             android:textColor="@color/payumoney_black"
                             android:textSize="16sp" />
 
@@ -170,29 +174,29 @@
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="10dp"
                             android:imeOptions="actionDone"
-                            android:text="@string/select_date"
-
-
                             android:maxLines="1"
                             android:nextFocusDown="@+id/card_name_et"
                             android:paddingTop="@dimen/dimen_10dp"
+                            android:text="@string/select_date"
                             android:textColor="@color/blue"
                             android:textSize="16sp" />
                     </LinearLayout>
+
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:orientation="horizontal"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
                         <TextView
                             android:id="@+id/amount_et_lable"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="10dp"
-                            android:text="@string/rate_mr"
                             android:imeOptions="actionDone"
                             android:maxLines="1"
                             android:nextFocusDown="@+id/card_name_et"
                             android:paddingTop="@dimen/dimen_10dp"
+                            android:text="@string/rate_mr"
                             android:textColor="@color/payumoney_black"
                             android:textSize="16sp" />
 
@@ -202,26 +206,28 @@
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="10dp"
                             android:imeOptions="actionDone"
-                             android:maxLines="1"
+                            android:maxLines="1"
                             android:nextFocusDown="@+id/card_name_et"
                             android:paddingTop="@dimen/dimen_10dp"
                             android:textColor="@color/payumoney_black"
                             android:textSize="16sp" />
                     </LinearLayout>
+
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:orientation="horizontal"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
                         <TextView
                             android:id="@+id/area_et_lable"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="10dp"
-                            android:text="@string/area_in_acer"
                             android:imeOptions="actionDone"
                             android:maxLines="1"
                             android:nextFocusDown="@+id/card_name_et"
                             android:paddingTop="@dimen/dimen_10dp"
+                            android:text="@string/area_in_acer"
                             android:textColor="@color/payumoney_black"
                             android:textSize="16sp" />
 
@@ -238,20 +244,22 @@
                             android:textColor="@color/payumoney_black"
                             android:textSize="16sp" />
                     </LinearLayout>
+
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:orientation="horizontal"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
                         <TextView
                             android:id="@+id/total_et_lable"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="10dp"
-                            android:text="@string/str_total_payment_mr"
                             android:imeOptions="actionDone"
                             android:maxLines="1"
                             android:nextFocusDown="@+id/card_name_et"
                             android:paddingTop="@dimen/dimen_10dp"
+                            android:text="@string/str_total_payment_mr"
                             android:textColor="@color/payumoney_black"
                             android:textSize="16sp" />
 
@@ -270,6 +278,7 @@
                     </LinearLayout>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
+
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
@@ -296,7 +305,6 @@
                     android:textColor="@color/white"
                     android:textSize="25sp" />
             </androidx.cardview.widget.CardView>
-
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

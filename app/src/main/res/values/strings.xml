@@ -120,7 +120,6 @@
     <string name="previous">Previous</string>
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
-
     <string name="profile">प्रोफाइल</string>
     <string name="name">नाव:</string>
     <string name="mobile_number">मोबाइल नंबर:</string>

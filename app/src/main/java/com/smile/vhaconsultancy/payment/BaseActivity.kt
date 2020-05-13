@@ -2,7 +2,6 @@ package com.smile.vhaconsultancy.payment
 
 import android.os.Bundle
 import android.view.MenuItem
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
@@ -13,7 +12,7 @@ abstract class BaseActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(layoutResource)
-         if (toolbar != null) {
+        if (toolbar != null) {
             setSupportActionBar(toolbar)
             supportActionBar!!.setDisplayShowHomeEnabled(true)
             supportActionBar!!.setLogo(R.drawable.app_icon)

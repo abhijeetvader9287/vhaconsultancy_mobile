@@ -7,7 +7,6 @@ import android.os.Bundle
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.database.*
 import com.smile.vhaconsultancy.R
 import com.smile.vhaconsultancy.adapters.PlotListRecyclerViewAdapter
@@ -58,7 +57,7 @@ class PlotListActivity : AppCompatActivity() {
                     plot?.let { plots.add(it) }
                 }
                 val plotListRecyclerViewAdapter = PlotListRecyclerViewAdapter(plots)
-                recyclerViewPlotList.setLayoutManager(GridLayoutManager(this@PlotListActivity,2))
+                recyclerViewPlotList.setLayoutManager(GridLayoutManager(this@PlotListActivity, 2))
                 recyclerViewPlotList.setAdapter(plotListRecyclerViewAdapter)
                 dialog.dismiss()
             }

@@ -27,7 +27,7 @@ class PruningListRecyclerViewAdapter(private val plots: ArrayList<AprilPruningMo
         database = FirebaseDatabase.getInstance()
 
         userPhoneNumber = SharedPref.Companion.getInstance(parent.context)?.getSharedPref(parent.context.getString(R.string.userPhoneNumber))
-        plot_key=SharedPref.Companion.getInstance(parent.context)?.getSharedPref(parent.context.getString(R.string.plot_key))
+        plot_key = SharedPref.Companion.getInstance(parent.context)?.getSharedPref(parent.context.getString(R.string.plot_key))
 
         databasePlotListReference = database!!.getReference(parent.context.getString(R.string.user_list)).child(userPhoneNumber!!).child(parent.context.getString(R.string.plot_list)).child(plot_key.toString()).child("april_pruning_list")
 
@@ -35,43 +35,37 @@ class PruningListRecyclerViewAdapter(private val plots: ArrayList<AprilPruningMo
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-         plots[position]
+        plots[position]
         holder.txtArea.text = plots[position].srNo.toString() + ""
         holder.txtVariety.text = plots[position].strDate + ""
         holder.txtDistance.text = plots[position].work_spray.toString() + ""
         holder.txtNumerOfVine.text = plots[position].fertilizer.toString() + ""
-     //   holder.checkboxFertilizer.isEnabled=!plots[position].fertilizer_completed
-       // holder.checkboxWork.isEnabled=!plots[position].work_spray_completed
+        //   holder.checkboxFertilizer.isEnabled=!plots[position].fertilizer_completed
+        // holder.checkboxWork.isEnabled=!plots[position].work_spray_completed
         val formatter = SimpleDateFormat()
         formatter.applyPattern("dd-MMM-yyyy")
-        val datePruning = formatter.parse( plots[position].strDate)
+        val datePruning = formatter.parse(plots[position].strDate)
 
         val dateTo = Calendar.getInstance().time
 
-        if(plots[position].fertilizer_completed)
-        {
+        if (plots[position].fertilizer_completed) {
             holder.checkboxFertilizer.setPaintFlags(holder.checkboxFertilizer.getPaintFlags() or Paint.STRIKE_THRU_TEXT_FLAG)
 
-        //    holder.checkboxFertilizer.setBackgroundColor(holder.checkboxFertilizer.context.resources.getColor(R.color.add_amount_grey))
-        }
-        else
-        {
+            //    holder.checkboxFertilizer.setBackgroundColor(holder.checkboxFertilizer.context.resources.getColor(R.color.add_amount_grey))
+        } else {
             holder.checkboxFertilizer.setPaintFlags(holder.checkboxFertilizer.getPaintFlags() and Paint.STRIKE_THRU_TEXT_FLAG.inv())
 
         }
 
-        if(plots[position].work_spray_completed)
-        {
+        if (plots[position].work_spray_completed) {
             holder.checkboxWork.setPaintFlags(holder.checkboxWork.getPaintFlags() or Paint.STRIKE_THRU_TEXT_FLAG)
 
             //    holder.checkboxFertilizer.setBackgroundColor(holder.checkboxFertilizer.context.resources.getColor(R.color.add_amount_grey))
-        }
-        else
-        {
+        } else {
             holder.checkboxWork.setPaintFlags(holder.checkboxWork.getPaintFlags() and Paint.STRIKE_THRU_TEXT_FLAG.inv())
 
         }
-        holder.checkboxWork.setOnClickListener { buttonView  ->
+        holder.checkboxWork.setOnClickListener { buttonView ->
 
             if (datePruning.after(dateTo)) {
                 val builder = AlertDialog.Builder(holder.checkboxWork.context)
@@ -92,25 +86,22 @@ class PruningListRecyclerViewAdapter(private val plots: ArrayList<AprilPruningMo
                 // Set other dialog properties
                 alertDialog.setCancelable(false)
                 alertDialog.show()
-            }else{
-                if( !plots[position].work_spray_completed) {
+            } else {
+                if (!plots[position].work_spray_completed) {
                     databasePlotListReference?.child(plots[position].srNo.toString())?.child("work_spray_completed")?.setValue(true)
-                    plots[position].work_spray_completed=true
-                }else{
+                    plots[position].work_spray_completed = true
+                } else {
                     databasePlotListReference?.child(plots[position].srNo.toString())?.child("work_spray_completed")?.setValue(false)
-                    plots[position].work_spray_completed=false
+                    plots[position].work_spray_completed = false
                 }
             }
 
 
-
-
-
-         //   notifyItemChanged(position)
-                //Do Whatever you want in isChecked
+            //   notifyItemChanged(position)
+            //Do Whatever you want in isChecked
 
         }
-        holder.checkboxFertilizer.setOnClickListener { buttonView  ->
+        holder.checkboxFertilizer.setOnClickListener { buttonView ->
 
             if (datePruning.after(dateTo)) {
                 val builder = AlertDialog.Builder(holder.checkboxWork.context)
@@ -131,12 +122,12 @@ class PruningListRecyclerViewAdapter(private val plots: ArrayList<AprilPruningMo
                 // Set other dialog properties
                 alertDialog.setCancelable(false)
                 alertDialog.show()
-            }else{
-                if(! plots[position].fertilizer_completed) {
+            } else {
+                if (!plots[position].fertilizer_completed) {
                     databasePlotListReference?.child(plots[position].srNo.toString())?.child("fertilizer_completed")?.setValue(true)
                     //Do Whatever you want in isChecked
                     plots[position].fertilizer_completed = true
-                }else{
+                } else {
                     databasePlotListReference?.child(plots[position].srNo.toString())?.child("fertilizer_completed")?.setValue(false)
                     //Do Whatever you want in isChecked
                     plots[position].fertilizer_completed = false

@@ -5,9 +5,6 @@ import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuItem
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
@@ -38,32 +35,32 @@ class MainActivity : AppCompatActivity() {
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayShowTitleEnabled(true)
-        dialog = ProgressDialog(this);
-        dialog.getWindow().setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT));
-        dialog.setIndeterminate(true);
-        dialog.setCancelable(false);
-        dialog.show();
-        dialog.setContentView(R.layout.progress_layout);
+        dialog = ProgressDialog(this)
+        dialog.window.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        dialog.isIndeterminate = true
+        dialog.setCancelable(false)
+        dialog.show()
+        dialog.setContentView(R.layout.progress_layout)
 
 
-        action_profile.setOnClickListener{
+        action_profile.setOnClickListener {
             val i = Intent(this, ProfileActivity::class.java)
             this.startActivity(i)
             true
         }
-         action_add_plot .setOnClickListener {
+        action_add_plot.setOnClickListener {
             val i = Intent(this, AddPlotActivity::class.java)
             this.startActivity(i)
             true
         }
-        action_list_plot .setOnClickListener {
+        action_list_plot.setOnClickListener {
             val i = Intent(this, PlotListActivity::class.java)
             this.startActivity(i)
             true
         }
-        action_logout .setOnClickListener {
+        action_logout.setOnClickListener {
             mAuth?.signOut()
-            finishAffinity();
+            finishAffinity()
 
             val i = Intent(this, PhoneAuthActivity::class.java)
             i.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
@@ -76,9 +73,9 @@ class MainActivity : AppCompatActivity() {
         mAuth = FirebaseAuth.getInstance()
 
         database = FirebaseDatabase.getInstance()
-        versionCodeReference = database!!.getReference(getString(R.string.versionCode));
-        rateReference = database!!.getReference(getString(R.string.rate));
-        userUid = SharedPref.Companion.getInstance(this@MainActivity)?.getSharedPref(getString(R.string.userUid));
+        versionCodeReference = database!!.getReference(getString(R.string.versionCode))
+        rateReference = database!!.getReference(getString(R.string.rate))
+        userUid = SharedPref.Companion.getInstance(this@MainActivity)?.getSharedPref(getString(R.string.userUid))
         userPhoneNumber = SharedPref.Companion.getInstance(this@MainActivity)?.getSharedPref(getString(R.string.userPhoneNumber))
 
         databaseProfileReference = database!!.getReference(getString(R.string.user_list)).child(userPhoneNumber!!).child(getString(R.string.user_profile))
@@ -89,8 +86,8 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onDataChange(dataSnapshot: DataSnapshot) {
-                val rate: Double = dataSnapshot.value as Double;
-                SharedPref.getInstance(this@MainActivity)?.putSharedPrefFloat(getString(R.string.rate), rate.toFloat());
+                val rate: Double = dataSnapshot.value as Double
+                SharedPref.getInstance(this@MainActivity)?.putSharedPrefFloat(getString(R.string.rate), rate.toFloat())
 
             }
 
@@ -102,13 +99,13 @@ class MainActivity : AppCompatActivity() {
                 //getting artist
                 val userProfile: UserProfile? = dataSnapshot.getValue(UserProfile::class.java)
                 //adding artist to the list
-                 editTextMobileNumber.setText(userProfile?.mobileNumber)
-              //  editTextDistrict.setText(userProfile?.district)
-                editTextName.setText(userProfile?.name)
-                SharedPref.getInstance(this@MainActivity)?.putSharedPrefString(getString(R.string._name), userProfile?.name);
-dialog.dismiss()
+                editTextMobileNumber.text = userProfile?.mobileNumber
+                //  editTextDistrict.setText(userProfile?.district)
+                editTextName.text = userProfile?.name
+                SharedPref.getInstance(this@MainActivity)?.putSharedPrefString(getString(R.string._name), userProfile?.name)
+                dialog.dismiss()
                 // editTextTaluka.setText(userProfile?.taluka)
-               // editTextVillage.setText(userProfile?.village)
+                // editTextVillage.setText(userProfile?.village)
 
             }
 
@@ -125,8 +122,8 @@ dialog.dismiss()
 
             override fun onDataChange(dataSnapshot: DataSnapshot) {
 
-                val versionCode: Long = BuildConfig.VERSION_CODE.toLong();
-                val newVersionCode: Long = dataSnapshot.value as Long;
+                val versionCode: Long = BuildConfig.VERSION_CODE.toLong()
+                val newVersionCode: Long = dataSnapshot.value as Long
                 if (versionCode != newVersionCode) {
 
                     val builder = AlertDialog.Builder(this@MainActivity)
@@ -137,7 +134,7 @@ dialog.dismiss()
                     builder.setIcon(android.R.drawable.ic_dialog_alert)
 
                     //performing positive action
-                    builder.setPositiveButton( getString(R.string.Ok)) { dialogInterface, which ->
+                    builder.setPositiveButton(getString(R.string.Ok)) { dialogInterface, which ->
 
                     }
 
@@ -147,16 +144,14 @@ dialog.dismiss()
                     // Set other dialog properties
                     alertDialog.setCancelable(false)
                     alertDialog.show()
-                   // Toast.makeText(this@MainActivity, getString(R.string.Please_download_new_app), Toast.LENGTH_LONG).show()
+                    // Toast.makeText(this@MainActivity, getString(R.string.Please_download_new_app), Toast.LENGTH_LONG).show()
 
                 }
 
             }
 
-        });
+        })
     }
-
-
 
 
 }

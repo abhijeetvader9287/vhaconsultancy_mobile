@@ -52,7 +52,7 @@ class PaymentMainActivity : BaseActivity(), View.OnClickListener {
         userPhoneNumber = SharedPref.Companion.getInstance(this@PaymentMainActivity)?.getSharedPref(getString(R.string.userPhoneNumber))
 
         database = FirebaseDatabase.getInstance()
-        plot_key=SharedPref.Companion.getInstance(this@PaymentMainActivity)?.getSharedPref(getString(R.string.plot_key))
+        plot_key = SharedPref.Companion.getInstance(this@PaymentMainActivity)?.getSharedPref(getString(R.string.plot_key))
         plot_keyRefDatabaseRef = database!!.getReference(getString(R.string.user_list)).child(userPhoneNumber!!).child(getString(R.string.plot_list)).child(SharedPref.Companion.getInstance(this@PaymentMainActivity)?.getSharedPref(getString(R.string.plot_key)).toString()).child("plotKey")
         plot_keyRefDatabaseRef!!.setValue(plot_key)
         aprilTransactionRefDatabaseRef = database!!.getReference(getString(R.string.user_list)).child(userPhoneNumber!!).child(getString(R.string.plot_list)).child(SharedPref.Companion.getInstance(this@PaymentMainActivity)?.getSharedPref(getString(R.string.plot_key)).toString()

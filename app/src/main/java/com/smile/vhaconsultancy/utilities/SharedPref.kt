@@ -10,9 +10,11 @@ class SharedPref private constructor(context: Context?) {
     fun getSharedPref(key: String?): String? {
         return sharedpreferences?.getString(key, "")
     }
+
     fun getSharedPrefFloat(key: String?): Float? {
         return sharedpreferences?.getFloat(key, 0.0f)
     }
+
     fun putSharedPrefString(key: String?, value: String?) {
         sharedpreferenceseditor?.putString(key, value)
         sharedpreferenceseditor?.commit()
