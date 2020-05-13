@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Vhaconsultancy</string>
+    <string name="app_name">Grape line consultancy</string>
     <string name="label_google_sign_in">Firebase + Google Sign In</string>
     <string name="desc_google_sign_in">Use a Google Sign In credential to authenticate with Firebase.</string>
     <string name="label_facebook_login">Firebase + Facebook Login</string>
@@ -177,4 +177,5 @@
     <string name="Ok">ठीक आहे!</string>
     <string name="Yes">"होय "</string>
     <string name="Cancel">"रद्द करा "</string>
+    <string name="tagline">Grape line हीच तुमची Helpline..!</string>
 </resources>

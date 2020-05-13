@@ -1,6 +1,9 @@
 package com.smile.vhaconsultancy.activities
 
+import android.app.ProgressDialog
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -28,13 +31,19 @@ class MainActivity : AppCompatActivity() {
     var database: FirebaseDatabase? = null
     var versionCodeReference: DatabaseReference? = null
     var rateReference: DatabaseReference? = null
+    lateinit var dialog: ProgressDialog
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayShowTitleEnabled(true)
-
+        dialog = ProgressDialog(this);
+        dialog.getWindow().setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT));
+        dialog.setIndeterminate(true);
+        dialog.setCancelable(false);
+        dialog.show();
+        dialog.setContentView(R.layout.progress_layout);
 
 
         action_profile.setOnClickListener{
@@ -97,13 +106,14 @@ class MainActivity : AppCompatActivity() {
               //  editTextDistrict.setText(userProfile?.district)
                 editTextName.setText(userProfile?.name)
                 SharedPref.getInstance(this@MainActivity)?.putSharedPrefString(getString(R.string._name), userProfile?.name);
-
+dialog.dismiss()
                 // editTextTaluka.setText(userProfile?.taluka)
                // editTextVillage.setText(userProfile?.village)
 
             }
 
             override fun onCancelled(databaseError: DatabaseError) {
+                dialog.dismiss()
 
 
             }
