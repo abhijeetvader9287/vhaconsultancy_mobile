@@ -205,9 +205,9 @@ class PaymentMainActivity : BaseActivity(), View.OnClickListener {
         txnId = "TXNID" + System.currentTimeMillis() + ""
         //String txnId = "TXNID720431525261327973";
         val phone = mobile_et!!.text.toString()
-        val productName = "VHA consultancy"
+        val productName = getString(R.string.app_name)
         val firstName = name_et!!.text.toString()
-        val email = "abhijeetvader@gmail.com"
+        val email = "amap.patil@gmail.com"
         val udf1 = ""
         val udf2 = ""
         val udf3 = ""

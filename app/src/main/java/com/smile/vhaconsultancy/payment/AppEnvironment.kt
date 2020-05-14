@@ -6,11 +6,11 @@ package com.smile.vhaconsultancy.payment
 enum class AppEnvironment {
     SANDBOX {
         override fun merchant_Key(): String {
-            return "zk7Q3Fph"
+            return "tv5A0VxC"
         }
 
         override fun merchant_ID(): String {
-            return "7041669"
+            return "7050867"
         }
 
         override fun furl(): String {
@@ -22,7 +22,7 @@ enum class AppEnvironment {
         }
 
         override fun salt(): String {
-            return "rmSp2KSiZH"
+            return "AEBLZwWZ1X"
         }
 
         override fun debug(): Boolean {
@@ -31,11 +31,11 @@ enum class AppEnvironment {
     },
     PRODUCTION {
         override fun merchant_Key(): String {
-            return "zk7Q3Fph"
+            return "tv5A0VxC"
         }
 
         override fun merchant_ID(): String {
-            return "7041669"
+            return "7050867"
         }
 
         override fun furl(): String {
@@ -47,7 +47,7 @@ enum class AppEnvironment {
         }
 
         override fun salt(): String {
-            return "rmSp2KSiZH"
+            return "AEBLZwWZ1X"
         }
 
         override fun debug(): Boolean {
