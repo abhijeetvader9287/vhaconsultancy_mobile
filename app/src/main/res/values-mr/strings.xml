@@ -64,12 +64,7 @@
     <string name="firebaseui_status_fmt">Firebase User: %s</string>
     <string name="firebaseui_title_text">FirebaseUI Auth</string>
     <string name="generic_title_text">OAuth Sign In</string>
-    <string name="generic_signin_fmt">Sign In with %s</string>
-    <string name="generic_status_fmt">User: %s (%s)</string>
-    <string name="generic_label_provider">Provider:</string>
-    <string name="id_fmt">User ID: %s</string>
-    <string name="email_fmt">Email: %s</string>
-    <string name="custom_auth_signin_status_user">User ID: %s</string>
+
     <string name="custom_auth_signin_status_failed">Error: sign in failed</string>
     <string name="error_sign_in_failed">Sign in failed, see logs for details.</string>
     <string name="country_code">+91</string>
@@ -181,5 +176,5 @@
     <string name="Ok">ठीक आहे!</string>
     <string name="Yes">"होय "</string>
     <string name="Cancel">"रद्द करा "</string>
-    <string name="tagline">Grape line हीच तुमची Helpline..!</string>
+    <string name="tagline">Grape line\n बागायतदारांची Helpline..!\n9657738048</string>
 </resources>

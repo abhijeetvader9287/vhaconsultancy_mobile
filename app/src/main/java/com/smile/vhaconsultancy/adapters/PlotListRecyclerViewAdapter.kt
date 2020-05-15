@@ -29,7 +29,7 @@ class PlotListRecyclerViewAdapter(private val plots: ArrayList<Plot>) : Recycler
         holder.mView.setOnClickListener { v: View? ->
             val todaysDate = Date()
             val month = todaysDate.month + 1
-            if (month >= 3 && month <= 5) {
+            if (month >= 3 && month <= 8) {
                 val aprilTransactioRef = plot?.aprilTransactionRef
                 if (aprilTransactioRef!!.isEmpty()) {
                     val intent: Intent? = Intent(v?.context, PaymentMainActivity::class.java)
