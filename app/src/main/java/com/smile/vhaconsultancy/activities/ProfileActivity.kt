@@ -59,6 +59,7 @@ class ProfileActivity : AppCompatActivity() {
                 editTextName.setText(userProfile?.name)
                 editTextTaluka.setText(userProfile?.taluka)
                 editTextVillage.setText(userProfile?.village)
+                editTextAadhar.setText(userProfile?.adharnumber)
                 dialog.dismiss()
             }
 
@@ -79,6 +80,7 @@ class ProfileActivity : AppCompatActivity() {
                 userProfile.village = editTextVillage.text.toString()
                 userProfile.taluka = editTextTaluka.text.toString()
                 userProfile.district = editTextDistrict.text.toString()
+                userProfile.adharnumber = editTextAadhar.text.toString()
                 databaseProfileReference!!.setValue(userProfile).addOnCanceledListener {
                     dialog.dismiss();
 
@@ -112,6 +114,12 @@ class ProfileActivity : AppCompatActivity() {
         }
         if (editTextMobileNumber.text.toString().isNullOrEmpty()) {
             editTextMobileNumber.setError(getString(R.string.Field_should_not_be_empty))
+
+            isValid = false
+
+        }
+        if (editTextAadhar.text.toString().isNullOrEmpty()) {
+            editTextAadhar.setError(getString(R.string.Field_should_not_be_empty))
 
             isValid = false
 

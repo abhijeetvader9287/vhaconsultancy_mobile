@@ -2,9 +2,12 @@ package com.smile.vhaconsultancy.activities
 
 import android.app.ProgressDialog
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.net.Uri
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
@@ -115,6 +118,7 @@ class MainActivity : AppCompatActivity() {
 
             }
         })
+        action_whatsapp.setOnClickListener { openWhatsApp() }
         versionCodeReference!!.addValueEventListener(object : ValueEventListener {
             override fun onCancelled(p0: DatabaseError) {
                 TODO("Not yet implemented")
@@ -152,6 +156,25 @@ class MainActivity : AppCompatActivity() {
 
         })
     }
+   fun openWhatsApp(){
+    var pm:    PackageManager =getPackageManager()
+        try {
 
+
+            var toNumber:String = getString(R.string.phoneNumber) // Replace with mobile phone number without +Sign or leading zeros, but with country code.
+            //Suppose your country is India and your phone number is “xxxxxxxxxx”, then you need to send “91xxxxxxxxxx”.
+
+
+
+            var sendIntent =   Intent(Intent.ACTION_SENDTO, Uri.parse("smsto:" + "" + toNumber  ))
+            sendIntent.setPackage("com.whatsapp");
+            startActivity(sendIntent);
+        }
+        catch ( e:Exception){
+            e.printStackTrace();
+            Toast.makeText(this@MainActivity,"it may be you dont have whats app",Toast.LENGTH_LONG).show();
+
+        }
+    }
 
 }

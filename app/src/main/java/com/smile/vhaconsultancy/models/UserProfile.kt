@@ -6,6 +6,7 @@ class UserProfile {
     var village: String = ""
     var taluka: String = ""
     var district: String = ""
+    var adharnumber: String = ""
 
 
 }

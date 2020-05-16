@@ -146,7 +146,7 @@
     <string name="Warning">चेतावणी</string>
     <string name="you_will_not_be_able_to_edit_again">आपण जतन करू इच्छिता? आपण पुन्हा संपादित करण्यास सक्षम राहणार नाही!</string>
     <string name="area_in_acer">एकर मधील क्षेत्र :</string>
-    <string name="variety">द्राक्षांचा वेल प्रकार :</string>
+    <string name="variety">द्राक्षांचा वेल वाण :</string>
     <string name="distance">अंतर :</string>
     <string name="number_of_vine">द्राक्षांचा वेल संख्या :</string>
     <string name="user_list">user_list</string>
@@ -165,7 +165,7 @@
     <string name="date_of_pruining">"छाटणीची तारीख: "</string>
     <string name="please_select_date_of_pruining">" कृपया छाटणीची तारीख निवडा !"</string>
     <string name="select_date">"तारीख निवडा "</string>
-    <string name="title_pruning_list">छाटणी यादी</string>
+    <string name="title_pruning_list">कामाचे नियोजन </string>
     <string name="day_after_pruning">छाटणी नंतरचा दिवस:</string>
     <string name="date_after_pruning">तारीख:</string>
     <string name="work_spray">"काम / फवारणी:"</string>
@@ -176,5 +176,8 @@
     <string name="Ok">ठीक आहे!</string>
     <string name="Yes">"होय "</string>
     <string name="Cancel">"रद्द करा "</string>
-    <string name="tagline">Grape line\n बागायतदारांची Helpline..!\n9657738048</string>
+    <string name="tagline">Grape line\n बागायतदारांची Helpline..!</string>
+    <string name="adharnumber">आधार नंबर:</string>
+    <string name="phoneNumber">919657738048</string>
+    <string name="action_whatsapp">तुमचे प्रश्न विचारा ?</string>
 </resources>
