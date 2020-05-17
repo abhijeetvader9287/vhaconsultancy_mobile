@@ -89,9 +89,8 @@ class PaymentMainActivity : BaseActivity(), View.OnClickListener {
             val datePickerDialog = DatePickerDialog(this@PaymentMainActivity,
                     OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
                         pruning_date.set(year, monthOfYear, dayOfMonth)
-                        val simpleDateFormat = SimpleDateFormat()
-                        simpleDateFormat.applyPattern("dd-MMM-yyyy")
-                        val strDate = simpleDateFormat.format(Date(pruning_date.timeInMillis))
+                        val simpleDateFormat = SimpleDateFormat("dd-MMM-yyyy", Locale.US)
+                         val strDate = simpleDateFormat.format(Date(pruning_date.timeInMillis))
                         selectedDate = pruning_date.timeInMillis
                         pruining_date_et.text = strDate
 
@@ -100,8 +99,8 @@ class PaymentMainActivity : BaseActivity(), View.OnClickListener {
 
             datePickerDialog.show()
             if (month_et.text.toString().equals(strApril)) {
-                var simpleDateFormat = SimpleDateFormat()
-                simpleDateFormat.applyPattern("dd-MMM-yyyy")
+                var simpleDateFormat = SimpleDateFormat("dd-MMM-yyyy", Locale.US)
+
                 var dateEnd = Date()
                 var dateStart = Date()
                 var strYear = +dateEnd.year + 1900
@@ -136,7 +135,7 @@ class PaymentMainActivity : BaseActivity(), View.OnClickListener {
                     var payuResponse = transactionResponse.getPayuResponse()
                     aprilTransactionRefDatabaseRef?.setValue(txnId)
                     val pattern = "dd-MMM-yyyy HH:mm:ss.SSS"
-                    val simpleDateFormat = SimpleDateFormat(pattern)
+                    val simpleDateFormat = SimpleDateFormat(pattern, Locale.US)
                     val transactionDateTime: String = simpleDateFormat.format(Date())
                     aprilTransactionDateDatabaseRef?.setValue(transactionDateTime)
                     aprilPruningDateRefDatabaseRef?.setValue(pruining_date_et.text.toString())
