@@ -176,8 +176,11 @@
     <string name="Ok">ठीक आहे!</string>
     <string name="Yes">"होय "</string>
     <string name="Cancel">"रद्द करा "</string>
-    <string name="tagline">Grape line\n बागायतदारांची Helpline..!</string>
+    <string name="tagline">Grape line\n बागायतदारांची Helpline..!\n9657738048</string>
     <string name="adharnumber">आधार नंबर:</string>
     <string name="phoneNumber">919657738048</string>
     <string name="action_whatsapp">तुमचे प्रश्न विचारा ?</string>
+    <string name="deleteplot">"काढून टाका "</string>
+    <string name="you_want_to_delete">नक्की काढून टाकायचे का?</string>
+    <string name="app_link">app_link</string>
 </resources>

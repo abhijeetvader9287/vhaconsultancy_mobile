@@ -26,6 +26,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var appBarConfiguration: AppBarConfiguration
     private var mAuth: FirebaseAuth? = null
     var databaseProfileReference: DatabaseReference? = null
+    var app_link_Reference: DatabaseReference? = null
     var userUid: String? = ""
     var userPhoneNumber: String? = ""
     var database: FirebaseDatabase? = null
@@ -78,6 +79,8 @@ class MainActivity : AppCompatActivity() {
         database = FirebaseDatabase.getInstance()
         versionCodeReference = database!!.getReference(getString(R.string.versionCode))
         rateReference = database!!.getReference(getString(R.string.rate))
+        app_link_Reference = database!!.getReference(getString(R.string.app_link))
+
         userUid = SharedPref.Companion.getInstance(this@MainActivity)?.getSharedPref(getString(R.string.userUid))
         userPhoneNumber = SharedPref.Companion.getInstance(this@MainActivity)?.getSharedPref(getString(R.string.userPhoneNumber))
 
@@ -130,24 +133,37 @@ class MainActivity : AppCompatActivity() {
                 val newVersionCode: Long = dataSnapshot.value as Long
                 if (versionCode != newVersionCode) {
 
-                    val builder = AlertDialog.Builder(this@MainActivity)
-                    //set title for alert dialog
-                    builder.setTitle(R.string.Warning)
-                    //set message for alert dialog
-                    builder.setMessage(R.string.Please_download_new_app)
-                    builder.setIcon(android.R.drawable.ic_dialog_alert)
+                    app_link_Reference!!.addValueEventListener(object : ValueEventListener {
+                        override fun onCancelled(p0: DatabaseError) {
+                            TODO("Not yet implemented")
+                        }
 
-                    //performing positive action
-                    builder.setPositiveButton(getString(R.string.Ok)) { dialogInterface, which ->
+                        override fun onDataChange(dataSnapshot: DataSnapshot) {
+                            val appLink: String = dataSnapshot.value as String
+                            val builder = AlertDialog.Builder(this@MainActivity)
+                            //set title for alert dialog
+                            builder.setTitle(R.string.Warning)
+                            //set message for alert dialog
+                            builder.setMessage(R.string.Please_download_new_app)
+                            builder.setIcon(android.R.drawable.ic_dialog_alert)
 
-                    }
+                            //performing positive action
+                            builder.setPositiveButton(getString(R.string.Ok)) { dialogInterface, which ->
+                                val openURL = Intent(android.content.Intent.ACTION_VIEW)
+                                openURL.data = Uri.parse(appLink)
+                                startActivity(openURL)
+                            }
 
 
-                    // Create the AlertDialog
-                    val alertDialog: AlertDialog = builder.create()
-                    // Set other dialog properties
-                    alertDialog.setCancelable(false)
-                    alertDialog.show()
+                            // Create the AlertDialog
+                            val alertDialog: AlertDialog = builder.create()
+                            // Set other dialog properties
+                            alertDialog.setCancelable(false)
+                            alertDialog.show()
+                        }
+
+                    })
+
                     // Toast.makeText(this@MainActivity, getString(R.string.Please_download_new_app), Toast.LENGTH_LONG).show()
 
                 }

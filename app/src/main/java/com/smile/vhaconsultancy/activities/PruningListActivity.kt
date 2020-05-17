@@ -15,6 +15,8 @@ import com.smile.vhaconsultancy.utilities.SharedPref
 import kotlinx.android.synthetic.main.activity_pruning_list.*
 import kotlinx.android.synthetic.main.content_pruning_list.*
 import java.text.SimpleDateFormat
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 import java.util.*
 
 
@@ -58,15 +60,22 @@ class PruningListActivity : AppCompatActivity() {
                     val plot: AprilPruningModel? = postSnapshot.getValue(AprilPruningModel::class.java)
                     //adding artist to the list
                     plot?.let {
-                        val formatter = SimpleDateFormat()
-                        formatter.applyPattern("dd-MMM-yyyy")
-                        val datePruning = formatter.parse(it.strDate)
-                        val dateFrom = addDays(-3)
-                        val dateTo = addDays(6)
-                        if (datePruning.after(dateFrom)) {
-                            if (datePruning.before(dateTo)) {
-                                plots.add(it)
+
+
+
+
+                        try {
+                            val formatter = SimpleDateFormat("dd-MMM-yyyy",Locale.US)
+
+                            val datePruning = formatter.parse(it.strDate)
+                            val dateFrom = addDays(-3)
+                            val dateTo = addDays(6)
+                            if (datePruning.after(dateFrom)) {
+                                if (datePruning.before(dateTo)) {
+                                    plots.add(it)
+                                }
                             }
+                        } catch (e: Exception) {
                         }
 
 
