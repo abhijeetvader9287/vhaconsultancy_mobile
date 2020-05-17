@@ -34,7 +34,7 @@ class PlotListRecyclerViewAdapter(private val plots: ArrayList<Plot>) : Recycler
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val plot = plots[position]
         databasePlotListReference = database!!.getReference(holder.txtArea.context.getString(R.string.user_list)).child(userPhoneNumber!!).child(holder.txtArea.context.getString(R.string.plot_list)).child(plot.plotKey.toString().toString())
-
+        databasePlotListReference!!.child("plotKey").setValue(plot.plotKey.toString())
         holder.txtArea.text = plot.area.toString() + ""
         holder.txtVariety.text = plot.variety + ""
         holder.txtDistance.text = plot.distance.toString() + ""
