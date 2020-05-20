@@ -16,7 +16,7 @@ import com.smile.vhaconsultancy.utilities.SharedPref
 import java.text.SimpleDateFormat
 import java.util.*
 
-class PruningListRecyclerViewAdapter(private val plots: ArrayList<AprilPruningModel>) : RecyclerView.Adapter<PruningListRecyclerViewAdapter.ViewHolder>() {
+class PruningListAprilRecyclerViewAdapter(private val plots: ArrayList<AprilPruningModel>) : RecyclerView.Adapter<PruningListAprilRecyclerViewAdapter.ViewHolder>() {
     var userPhoneNumber: String? = ""
     var database: FirebaseDatabase? = null
     var plot_key: String? = ""

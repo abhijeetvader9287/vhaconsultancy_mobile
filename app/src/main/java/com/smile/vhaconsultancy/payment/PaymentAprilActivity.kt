@@ -18,7 +18,7 @@ import com.payumoney.core.entity.TransactionResponse
 import com.payumoney.sdkui.ui.utils.PayUmoneyFlowManager
 import com.smile.vhaconsultancy.R
 import com.smile.vhaconsultancy.utilities.SharedPref
-import kotlinx.android.synthetic.main.activity_payment.*
+import kotlinx.android.synthetic.main.activity_april_payment.*
 import java.math.BigDecimal
 import java.math.RoundingMode
 import java.security.MessageDigest
@@ -27,7 +27,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 //import com.payumoney.sdkui.ui.utils.PPConfig;
-class PaymentMainActivity : BaseActivity(), View.OnClickListener {
+class PaymentAprilActivity : BaseActivity(), View.OnClickListener {
     private val isDisableExitConfirmation = false
     var userUid: String? = ""
     var userPhoneNumber: String? = ""
@@ -43,24 +43,24 @@ class PaymentMainActivity : BaseActivity(), View.OnClickListener {
     lateinit var pruning_date: Calendar
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_payment)
+        setContentView(R.layout.activity_april_payment)
 
         setSupportActionBar(custom_toolbar)
         supportActionBar?.title = getString(R.string.payment)
 
-        userUid = SharedPref.Companion.getInstance(this@PaymentMainActivity)?.getSharedPref(getString(R.string.userUid))
-        userPhoneNumber = SharedPref.Companion.getInstance(this@PaymentMainActivity)?.getSharedPref(getString(R.string.userPhoneNumber))
+        userUid = SharedPref.Companion.getInstance(this@PaymentAprilActivity)?.getSharedPref(getString(R.string.userUid))
+        userPhoneNumber = SharedPref.Companion.getInstance(this@PaymentAprilActivity)?.getSharedPref(getString(R.string.userPhoneNumber))
 
         database = FirebaseDatabase.getInstance()
-        plot_key = SharedPref.Companion.getInstance(this@PaymentMainActivity)?.getSharedPref(getString(R.string.plot_key))
-        plot_keyRefDatabaseRef = database!!.getReference(getString(R.string.user_list)).child(userPhoneNumber!!).child(getString(R.string.plot_list)).child(SharedPref.Companion.getInstance(this@PaymentMainActivity)?.getSharedPref(getString(R.string.plot_key)).toString()).child("plotKey")
+        plot_key = SharedPref.Companion.getInstance(this@PaymentAprilActivity)?.getSharedPref(getString(R.string.plot_key))
+        plot_keyRefDatabaseRef = database!!.getReference(getString(R.string.user_list)).child(userPhoneNumber!!).child(getString(R.string.plot_list)).child(SharedPref.Companion.getInstance(this@PaymentAprilActivity)?.getSharedPref(getString(R.string.plot_key)).toString()).child("plotKey")
         plot_keyRefDatabaseRef!!.setValue(plot_key)
-        aprilTransactionRefDatabaseRef = database!!.getReference(getString(R.string.user_list)).child(userPhoneNumber!!).child(getString(R.string.plot_list)).child(SharedPref.Companion.getInstance(this@PaymentMainActivity)?.getSharedPref(getString(R.string.plot_key)).toString()
+        aprilTransactionRefDatabaseRef = database!!.getReference(getString(R.string.user_list)).child(userPhoneNumber!!).child(getString(R.string.plot_list)).child(SharedPref.Companion.getInstance(this@PaymentAprilActivity)?.getSharedPref(getString(R.string.plot_key)).toString()
         ).child("aprilTransactionRef")
 
-        aprilTransactionDateDatabaseRef = database!!.getReference(getString(R.string.user_list)).child(userPhoneNumber!!).child(getString(R.string.plot_list)).child(SharedPref.Companion.getInstance(this@PaymentMainActivity)?.getSharedPref(getString(R.string.plot_key)).toString()
+        aprilTransactionDateDatabaseRef = database!!.getReference(getString(R.string.user_list)).child(userPhoneNumber!!).child(getString(R.string.plot_list)).child(SharedPref.Companion.getInstance(this@PaymentAprilActivity)?.getSharedPref(getString(R.string.plot_key)).toString()
         ).child("aprilTransactionDate")
-        aprilPruningDateRefDatabaseRef = database!!.getReference(getString(R.string.user_list)).child(userPhoneNumber!!).child(getString(R.string.plot_list)).child(SharedPref.Companion.getInstance(this@PaymentMainActivity)?.getSharedPref(getString(R.string.plot_key)).toString()
+        aprilPruningDateRefDatabaseRef = database!!.getReference(getString(R.string.user_list)).child(userPhoneNumber!!).child(getString(R.string.plot_list)).child(SharedPref.Companion.getInstance(this@PaymentAprilActivity)?.getSharedPref(getString(R.string.plot_key)).toString()
         ).child("aprilPruningDate")
 
         pay_now_button.setOnClickListener(this)
@@ -70,11 +70,11 @@ class PaymentMainActivity : BaseActivity(), View.OnClickListener {
     }
 
     private fun setUpUserDetails() {
-        mobile_et!!.text = SharedPref.Companion.getInstance(this@PaymentMainActivity)?.getSharedPref(getString(R.string.userPhoneNumber))
-        amount_et!!.text = SharedPref.Companion.getInstance(this@PaymentMainActivity)?.getSharedPrefFloat(getString(R.string.rate)).toString()
-        name_et!!.text = SharedPref.Companion.getInstance(this@PaymentMainActivity)?.getSharedPref(getString(R.string._name)).toString()
-        month_et!!.text = SharedPref.Companion.getInstance(this@PaymentMainActivity)?.getSharedPref(getString(R.string.month)).toString()
-        area_et_et!!.text = SharedPref.Companion.getInstance(this@PaymentMainActivity)?.getSharedPref(getString(R.string._area_in_acre)).toString()
+        mobile_et!!.text = SharedPref.Companion.getInstance(this@PaymentAprilActivity)?.getSharedPref(getString(R.string.userPhoneNumber))
+        amount_et!!.text = SharedPref.Companion.getInstance(this@PaymentAprilActivity)?.getSharedPrefFloat(getString(R.string.rate)).toString()
+        name_et!!.text = SharedPref.Companion.getInstance(this@PaymentAprilActivity)?.getSharedPref(getString(R.string._name)).toString()
+        month_et!!.text = SharedPref.Companion.getInstance(this@PaymentAprilActivity)?.getSharedPref(getString(R.string.month)).toString()
+        area_et_et!!.text = SharedPref.Companion.getInstance(this@PaymentAprilActivity)?.getSharedPref(getString(R.string._area_in_acre)).toString()
         var area = area_et_et!!.text.toString().toDouble()
         if (area < 1.0) {
             area = 1.0
@@ -86,7 +86,7 @@ class PaymentMainActivity : BaseActivity(), View.OnClickListener {
             val mYear: Int = pruning_date.get(Calendar.YEAR)
             val mMonth: Int = pruning_date.get(Calendar.MONTH)
             val mDay: Int = pruning_date.get(Calendar.DAY_OF_MONTH)
-            val datePickerDialog = DatePickerDialog(this@PaymentMainActivity,
+            val datePickerDialog = DatePickerDialog(this@PaymentAprilActivity,
                     OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
                         pruning_date.set(year, monthOfYear, dayOfMonth)
                         val simpleDateFormat = SimpleDateFormat("dd-MMM-yyyy", Locale.US)
@@ -118,7 +118,7 @@ class PaymentMainActivity : BaseActivity(), View.OnClickListener {
     }
 
     override val layoutResource: Int
-        protected get() = R.layout.activity_payment
+        protected get() = R.layout.activity_april_payment
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
@@ -144,7 +144,7 @@ class PaymentMainActivity : BaseActivity(), View.OnClickListener {
                             .setTitle("Payment successfully recieved")
                             .setMessage("Transaction id:" + txnId)
                             .setPositiveButton(android.R.string.ok) { dialog, whichButton ->
-                                this@PaymentMainActivity.finish()
+                                this@PaymentAprilActivity.finish()
                                 dialog.dismiss()
                             }.show()
 
@@ -172,7 +172,7 @@ class PaymentMainActivity : BaseActivity(), View.OnClickListener {
                     pay_now_button!!.isEnabled = false
                     launchPayUMoneyFlow()
                 } else {
-                    Toast.makeText(this@PaymentMainActivity, getString(R.string.please_select_date_of_pruining), Toast.LENGTH_LONG).show()
+                    Toast.makeText(this@PaymentAprilActivity, getString(R.string.please_select_date_of_pruining), Toast.LENGTH_LONG).show()
                 }
             }
         }
@@ -254,7 +254,7 @@ class PaymentMainActivity : BaseActivity(), View.OnClickListener {
              * It is recommended to generate hash from server side only.
              */
             mPaymentParams = calculateServerSideHashAndInitiatePayment1(mPaymentParams)
-            PayUmoneyFlowManager.startPayUMoneyFlow(mPaymentParams, this@PaymentMainActivity, R.style.AppTheme_purple, true)
+            PayUmoneyFlowManager.startPayUMoneyFlow(mPaymentParams, this@PaymentAprilActivity, R.style.AppTheme_purple, true)
         } catch (e: Exception) {
             // some exception occurred
             Toast.makeText(this, e.message, Toast.LENGTH_LONG).show()

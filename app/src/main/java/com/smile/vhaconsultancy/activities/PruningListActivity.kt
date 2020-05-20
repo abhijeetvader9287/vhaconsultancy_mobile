@@ -9,14 +9,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.database.*
 import com.smile.vhaconsultancy.R
-import com.smile.vhaconsultancy.adapters.PruningListRecyclerViewAdapter
+import com.smile.vhaconsultancy.adapters.PruningListAprilRecyclerViewAdapter
 import com.smile.vhaconsultancy.models.AprilPruningModel
 import com.smile.vhaconsultancy.utilities.SharedPref
 import kotlinx.android.synthetic.main.activity_pruning_list.*
 import kotlinx.android.synthetic.main.content_pruning_list.*
 import java.text.SimpleDateFormat
-import java.time.LocalDate
-import java.time.format.DateTimeFormatter
 import java.util.*
 
 
@@ -81,7 +79,7 @@ class PruningListActivity : AppCompatActivity() {
 
                     }
                 }
-                val pruningListRecyclerViewAdapter = PruningListRecyclerViewAdapter(plots)
+                val pruningListRecyclerViewAdapter = PruningListAprilRecyclerViewAdapter(plots)
                 recyclerViewPruningList.layoutManager = LinearLayoutManager(this@PruningListActivity)
                 recyclerViewPruningList.adapter = pruningListRecyclerViewAdapter
                 dialog.dismiss()

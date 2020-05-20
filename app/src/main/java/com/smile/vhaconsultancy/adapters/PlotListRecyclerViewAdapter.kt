@@ -13,7 +13,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.smile.vhaconsultancy.R
 import com.smile.vhaconsultancy.activities.PruningListActivity
 import com.smile.vhaconsultancy.models.Plot
-import com.smile.vhaconsultancy.payment.PaymentMainActivity
+import com.smile.vhaconsultancy.payment.PaymentAprilActivity
 import com.smile.vhaconsultancy.utilities.SharedPref
 import java.util.*
 
@@ -77,7 +77,7 @@ class PlotListRecyclerViewAdapter(private val plots: ArrayList<Plot>) : Recycler
             if (month >= 3 && month <= 8) {
                 val aprilTransactioRef = plot?.aprilTransactionRef
                 if (aprilTransactioRef!!.isEmpty()) {
-                    val intent: Intent? = Intent(v?.context, PaymentMainActivity::class.java)
+                    val intent: Intent? = Intent(v?.context, PaymentAprilActivity::class.java)
                     SharedPref.Companion.getInstance(v?.context)?.putSharedPrefString(v?.context?.getString(R.string.month), v?.context?.getString(R.string.april))
                     SharedPref.Companion.getInstance(v?.context)?.putSharedPrefString(v?.context?.getString(R.string._area_in_acre), plot.area.toString());
                     SharedPref.Companion.getInstance(v?.context)?.putSharedPrefString(v?.context?.getString(R.string.plot_key), plot.plotKey.toString());
