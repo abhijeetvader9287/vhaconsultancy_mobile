@@ -13,6 +13,11 @@
         android:theme="@style/AppTheme"
         tools:replace="android:allowBackup">
         <activity
+            android:name=".payment.PaymentOctoberActivity"
+            android:label="@string/payment"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+
+        <activity
             android:name=".payment.PaymentAprilActivity"
             android:label="@string/payment"
             android:theme="@style/AppTheme.NoActionBar"></activity>

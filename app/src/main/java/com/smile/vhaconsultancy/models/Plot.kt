@@ -15,6 +15,7 @@ class Plot {
     var berryStageTransactionDate: String = ""
     var berryStagePruiningDate: String = ""
     var april_pruning_list_added: Boolean = false
+    var october_pruning_list_added: Boolean = false
     var plotKey: String? = ""
 
 
