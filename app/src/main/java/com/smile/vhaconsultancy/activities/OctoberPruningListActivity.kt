@@ -10,15 +10,16 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.database.*
 import com.smile.vhaconsultancy.R
 import com.smile.vhaconsultancy.adapters.PruningListAprilRecyclerViewAdapter
-import com.smile.vhaconsultancy.models.AprilPruningModel
+import com.smile.vhaconsultancy.adapters.PruningListOctoberRecyclerViewAdapter
+import com.smile.vhaconsultancy.models.OctoberPruningModel
 import com.smile.vhaconsultancy.utilities.SharedPref
-import kotlinx.android.synthetic.main.activity_pruning_list.*
-import kotlinx.android.synthetic.main.content_pruning_list.*
+import kotlinx.android.synthetic.main.activity_october_pruning_list.*
+import kotlinx.android.synthetic.main.content_october_pruning_list.*
 import java.text.SimpleDateFormat
 import java.util.*
 
 
-class PruningListActivity : AppCompatActivity() {
+class OctoberPruningListActivity : AppCompatActivity() {
     var userUid: String? = ""
     var plot_key: String? = ""
     var userPhoneNumber: String? = ""
@@ -27,7 +28,7 @@ class PruningListActivity : AppCompatActivity() {
     lateinit var dialog: ProgressDialog
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_pruning_list)
+        setContentView(R.layout.activity_october_pruning_list)
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayShowTitleEnabled(true)
         dialog = ProgressDialog(this)
@@ -39,23 +40,23 @@ class PruningListActivity : AppCompatActivity() {
 
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        userUid = SharedPref.Companion.getInstance(this@PruningListActivity)?.getSharedPref(getString(R.string.userUid))
-        userPhoneNumber = SharedPref.Companion.getInstance(this@PruningListActivity)?.getSharedPref(getString(R.string.userPhoneNumber))
+        userUid = SharedPref.Companion.getInstance(this@OctoberPruningListActivity)?.getSharedPref(getString(R.string.userUid))
+        userPhoneNumber = SharedPref.Companion.getInstance(this@OctoberPruningListActivity)?.getSharedPref(getString(R.string.userPhoneNumber))
 
         database = FirebaseDatabase.getInstance()
-        plot_key = SharedPref.Companion.getInstance(this@PruningListActivity)?.getSharedPref(getString(R.string.plot_key))
+        plot_key = SharedPref.Companion.getInstance(this@OctoberPruningListActivity)?.getSharedPref(getString(R.string.plot_key))
 
-        databasePlotListReference = database!!.getReference(getString(R.string.user_list)).child(userPhoneNumber!!).child(getString(R.string.plot_list)).child(plot_key.toString()).child("april_pruning_list")
+        databasePlotListReference = database!!.getReference(getString(R.string.user_list)).child(userPhoneNumber!!).child(getString(R.string.plot_list)).child(plot_key.toString()).child("october_pruning_list")
 
 
         databasePlotListReference!!.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 //clearing the previous artist list
-                val plots: ArrayList<AprilPruningModel> = ArrayList<AprilPruningModel>()
+                val plots: ArrayList<OctoberPruningModel> = ArrayList<OctoberPruningModel>()
                 //iterating through all the nodes
                 for (postSnapshot in dataSnapshot.children) {
                     //getting artist
-                    val plot: AprilPruningModel? = postSnapshot.getValue(AprilPruningModel::class.java)
+                    val plot: OctoberPruningModel? = postSnapshot.getValue(OctoberPruningModel::class.java)
                     //adding artist to the list
                     plot?.let {
 
@@ -66,8 +67,8 @@ class PruningListActivity : AppCompatActivity() {
                             val formatter = SimpleDateFormat("dd-MMM-yyyy",Locale.US)
 
                             val datePruning = formatter.parse(it.strDate)
-                            val dateFrom = addDays(-3)
-                            val dateTo = addDays(6)
+                            val dateFrom = addDays(-300)
+                            val dateTo = addDays(600)
                             if (datePruning.after(dateFrom)) {
                                 if (datePruning.before(dateTo)) {
                                     plots.add(it)
@@ -79,8 +80,8 @@ class PruningListActivity : AppCompatActivity() {
 
                     }
                 }
-                val pruningListRecyclerViewAdapter = PruningListAprilRecyclerViewAdapter(plots)
-                recyclerViewPruningList.layoutManager = LinearLayoutManager(this@PruningListActivity)
+                val pruningListRecyclerViewAdapter = PruningListOctoberRecyclerViewAdapter(plots)
+                recyclerViewPruningList.layoutManager = LinearLayoutManager(this@OctoberPruningListActivity)
                 recyclerViewPruningList.adapter = pruningListRecyclerViewAdapter
                 dialog.dismiss()
             }
