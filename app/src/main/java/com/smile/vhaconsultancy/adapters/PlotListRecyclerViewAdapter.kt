@@ -14,6 +14,7 @@ import com.smile.vhaconsultancy.R
 import com.smile.vhaconsultancy.activities.AprilPruningListActivity
 import com.smile.vhaconsultancy.activities.OctoberPruningListActivity
 import com.smile.vhaconsultancy.models.Plot
+import com.smile.vhaconsultancy.payment.PaymentAprilActivity
 import com.smile.vhaconsultancy.payment.PaymentOctoberActivity
 import com.smile.vhaconsultancy.utilities.SharedPref
 import java.util.*
@@ -75,7 +76,7 @@ class PlotListRecyclerViewAdapter(private val plots: ArrayList<Plot>) : Recycler
         holder.mView.setOnClickListener { v: View? ->
             val todaysDate = Date()
             val month = todaysDate.month + 1
-            /*if (month >= 3 && month <= 8) {
+            if (month >= 3 && month <= 8) {
                 val aprilTransactioRef = plot?.aprilTransactionRef
                 if (aprilTransactioRef!!.isEmpty()) {
                     val intent: Intent? = Intent(v?.context, PaymentAprilActivity::class.java)
@@ -85,14 +86,14 @@ class PlotListRecyclerViewAdapter(private val plots: ArrayList<Plot>) : Recycler
                     //SharedPref.Companion.getInstance(this@SplashscreenActivity)?.putSharedPrefString(getString(R.string.userPhoneNumber), currentUser.getPhoneNumber())
                     v?.context?.startActivity(intent)
                 } else {
-                    val intent: Intent? = Intent(v?.context, PruningListActivity::class.java)
+                    val intent: Intent? = Intent(v?.context, AprilPruningListActivity::class.java)
                     SharedPref.Companion.getInstance(v?.context)?.putSharedPrefString(v?.context?.getString(R.string.month), v?.context?.getString(R.string.april))
                     SharedPref.Companion.getInstance(v?.context)?.putSharedPrefString(v?.context?.getString(R.string._area_in_acre), plot.area.toString());
                     SharedPref.Companion.getInstance(v?.context)?.putSharedPrefString(v?.context?.getString(R.string.plot_key), plot.plotKey.toString());
                     //SharedPref.Companion.getInstance(this@SplashscreenActivity)?.putSharedPrefString(getString(R.string.userPhoneNumber), currentUser.getPhoneNumber())
                     v?.context?.startActivity(intent)
                 }
-            } else*/ if (month >= 4 && month <= 5) {
+            } else if (month >= 9 && month <= 11) {
                 val octoberTransactionRef = plot?.octoberTransactionRef
                 if (octoberTransactionRef!!.isEmpty()) {
                     val intent: Intent? = Intent(v?.context, PaymentOctoberActivity::class.java)
