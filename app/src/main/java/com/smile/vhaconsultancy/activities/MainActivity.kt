@@ -46,7 +46,10 @@ class MainActivity : AppCompatActivity() {
         dialog.show()
         dialog.setContentView(R.layout.progress_layout)
 
-
+        txtTermsAndCond.setOnClickListener {
+            val i = Intent(this, TermsAndConditionsActivity::class.java)
+            this.startActivity(i)
+        }
         action_profile.setOnClickListener {
             val i = Intent(this, ProfileActivity::class.java)
             this.startActivity(i)
