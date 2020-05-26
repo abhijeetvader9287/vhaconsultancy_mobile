@@ -8,12 +8,49 @@
   "client": [
     {
       "client_info": {
+        "mobilesdk_app_id": "1:371517175983:android:5f3f81839a69bad0897c5a",
+        "android_client_info": {
+          "package_name": "com.smile.grapeconsultancy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "371517175983-r5ica1urjl5crm964gnqr0ajirq38rqc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAdeTF-a8pbtoW2ydx6vL1IHE3-HtGuLGk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "371517175983-r5ica1urjl5crm964gnqr0ajirq38rqc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
         "mobilesdk_app_id": "1:371517175983:android:5c3087b9d07790bd897c5a",
         "android_client_info": {
           "package_name": "com.smile.vhaconsultancy"
         }
       },
       "oauth_client": [
+        {
+          "client_id": "371517175983-ec3960e6h678tkitshe85ntkc2jjlod9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.smile.vhaconsultancy",
+            "certificate_hash": "db25430bdce1802aff764398f9eef839998a88b2"
+          }
+        },
         {
           "client_id": "371517175983-ctc94emmminj7utftbrdsh2b3de2mglr.apps.googleusercontent.com",
           "client_type": 1,
