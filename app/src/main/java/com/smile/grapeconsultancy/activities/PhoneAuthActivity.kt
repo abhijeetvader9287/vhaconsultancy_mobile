@@ -62,6 +62,13 @@ class PhoneAuthActivity constructor() : AppCompatActivity(), View.OnClickListene
         // Initialize phone auth callbacks
         // [START phone_auth_callbacks]
         mCallbacks = object : OnVerificationStateChangedCallbacks() {
+
+            override fun onCodeSent(verificationId: String, resendToken: ForceResendingToken) {
+                super.onCodeSent(verificationId, resendToken)
+                mVerificationId=verificationId;
+                mResendToken=resendToken;
+                updateUI(STATE_CODE_SENT)
+            }
             override fun onVerificationCompleted(credential: PhoneAuthCredential) {
                 // This callback will be invoked in two situations:
                 // 1 - Instant verification. In some cases the phone number can be instantly
