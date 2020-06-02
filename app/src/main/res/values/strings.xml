@@ -201,4 +201,7 @@
         \n\tमी  द्राक्ष बागायतदार  ग्रेप लाईन कन्सल्टन्सीला नोंदणी करताना वरील सर्व नियम व अटी काळजी पूर्वक वाचल्या आहेत तसेच त्या समजून घेतल्या आहेत. यासाठी मी सहमत  आहे .
     </string>
     <string name="i_agree">" मी सहमत  आहे!"</string>
+    <string name="code_sent">कोड पाठवला</string>
+    <string name="verification_falied">पडताळणी अयशस्वी</string>
+    <string name="verification_success">पडताळणी यशस्वी</string>
 </resources>

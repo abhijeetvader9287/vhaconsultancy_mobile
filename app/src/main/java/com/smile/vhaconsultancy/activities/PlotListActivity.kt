@@ -29,7 +29,7 @@ class PlotListActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayShowTitleEnabled(true)
         dialog = ProgressDialog(this);
-        dialog.getWindow().setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT));
+        dialog.getWindow()?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT));
         dialog.setIndeterminate(true);
         dialog.setCancelable(false);
         dialog.show();

@@ -9,6 +9,7 @@ import android.text.TextWatcher
 import android.util.Log
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.Task
@@ -247,17 +248,23 @@ class PhoneAuthActivity constructor() : AppCompatActivity(), View.OnClickListene
                 enableViews(buttonVerifyPhone, buttonResend, fieldPhoneNumber, fieldVerificationCode)
                 disableViews(buttonStartVerification)
                 detail?.setText(R.string.status_code_sent)
+                Toast.makeText(applicationContext,getString(R.string.code_sent),Toast.LENGTH_LONG).show()
+
             }
             STATE_VERIFY_FAILED -> {
                 // Verification has failed, show all options
                 enableViews(buttonStartVerification, buttonVerifyPhone, buttonResend, fieldPhoneNumber,
                         fieldVerificationCode)
                 detail?.setText(R.string.status_verification_failed)
+                Toast.makeText(applicationContext,getString(R.string.verification_falied),Toast.LENGTH_LONG).show()
+
             }
             STATE_VERIFY_SUCCESS -> {
                 // Verification has succeeded, proceed to firebase sign in
                 disableViews(buttonStartVerification, buttonVerifyPhone, buttonResend, fieldPhoneNumber, fieldVerificationCode)
                 detail?.setText(R.string.status_verification_succeeded)
+                Toast.makeText(applicationContext,getString(R.string.verification_success),Toast.LENGTH_LONG).show()
+
                 // Set the verification text based on the credential
                 if (cred != null) {
                     if (cred.getSmsCode() != null) {
@@ -323,14 +330,19 @@ class PhoneAuthActivity constructor() : AppCompatActivity(), View.OnClickListene
                 startPhoneNumberVerification(getString(R.string.country_code) + fieldPhoneNumber.getText().toString())
             }
             R.id.buttonVerifyPhone -> {
-                val code: String = fieldVerificationCode?.getText().toString()
-                if (TextUtils.isEmpty(code)) {
-                    fieldVerificationCode?.setError("Cannot be empty.")
-                    return
+                if(mVerificationId!=null) {
+                    val code: String = fieldVerificationCode?.getText().toString()
+                    if (TextUtils.isEmpty(code)) {
+                        fieldVerificationCode?.setError("Cannot be empty.")
+                        return
+                    }
+                    verifyPhoneNumberWithCode(mVerificationId, code)
                 }
-                verifyPhoneNumberWithCode(mVerificationId, code)
             }
-            R.id.buttonResend -> resendVerificationCode(getString(R.string.country_code) + fieldPhoneNumber.getText().toString(), mResendToken)
+            R.id.buttonResend ->
+                if(mResendToken!=null) {
+                    resendVerificationCode(getString(R.string.country_code) + fieldPhoneNumber.getText().toString(), mResendToken)
+                }
         }
     }
 
