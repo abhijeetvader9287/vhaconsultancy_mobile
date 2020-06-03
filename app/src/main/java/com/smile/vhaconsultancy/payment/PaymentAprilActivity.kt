@@ -254,7 +254,7 @@ class PaymentAprilActivity : BaseActivity(), View.OnClickListener {
              * It is recommended to generate hash from server side only.
              */
             mPaymentParams = calculateServerSideHashAndInitiatePayment1(mPaymentParams)
-            PayUmoneyFlowManager.startPayUMoneyFlow(mPaymentParams, this@PaymentAprilActivity, R.style.AppTheme_purple, true)
+            PayUmoneyFlowManager.startPayUMoneyFlow(mPaymentParams, this@PaymentAprilActivity, R.style.AppTheme_Base, true)
         } catch (e: Exception) {
             // some exception occurred
             Toast.makeText(this, e.message, Toast.LENGTH_LONG).show()
