@@ -31,7 +31,7 @@ class PruningListOctoberRecyclerViewAdapter(private val showMessage: showMessage
         plot_key = SharedPref.Companion.getInstance(parent.context)?.getSharedPref(parent.context.getString(R.string.plot_key))
 
         databasePlotListReference = database!!.getReference(parent.context.getString(R.string.user_list)).child(userPhoneNumber!!).child(parent.context.getString(R.string.plot_list)).child(plot_key.toString()).child("october_pruning_list")
-        if (plots[0].srNo > 0)//40
+        if (plots[0].srNo > 40)//40
         {
             showMessage.showMessage()
 

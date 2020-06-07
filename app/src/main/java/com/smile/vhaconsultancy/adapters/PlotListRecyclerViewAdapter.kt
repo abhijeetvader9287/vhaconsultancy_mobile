@@ -81,7 +81,7 @@ class PlotListRecyclerViewAdapter(private val plots: ArrayList<Plot>) : Recycler
         holder.mView.setOnClickListener { v: View? ->
             val todaysDate = Date()
             val month = todaysDate.month + 1
-            if (month >= 9 && month <= 12) {//3,8
+            if (month >= 3 && month <= 8) {//3,8
                 val aprilTransactioRef = plot?.aprilTransactionRef
                 if (aprilTransactioRef!!.isEmpty()) {
                     val intent: Intent? = Intent(v?.context, PaymentAprilActivity::class.java)
@@ -98,7 +98,7 @@ class PlotListRecyclerViewAdapter(private val plots: ArrayList<Plot>) : Recycler
                     //SharedPref.Companion.getInstance(this@SplashscreenActivity)?.putSharedPrefString(getString(R.string.userPhoneNumber), currentUser.getPhoneNumber())
                     v?.context?.startActivity(intent)
                 }
-            } else if (month >= 3 && month <= 8) {//9,12
+            } else if (month >= 9 && month <= 12) {//9,12
                 val octoberTransactionRef = plot?.octoberTransactionRef
                 if (octoberTransactionRef!!.isEmpty()) {
                     val intent: Intent? = Intent(v?.context, PaymentOctoberActivity::class.java)
