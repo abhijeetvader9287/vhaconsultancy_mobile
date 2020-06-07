@@ -47,8 +47,8 @@ class PruningListOctoberRecyclerViewAdapter(private val showMessage: showMessage
         holder.txtNumerOfVine.text = plots[position].fertilizer.toString() + ""
         //   holder.checkboxFertilizer.isEnabled=!plots[position].fertilizer_completed
         // holder.checkboxWork.isEnabled=!plots[position].work_spray_completed
-        val formatter = SimpleDateFormat()
-        formatter.applyPattern("dd-MMM-yyyy")
+        val formatter = SimpleDateFormat("dd-MMM-yyyy", Locale.US)
+
         val datePruning = formatter.parse(plots[position].strDate)
 
         val dateTo = Calendar.getInstance().time
