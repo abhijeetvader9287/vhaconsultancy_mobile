@@ -64,7 +64,6 @@
     <string name="firebaseui_status_fmt">Firebase User: %s</string>
     <string name="firebaseui_title_text">FirebaseUI Auth</string>
     <string name="generic_title_text">OAuth Sign In</string>
-
     <string name="custom_auth_signin_status_failed">Error: sign in failed</string>
     <string name="error_sign_in_failed">Sign in failed, see logs for details.</string>
     <string name="country_code">+91</string>
@@ -94,7 +93,6 @@
     <string name="dummy_content">DUMMY\nCONTENT</string>
     <string name="str_date">Date:</string>
     <string name="title_activity_report">ReportActivity</string>
-
     <string name="attendance_list">Attendance list</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
@@ -184,7 +182,6 @@
     <string name="app_link">app_link</string>
     <string name="october">october</string>
     <string name="terms_and_conditions">* नियम व अटी</string>
-
     <string name="grapeline_terms_and_conditions">ग्रेप लाईन कन्सल्टन्सीच्या  नियम व अटी  खालील प्रमाणे
         \n१. निर्यातक्षम द्राक्ष निर्मितीसाठी द्राक्ष संशोधन  केंद्र (NRC of Grape) मांजरीं, जिल्हा पुणे यांनी प्रसारित केलेल्या परिशिष्ट -५ (Annexure) चा वापर करावा.
         \n २. द्राक्ष निर्यातीसाठी आवश्यक असलेल्या औषधाचें अंश तपासणी अहवालामध्ये काही औषधाचें अंश  (Detection) आल्यास तसेच द्राक्ष नमुना फेल गेल्यास ग्रेप लाईन कन्सल्टन्सी जबाबदार राहणार नाही.

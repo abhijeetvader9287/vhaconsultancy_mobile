@@ -66,10 +66,11 @@ class PhoneAuthActivity constructor() : AppCompatActivity(), View.OnClickListene
 
             override fun onCodeSent(verificationId: String, resendToken: ForceResendingToken) {
                 super.onCodeSent(verificationId, resendToken)
-                mVerificationId=verificationId;
-                mResendToken=resendToken;
+                mVerificationId = verificationId;
+                mResendToken = resendToken;
                 updateUI(STATE_CODE_SENT)
             }
+
             override fun onVerificationCompleted(credential: PhoneAuthCredential) {
                 // This callback will be invoked in two situations:
                 // 1 - Instant verification. In some cases the phone number can be instantly
@@ -248,7 +249,7 @@ class PhoneAuthActivity constructor() : AppCompatActivity(), View.OnClickListene
                 enableViews(buttonVerifyPhone, buttonResend, fieldPhoneNumber, fieldVerificationCode)
                 disableViews(buttonStartVerification)
                 detail?.setText(R.string.status_code_sent)
-                Toast.makeText(applicationContext,getString(R.string.code_sent),Toast.LENGTH_LONG).show()
+                Toast.makeText(applicationContext, getString(R.string.code_sent), Toast.LENGTH_LONG).show()
 
             }
             STATE_VERIFY_FAILED -> {
@@ -256,14 +257,14 @@ class PhoneAuthActivity constructor() : AppCompatActivity(), View.OnClickListene
                 enableViews(buttonStartVerification, buttonVerifyPhone, buttonResend, fieldPhoneNumber,
                         fieldVerificationCode)
                 detail?.setText(R.string.status_verification_failed)
-                Toast.makeText(applicationContext,getString(R.string.verification_falied),Toast.LENGTH_LONG).show()
+                Toast.makeText(applicationContext, getString(R.string.verification_falied), Toast.LENGTH_LONG).show()
 
             }
             STATE_VERIFY_SUCCESS -> {
                 // Verification has succeeded, proceed to firebase sign in
                 disableViews(buttonStartVerification, buttonVerifyPhone, buttonResend, fieldPhoneNumber, fieldVerificationCode)
                 detail?.setText(R.string.status_verification_succeeded)
-                Toast.makeText(applicationContext,getString(R.string.verification_success),Toast.LENGTH_LONG).show()
+                Toast.makeText(applicationContext, getString(R.string.verification_success), Toast.LENGTH_LONG).show()
 
                 // Set the verification text based on the credential
                 if (cred != null) {
@@ -330,7 +331,7 @@ class PhoneAuthActivity constructor() : AppCompatActivity(), View.OnClickListene
                 startPhoneNumberVerification(getString(R.string.country_code) + fieldPhoneNumber.getText().toString())
             }
             R.id.buttonVerifyPhone -> {
-                if(mVerificationId!=null) {
+                if (mVerificationId != null) {
                     val code: String = fieldVerificationCode?.getText().toString()
                     if (TextUtils.isEmpty(code)) {
                         fieldVerificationCode?.setError("Cannot be empty.")
@@ -340,7 +341,7 @@ class PhoneAuthActivity constructor() : AppCompatActivity(), View.OnClickListene
                 }
             }
             R.id.buttonResend ->
-                if(mResendToken!=null) {
+                if (mResendToken != null) {
                     resendVerificationCode(getString(R.string.country_code) + fieldPhoneNumber.getText().toString(), mResendToken)
                 }
         }

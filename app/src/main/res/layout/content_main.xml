@@ -4,15 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bg_gradient"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:showIn="@layout/app_bar_main"
-    android:background="@drawable/bg_gradient">
+    tools:showIn="@layout/app_bar_main">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-       >
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -33,12 +32,10 @@
                     android:layout_gravity="center"
                     android:background="@android:color/transparent"
                     android:gravity="center"
-                    android:paddingStart="0dp"
-                    android:paddingEnd="0dp"
                     android:maxLines="3"
                     android:minLines="2"
-
-
+                    android:paddingStart="0dp"
+                    android:paddingEnd="0dp"
                     android:text="@string/tagline"
                     android:textAllCaps="false"
                     android:textColor="@color/textColor"
@@ -155,14 +152,16 @@
                     </LinearLayout>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
-<TextView
-    android:textColor="@color/white"
-    android:layout_gravity="end"
-    android:id="@+id/txtTermsAndCond"
-    android:layout_margin="@dimen/dimen_10dp"
-    android:text="@string/terms_and_conditions"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"></TextView>
+
+            <TextView
+                android:id="@+id/txtTermsAndCond"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_margin="@dimen/dimen_10dp"
+                android:text="@string/terms_and_conditions"
+                android:textColor="@color/white"></TextView>
+
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
@@ -210,7 +209,7 @@
                     android:gravity="center"
                     android:paddingStart="0dp"
                     android:paddingEnd="15dp"
-                     android:singleLine="true"
+                    android:singleLine="true"
                     android:text="@string/action_whatsapp"
                     android:textAllCaps="false"
                     android:textColor="@color/white"
@@ -238,8 +237,7 @@
                     android:paddingStart="0dp"
                     android:paddingEnd="15dp"
                     android:singleLine="true"
-
-                     android:text="@string/action_add_plot"
+                    android:text="@string/action_add_plot"
                     android:textAllCaps="false"
                     android:textColor="@color/white"
                     android:textSize="25sp" />

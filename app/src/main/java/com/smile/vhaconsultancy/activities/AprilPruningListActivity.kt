@@ -60,10 +60,8 @@ class AprilPruningListActivity : AppCompatActivity() {
                     plot?.let {
 
 
-
-
                         try {
-                            val formatter = SimpleDateFormat("dd-MMM-yyyy",Locale.US)
+                            val formatter = SimpleDateFormat("dd-MMM-yyyy", Locale.US)
 
                             val datePruning = formatter.parse(it.strDate)
                             val dateFrom = addDays(-3)

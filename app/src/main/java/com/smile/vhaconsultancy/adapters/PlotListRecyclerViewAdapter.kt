@@ -70,14 +70,12 @@ class PlotListRecyclerViewAdapter(private val plots: ArrayList<Plot>) : Recycler
                     alertDialog.show()
 
                 }
-            }else
-            {
-                holder.btn_deletePlot.visibility=View.GONE
+            } else {
+                holder.btn_deletePlot.visibility = View.GONE
 
             }
-        }else
-        {
-            holder.btn_deletePlot.visibility=View.GONE
+        } else {
+            holder.btn_deletePlot.visibility = View.GONE
 
         }
         holder.mView.setOnClickListener { v: View? ->
@@ -117,8 +115,7 @@ class PlotListRecyclerViewAdapter(private val plots: ArrayList<Plot>) : Recycler
                     //SharedPref.Companion.getInstance(this@SplashscreenActivity)?.putSharedPrefString(getString(R.string.userPhoneNumber), currentUser.getPhoneNumber())
                     v?.context?.startActivity(intent)
                 }
-            }
-            else if (month >= 1 && month <= 2) {//1,2
+            } else if (month >= 1 && month <= 2) {//1,2
                 val octoberTransactionRef = plot?.octoberTransactionRef
                 if (octoberTransactionRef!!.isEmpty()) {
                     val intent: Intent? = Intent(v?.context, PaymentOctoberActivity::class.java)

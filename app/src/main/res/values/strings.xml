@@ -94,8 +94,6 @@
     <string name="dummy_content">DUMMY\nCONTENT</string>
     <string name="str_date">Date:</string>
     <string name="title_activity_report">ReportActivity</string>
-
-
     <string name="attendance_list">Attendance list</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>

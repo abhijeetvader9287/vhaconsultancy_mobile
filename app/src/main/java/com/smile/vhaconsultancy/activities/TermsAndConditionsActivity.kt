@@ -13,9 +13,9 @@ class TermsAndConditionsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_terms_and_conditions)
         setSupportActionBar(toolbar)
-btn_i_agree.setOnClickListener {
-    finish()
-}
+        btn_i_agree.setOnClickListener {
+            finish()
+        }
 
     }
 

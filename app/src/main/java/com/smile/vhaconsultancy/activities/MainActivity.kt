@@ -175,23 +175,22 @@ class MainActivity : AppCompatActivity() {
 
         })
     }
-   fun openWhatsApp(){
-    var pm:    PackageManager =getPackageManager()
+
+    fun openWhatsApp() {
+        var pm: PackageManager = getPackageManager()
         try {
 
 
-            var toNumber:String = getString(R.string.phoneNumber) // Replace with mobile phone number without +Sign or leading zeros, but with country code.
+            var toNumber: String = getString(R.string.phoneNumber) // Replace with mobile phone number without +Sign or leading zeros, but with country code.
             //Suppose your country is India and your phone number is “xxxxxxxxxx”, then you need to send “91xxxxxxxxxx”.
 
 
-
-            var sendIntent =   Intent(Intent.ACTION_SENDTO, Uri.parse("smsto:" + "" + toNumber  ))
+            var sendIntent = Intent(Intent.ACTION_SENDTO, Uri.parse("smsto:" + "" + toNumber))
             sendIntent.setPackage("com.whatsapp");
             startActivity(sendIntent);
-        }
-        catch ( e:Exception){
+        } catch (e: Exception) {
             e.printStackTrace();
-            Toast.makeText(this@MainActivity,"it may be you dont have whats app",Toast.LENGTH_LONG).show();
+            Toast.makeText(this@MainActivity, "it may be you dont have whats app", Toast.LENGTH_LONG).show();
 
         }
     }

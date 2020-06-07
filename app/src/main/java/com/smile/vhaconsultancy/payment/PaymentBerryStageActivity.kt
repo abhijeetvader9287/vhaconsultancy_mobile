@@ -2,8 +2,6 @@ package com.smile.vhaconsultancy.payment
 
 import android.app.Activity
 import android.app.AlertDialog
-import android.app.DatePickerDialog
-import android.app.DatePickerDialog.OnDateSetListener
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -106,7 +104,7 @@ class PaymentBerryStageActivity : BaseActivity(), View.OnClickListener {
                     val simpleDateFormat = SimpleDateFormat(pattern, Locale.US)
                     val transactionDateTime: String = simpleDateFormat.format(Date())
                     berryStageTransactionDateDatabaseRef?.setValue(transactionDateTime)
-                     AlertDialog.Builder(this)
+                    AlertDialog.Builder(this)
                             .setCancelable(false)
                             .setTitle("Payment successfully recieved")
                             .setMessage("Transaction id:" + txnId)
@@ -136,8 +134,8 @@ class PaymentBerryStageActivity : BaseActivity(), View.OnClickListener {
         when (v.id) {
             R.id.pay_now_button -> {
 
-                    pay_now_button!!.isEnabled = false
-                    launchPayUMoneyFlow()
+                pay_now_button!!.isEnabled = false
+                launchPayUMoneyFlow()
 
             }
         }

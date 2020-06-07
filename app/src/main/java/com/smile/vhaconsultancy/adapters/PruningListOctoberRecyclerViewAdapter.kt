@@ -17,12 +17,12 @@ import com.smile.vhaconsultancy.utilities.SharedPref
 import java.text.SimpleDateFormat
 import java.util.*
 
-class PruningListOctoberRecyclerViewAdapter(private val showMessage: showMessage,private val plots: ArrayList<OctoberPruningModel>) : RecyclerView.Adapter<PruningListOctoberRecyclerViewAdapter.ViewHolder>() {
+class PruningListOctoberRecyclerViewAdapter(private val showMessage: showMessage, private val plots: ArrayList<OctoberPruningModel>) : RecyclerView.Adapter<PruningListOctoberRecyclerViewAdapter.ViewHolder>() {
     var userPhoneNumber: String? = ""
     var database: FirebaseDatabase? = null
     var plot_key: String? = ""
     var databasePlotListReference: DatabaseReference? = null
-     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
                 .inflate(R.layout.pruning_item, parent, false)
         database = FirebaseDatabase.getInstance()
@@ -31,11 +31,11 @@ class PruningListOctoberRecyclerViewAdapter(private val showMessage: showMessage
         plot_key = SharedPref.Companion.getInstance(parent.context)?.getSharedPref(parent.context.getString(R.string.plot_key))
 
         databasePlotListReference = database!!.getReference(parent.context.getString(R.string.user_list)).child(userPhoneNumber!!).child(parent.context.getString(R.string.plot_list)).child(plot_key.toString()).child("october_pruning_list")
-         if(plots[0].srNo>0)//40
-         {
-             showMessage.showMessage()
+        if (plots[0].srNo > 0)//40
+        {
+            showMessage.showMessage()
 
-         }
+        }
         return ViewHolder(view)
     }
 

@@ -3,17 +3,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:showIn="@layout/activity_profile"
-    android:layout_height="wrap_content">
+    tools:showIn="@layout/activity_profile">
+
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        >
-
+        android:orientation="vertical">
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
@@ -50,7 +49,6 @@
             </com.google.android.material.textfield.TextInputLayout>
         </androidx.cardview.widget.CardView>
 
-
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="50dp"
@@ -76,10 +74,10 @@
                     android:gravity="center_vertical"
                     android:hint="@string/adharnumber"
                     android:imeOptions="actionNext"
+                    android:inputType="number"
+                    android:maxLength="12"
                     android:paddingStart="15dp"
                     android:paddingEnd="15dp"
-                    android:maxLength="12"
-                    android:inputType="number"
                     android:selectAllOnFocus="true"
                     android:singleLine="true"
                     android:textColor="@color/textColor"
@@ -87,8 +85,6 @@
                     android:textStyle="bold" />
             </com.google.android.material.textfield.TextInputLayout>
         </androidx.cardview.widget.CardView>
-
-
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"

@@ -110,20 +110,20 @@
                     android:text="0"
                     android:textColor="@color/textColor"></TextView>
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
                 android:layout_gravity="center"
                 android:gravity="center"
+                android:orientation="horizontal"
                 android:weightSum="1">
 
-                 <Button
+                <Button
                     android:id="@+id/btn_deletePlot"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-
                     android:text="@string/deleteplot"
                     android:textColor="@color/white"></Button>
             </LinearLayout>

@@ -90,7 +90,7 @@ class PaymentOctoberActivity : BaseActivity(), View.OnClickListener {
                     OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
                         pruning_date.set(year, monthOfYear, dayOfMonth)
                         val simpleDateFormat = SimpleDateFormat("dd-MMM-yyyy", Locale.US)
-                         val strDate = simpleDateFormat.format(Date(pruning_date.timeInMillis))
+                        val strDate = simpleDateFormat.format(Date(pruning_date.timeInMillis))
                         selectedDate = pruning_date.timeInMillis
                         pruining_date_et.text = strDate
 

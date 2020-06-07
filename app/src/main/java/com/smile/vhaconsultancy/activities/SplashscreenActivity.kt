@@ -30,7 +30,7 @@ class SplashscreenActivity : AppCompatActivity() {
             // val pInfo: PackageInfo = getPackageManager().getPackageInfo(packageName, 0)
             // val version = pInfo.versionName
             val versno = BuildConfig.VERSION_CODE
-            txt_version.text ="Version: "+ versno.toString()
+            txt_version.text = "Version: " + versno.toString()
         } catch (e: PackageManager.NameNotFoundException) {
             e.printStackTrace()
         }
