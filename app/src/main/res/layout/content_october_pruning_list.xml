@@ -7,7 +7,19 @@
     android:orientation="vertical"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:showIn="@layout/activity_october_pruning_list">
-
+<TextView
+    android:id="@+id/txtBerrySettingStagePayment"
+    android:layout_width="match_parent"
+    android:textColor="@color/primary_dark"
+    android:textStyle="bold"
+    android:visibility="gone"
+    android:textSize="@dimen/dimen_25sp"
+    android:layout_gravity="center"
+    android:singleLine="false"
+    android:layout_margin="@dimen/dimen_10dp"
+    android:gravity="center"
+    android:text="* बेरीसेटींग स्टेजचे payment करण्यासाठी येथे क्लिक करा"
+    android:layout_height="wrap_content"></TextView>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewPruningList"
         android:layout_width="match_parent"

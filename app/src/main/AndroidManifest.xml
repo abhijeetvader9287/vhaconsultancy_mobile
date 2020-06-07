@@ -21,6 +21,10 @@
             android:label="@string/payment"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
+            android:name=".payment.PaymentBerryStageActivity"
+            android:label="@string/payment"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
             android:name=".payment.PaymentAprilActivity"
             android:label="@string/payment"
             android:theme="@style/AppTheme.NoActionBar" />

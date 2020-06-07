@@ -42,30 +42,37 @@ class PlotListRecyclerViewAdapter(private val plots: ArrayList<Plot>) : Recycler
         holder.txtDistance.text = plot.distance.toString() + ""
         holder.txtNumerOfVine.text = plot.numberOfVine.toString() + ""
         val aprilTransactioRef = plot?.aprilTransactionRef
+        val octoberTransactionRef = plot?.octoberTransactionRef
         if (aprilTransactioRef!!.isEmpty()) {
-            holder.btn_deletePlot.visibility=View.VISIBLE
-            holder.btn_deletePlot.setOnClickListener {
-                val builder = AlertDialog.Builder(holder.btn_deletePlot.context)
-                //set title for alert dialog
-                builder.setTitle(R.string.Warning)
-                //set message for alert dialog
-                builder.setMessage(R.string.you_want_to_delete)
-                builder.setIcon(android.R.drawable.ic_dialog_alert)
+            if (octoberTransactionRef!!.isEmpty()) {
+                holder.btn_deletePlot.visibility = View.VISIBLE
+                holder.btn_deletePlot.setOnClickListener {
+                    val builder = AlertDialog.Builder(holder.btn_deletePlot.context)
+                    //set title for alert dialog
+                    builder.setTitle(R.string.Warning)
+                    //set message for alert dialog
+                    builder.setMessage(R.string.you_want_to_delete)
+                    builder.setIcon(android.R.drawable.ic_dialog_alert)
 
-                //performing positive action
-                builder.setPositiveButton(holder.btn_deletePlot.context.getString(R.string.Yes)) { dialogInterface, which ->
-                    databasePlotListReference!!.removeValue()
-                 }
-                //performing cancel action
-                builder.setNeutralButton(holder.btn_deletePlot.context.getString(R.string.Cancel)) { dialogInterface, which ->
+                    //performing positive action
+                    builder.setPositiveButton(holder.btn_deletePlot.context.getString(R.string.Yes)) { dialogInterface, which ->
+                        databasePlotListReference!!.removeValue()
+                    }
+                    //performing cancel action
+                    builder.setNeutralButton(holder.btn_deletePlot.context.getString(R.string.Cancel)) { dialogInterface, which ->
+
+                    }
+
+                    // Create the AlertDialog
+                    val alertDialog: AlertDialog = builder.create()
+                    // Set other dialog properties
+                    alertDialog.setCancelable(false)
+                    alertDialog.show()
 
                 }
-
-                // Create the AlertDialog
-                val alertDialog: AlertDialog = builder.create()
-                // Set other dialog properties
-                alertDialog.setCancelable(false)
-                alertDialog.show()
+            }else
+            {
+                holder.btn_deletePlot.visibility=View.GONE
 
             }
         }else
@@ -76,7 +83,7 @@ class PlotListRecyclerViewAdapter(private val plots: ArrayList<Plot>) : Recycler
         holder.mView.setOnClickListener { v: View? ->
             val todaysDate = Date()
             val month = todaysDate.month + 1
-            if (month >= 3 && month <= 8) {
+            if (month >= 9 && month <= 12) {//3,8
                 val aprilTransactioRef = plot?.aprilTransactionRef
                 if (aprilTransactioRef!!.isEmpty()) {
                     val intent: Intent? = Intent(v?.context, PaymentAprilActivity::class.java)
@@ -93,7 +100,25 @@ class PlotListRecyclerViewAdapter(private val plots: ArrayList<Plot>) : Recycler
                     //SharedPref.Companion.getInstance(this@SplashscreenActivity)?.putSharedPrefString(getString(R.string.userPhoneNumber), currentUser.getPhoneNumber())
                     v?.context?.startActivity(intent)
                 }
-            } else if (month >= 9 && month <= 11) {
+            } else if (month >= 3 && month <= 8) {//9,12
+                val octoberTransactionRef = plot?.octoberTransactionRef
+                if (octoberTransactionRef!!.isEmpty()) {
+                    val intent: Intent? = Intent(v?.context, PaymentOctoberActivity::class.java)
+                    SharedPref.Companion.getInstance(v?.context)?.putSharedPrefString(v?.context?.getString(R.string.month), v?.context?.getString(R.string.october))
+                    SharedPref.Companion.getInstance(v?.context)?.putSharedPrefString(v?.context?.getString(R.string._area_in_acre), plot.area.toString());
+                    SharedPref.Companion.getInstance(v?.context)?.putSharedPrefString(v?.context?.getString(R.string.plot_key), plot.plotKey.toString());
+                    //SharedPref.Companion.getInstance(this@SplashscreenActivity)?.putSharedPrefString(getString(R.string.userPhoneNumber), currentUser.getPhoneNumber())
+                    v?.context?.startActivity(intent)
+                } else {
+                    val intent: Intent? = Intent(v?.context, OctoberPruningListActivity::class.java)
+                    SharedPref.Companion.getInstance(v?.context)?.putSharedPrefString(v?.context?.getString(R.string.month), v?.context?.getString(R.string.october))
+                    SharedPref.Companion.getInstance(v?.context)?.putSharedPrefString(v?.context?.getString(R.string._area_in_acre), plot.area.toString());
+                    SharedPref.Companion.getInstance(v?.context)?.putSharedPrefString(v?.context?.getString(R.string.plot_key), plot.plotKey.toString());
+                    //SharedPref.Companion.getInstance(this@SplashscreenActivity)?.putSharedPrefString(getString(R.string.userPhoneNumber), currentUser.getPhoneNumber())
+                    v?.context?.startActivity(intent)
+                }
+            }
+            else if (month >= 1 && month <= 2) {//1,2
                 val octoberTransactionRef = plot?.octoberTransactionRef
                 if (octoberTransactionRef!!.isEmpty()) {
                     val intent: Intent? = Intent(v?.context, PaymentOctoberActivity::class.java)

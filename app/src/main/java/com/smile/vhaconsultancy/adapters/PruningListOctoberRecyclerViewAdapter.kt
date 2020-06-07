@@ -11,17 +11,18 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.smile.vhaconsultancy.R
- import com.smile.vhaconsultancy.models.OctoberPruningModel
+import com.smile.vhaconsultancy.listeners.showMessage
+import com.smile.vhaconsultancy.models.OctoberPruningModel
 import com.smile.vhaconsultancy.utilities.SharedPref
 import java.text.SimpleDateFormat
 import java.util.*
 
-class PruningListOctoberRecyclerViewAdapter(private val plots: ArrayList<OctoberPruningModel>) : RecyclerView.Adapter<PruningListOctoberRecyclerViewAdapter.ViewHolder>() {
+class PruningListOctoberRecyclerViewAdapter(private val showMessage: showMessage,private val plots: ArrayList<OctoberPruningModel>) : RecyclerView.Adapter<PruningListOctoberRecyclerViewAdapter.ViewHolder>() {
     var userPhoneNumber: String? = ""
     var database: FirebaseDatabase? = null
     var plot_key: String? = ""
     var databasePlotListReference: DatabaseReference? = null
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
                 .inflate(R.layout.pruning_item, parent, false)
         database = FirebaseDatabase.getInstance()
@@ -30,12 +31,16 @@ class PruningListOctoberRecyclerViewAdapter(private val plots: ArrayList<October
         plot_key = SharedPref.Companion.getInstance(parent.context)?.getSharedPref(parent.context.getString(R.string.plot_key))
 
         databasePlotListReference = database!!.getReference(parent.context.getString(R.string.user_list)).child(userPhoneNumber!!).child(parent.context.getString(R.string.plot_list)).child(plot_key.toString()).child("october_pruning_list")
+         if(plots[0].srNo>0)//40
+         {
+             showMessage.showMessage()
 
+         }
         return ViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        plots[position]
+
         holder.txtArea.text = plots[position].srNo.toString() + ""
         holder.txtVariety.text = plots[position].strDate + ""
         holder.txtDistance.text = plots[position].work_spray.toString() + ""
@@ -50,7 +55,6 @@ class PruningListOctoberRecyclerViewAdapter(private val plots: ArrayList<October
 
         if (plots[position].fertilizer_completed) {
             holder.checkboxFertilizer.setPaintFlags(holder.checkboxFertilizer.getPaintFlags() or Paint.STRIKE_THRU_TEXT_FLAG)
-
             //    holder.checkboxFertilizer.setBackgroundColor(holder.checkboxFertilizer.context.resources.getColor(R.color.add_amount_grey))
         } else {
             holder.checkboxFertilizer.setPaintFlags(holder.checkboxFertilizer.getPaintFlags() and Paint.STRIKE_THRU_TEXT_FLAG.inv())
