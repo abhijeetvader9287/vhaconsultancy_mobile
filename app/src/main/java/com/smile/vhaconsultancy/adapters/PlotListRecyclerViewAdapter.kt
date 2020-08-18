@@ -79,7 +79,7 @@ class PlotListRecyclerViewAdapter(private val plots: ArrayList<Plot>) : Recycler
 
         }
         holder.mView.setOnClickListener { v: View? ->
-            val todaysDate = Date()
+          /*  val todaysDate = Date()
             val month = todaysDate.month + 1
             if (month >= 3 && month <= 8) {//3,8
                 val aprilTransactioRef = plot?.aprilTransactionRef
@@ -98,24 +98,8 @@ class PlotListRecyclerViewAdapter(private val plots: ArrayList<Plot>) : Recycler
                     //SharedPref.Companion.getInstance(this@SplashscreenActivity)?.putSharedPrefString(getString(R.string.userPhoneNumber), currentUser.getPhoneNumber())
                     v?.context?.startActivity(intent)
                 }
-            } else if (month >= 9 && month <= 12) {//9,12
-                val octoberTransactionRef = plot?.octoberTransactionRef
-                if (octoberTransactionRef!!.isEmpty()) {
-                    val intent: Intent? = Intent(v?.context, PaymentOctoberActivity::class.java)
-                    SharedPref.Companion.getInstance(v?.context)?.putSharedPrefString(v?.context?.getString(R.string.month), v?.context?.getString(R.string.october))
-                    SharedPref.Companion.getInstance(v?.context)?.putSharedPrefString(v?.context?.getString(R.string._area_in_acre), plot.area.toString());
-                    SharedPref.Companion.getInstance(v?.context)?.putSharedPrefString(v?.context?.getString(R.string.plot_key), plot.plotKey.toString());
-                    //SharedPref.Companion.getInstance(this@SplashscreenActivity)?.putSharedPrefString(getString(R.string.userPhoneNumber), currentUser.getPhoneNumber())
-                    v?.context?.startActivity(intent)
-                } else {
-                    val intent: Intent? = Intent(v?.context, OctoberPruningListActivity::class.java)
-                    SharedPref.Companion.getInstance(v?.context)?.putSharedPrefString(v?.context?.getString(R.string.month), v?.context?.getString(R.string.october))
-                    SharedPref.Companion.getInstance(v?.context)?.putSharedPrefString(v?.context?.getString(R.string._area_in_acre), plot.area.toString());
-                    SharedPref.Companion.getInstance(v?.context)?.putSharedPrefString(v?.context?.getString(R.string.plot_key), plot.plotKey.toString());
-                    //SharedPref.Companion.getInstance(this@SplashscreenActivity)?.putSharedPrefString(getString(R.string.userPhoneNumber), currentUser.getPhoneNumber())
-                    v?.context?.startActivity(intent)
-                }
-            } else if (month >= 1 && month <= 2) {//1,2
+            }
+            else if (month >= 9 && month <= 12) {//9,12
                 val octoberTransactionRef = plot?.octoberTransactionRef
                 if (octoberTransactionRef!!.isEmpty()) {
                     val intent: Intent? = Intent(v?.context, PaymentOctoberActivity::class.java)
@@ -133,6 +117,91 @@ class PlotListRecyclerViewAdapter(private val plots: ArrayList<Plot>) : Recycler
                     v?.context?.startActivity(intent)
                 }
             }
+            else if (month >= 1 && month <= 2) {//1,2
+                val octoberTransactionRef = plot?.octoberTransactionRef
+                if (octoberTransactionRef!!.isEmpty()) {
+                    val intent: Intent? = Intent(v?.context, PaymentOctoberActivity::class.java)
+                    SharedPref.Companion.getInstance(v?.context)?.putSharedPrefString(v?.context?.getString(R.string.month), v?.context?.getString(R.string.october))
+                    SharedPref.Companion.getInstance(v?.context)?.putSharedPrefString(v?.context?.getString(R.string._area_in_acre), plot.area.toString());
+                    SharedPref.Companion.getInstance(v?.context)?.putSharedPrefString(v?.context?.getString(R.string.plot_key), plot.plotKey.toString());
+                    //SharedPref.Companion.getInstance(this@SplashscreenActivity)?.putSharedPrefString(getString(R.string.userPhoneNumber), currentUser.getPhoneNumber())
+                    v?.context?.startActivity(intent)
+                } else {
+                    val intent: Intent? = Intent(v?.context, OctoberPruningListActivity::class.java)
+                    SharedPref.Companion.getInstance(v?.context)?.putSharedPrefString(v?.context?.getString(R.string.month), v?.context?.getString(R.string.october))
+                    SharedPref.Companion.getInstance(v?.context)?.putSharedPrefString(v?.context?.getString(R.string._area_in_acre), plot.area.toString());
+                    SharedPref.Companion.getInstance(v?.context)?.putSharedPrefString(v?.context?.getString(R.string.plot_key), plot.plotKey.toString());
+                    //SharedPref.Companion.getInstance(this@SplashscreenActivity)?.putSharedPrefString(getString(R.string.userPhoneNumber), currentUser.getPhoneNumber())
+                    v?.context?.startActivity(intent)
+                }
+            }
+*/
+
+            val builder = v?.context?.let { AlertDialog.Builder(it) }
+            builder?.setTitle("कामाचे नियोजन निवडा")
+
+//builder.setPositiveButton("OK", DialogInterface.OnClickListener(function = x))
+
+            builder?.setNegativeButton("एप्रिल छाटणी") { dialog, which ->
+                if (aprilTransactioRef!!.isEmpty()) {
+                    val intent: Intent? = Intent(v?.context, PaymentAprilActivity::class.java)
+                    SharedPref.Companion.getInstance(v?.context)?.putSharedPrefString(v?.context?.getString(R.string.month), v?.context?.getString(R.string.april))
+                    SharedPref.Companion.getInstance(v?.context)?.putSharedPrefString(v?.context?.getString(R.string._area_in_acre), plot.area.toString());
+                    SharedPref.Companion.getInstance(v?.context)?.putSharedPrefString(v?.context?.getString(R.string.plot_key), plot.plotKey.toString());
+                    //SharedPref.Companion.getInstance(this@SplashscreenActivity)?.putSharedPrefString(getString(R.string.userPhoneNumber), currentUser.getPhoneNumber())
+                    v?.context?.startActivity(intent)
+                } else {
+                    val intent: Intent? = Intent(v?.context, AprilPruningListActivity::class.java)
+                    SharedPref.Companion.getInstance(v?.context)?.putSharedPrefString(v?.context?.getString(R.string.month), v?.context?.getString(R.string.april))
+                    SharedPref.Companion.getInstance(v?.context)?.putSharedPrefString(v?.context?.getString(R.string._area_in_acre), plot.area.toString());
+                    SharedPref.Companion.getInstance(v?.context)?.putSharedPrefString(v?.context?.getString(R.string.plot_key), plot.plotKey.toString());
+                    //SharedPref.Companion.getInstance(this@SplashscreenActivity)?.putSharedPrefString(getString(R.string.userPhoneNumber), currentUser.getPhoneNumber())
+                    v?.context?.startActivity(intent)
+                }
+            }
+
+            builder?.setPositiveButton("ऑक्टोबर छाटणी") { dialog, which ->
+
+                val octoberTransactionRef = plot?.octoberTransactionRef
+                if (octoberTransactionRef!!.isEmpty()) {
+                    val intent: Intent? = Intent(v?.context, PaymentOctoberActivity::class.java)
+                    SharedPref.Companion.getInstance(v?.context)?.putSharedPrefString(v?.context?.getString(R.string.month), v?.context?.getString(R.string.october))
+                    SharedPref.Companion.getInstance(v?.context)?.putSharedPrefString(v?.context?.getString(R.string._area_in_acre), plot.area.toString());
+                    SharedPref.Companion.getInstance(v?.context)?.putSharedPrefString(v?.context?.getString(R.string.plot_key), plot.plotKey.toString());
+                    //SharedPref.Companion.getInstance(this@SplashscreenActivity)?.putSharedPrefString(getString(R.string.userPhoneNumber), currentUser.getPhoneNumber())
+                    v?.context?.startActivity(intent)
+                } else {
+                    val intent: Intent? = Intent(v?.context, OctoberPruningListActivity::class.java)
+                    SharedPref.Companion.getInstance(v?.context)?.putSharedPrefString(v?.context?.getString(R.string.month), v?.context?.getString(R.string.october))
+                    SharedPref.Companion.getInstance(v?.context)?.putSharedPrefString(v?.context?.getString(R.string._area_in_acre), plot.area.toString());
+                    SharedPref.Companion.getInstance(v?.context)?.putSharedPrefString(v?.context?.getString(R.string.plot_key), plot.plotKey.toString());
+                    //SharedPref.Companion.getInstance(this@SplashscreenActivity)?.putSharedPrefString(getString(R.string.userPhoneNumber), currentUser.getPhoneNumber())
+                    v?.context?.startActivity(intent)
+                }
+            }
+/*
+            builder?.setNeutralButton("बेरी सेटिंग स्टेज") { dialog, which ->
+                val octoberTransactionRef = plot?.octoberTransactionRef
+                if (octoberTransactionRef!!.isEmpty()) {
+                    val intent: Intent? = Intent(v?.context, PaymentOctoberActivity::class.java)
+                    SharedPref.Companion.getInstance(v?.context)?.putSharedPrefString(v?.context?.getString(R.string.month), v?.context?.getString(R.string.october))
+                    SharedPref.Companion.getInstance(v?.context)?.putSharedPrefString(v?.context?.getString(R.string._area_in_acre), plot.area.toString());
+                    SharedPref.Companion.getInstance(v?.context)?.putSharedPrefString(v?.context?.getString(R.string.plot_key), plot.plotKey.toString());
+                    //SharedPref.Companion.getInstance(this@SplashscreenActivity)?.putSharedPrefString(getString(R.string.userPhoneNumber), currentUser.getPhoneNumber())
+                    v?.context?.startActivity(intent)
+                } else {
+                    val intent: Intent? = Intent(v?.context, OctoberPruningListActivity::class.java)
+                    SharedPref.Companion.getInstance(v?.context)?.putSharedPrefString(v?.context?.getString(R.string.month), v?.context?.getString(R.string.october))
+                    SharedPref.Companion.getInstance(v?.context)?.putSharedPrefString(v?.context?.getString(R.string._area_in_acre), plot.area.toString());
+                    SharedPref.Companion.getInstance(v?.context)?.putSharedPrefString(v?.context?.getString(R.string.plot_key), plot.plotKey.toString());
+                    //SharedPref.Companion.getInstance(this@SplashscreenActivity)?.putSharedPrefString(getString(R.string.userPhoneNumber), currentUser.getPhoneNumber())
+                    v?.context?.startActivity(intent)
+                }
+            }*/
+            builder?.show()
+
+
+
         }
     }
 
