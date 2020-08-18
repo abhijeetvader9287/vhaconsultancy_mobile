@@ -1,6 +1,7 @@
 package com.smile.vhaconsultancy.adapters
 
 import android.content.Intent
+import android.graphics.Typeface
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -198,9 +199,12 @@ class PlotListRecyclerViewAdapter(private val plots: ArrayList<Plot>) : Recycler
                     v?.context?.startActivity(intent)
                 }
             }*/
-            builder?.show()
+     var alertDialog=       builder?.show()
 
-
+            alertDialog?.getButton(AlertDialog.BUTTON_POSITIVE)?.setTypeface(Typeface.DEFAULT, Typeface.BOLD)
+            alertDialog?.getButton(AlertDialog.BUTTON_NEGATIVE)?.setTypeface(Typeface.DEFAULT, Typeface.BOLD)
+            alertDialog?.getButton(AlertDialog.BUTTON_POSITIVE)?.textSize=20f
+            alertDialog?.getButton(AlertDialog.BUTTON_NEGATIVE)?.textSize=20f
 
         }
     }

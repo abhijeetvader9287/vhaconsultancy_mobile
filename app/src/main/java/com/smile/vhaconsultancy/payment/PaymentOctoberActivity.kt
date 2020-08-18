@@ -98,7 +98,7 @@ class PaymentOctoberActivity : BaseActivity(), View.OnClickListener {
             var stroctober = getString(R.string.october)
 
             datePickerDialog.show()
-            if (month_et.text.toString().equals(stroctober)) {
+           /* if (month_et.text.toString().equals(stroctober)) {
                 var simpleDateFormat = SimpleDateFormat("dd-MMM-yyyy", Locale.US)
 
                 var dateEnd = Date()
@@ -108,7 +108,7 @@ class PaymentOctoberActivity : BaseActivity(), View.OnClickListener {
                 dateStart = simpleDateFormat.parse("1-Sep-" + strYear)
                 datePickerDialog.datePicker.maxDate = dateEnd.time
                 datePickerDialog.datePicker.minDate = dateStart.time
-            }
+            }*/
         })
     }
 

@@ -98,7 +98,7 @@ class PaymentAprilActivity : BaseActivity(), View.OnClickListener {
             var strApril = getString(R.string.april)
 
             datePickerDialog.show()
-            if (month_et.text.toString().equals(strApril)) {
+           /* if (month_et.text.toString().equals(strApril)) {
                 var simpleDateFormat = SimpleDateFormat("dd-MMM-yyyy", Locale.US)
 
                 var dateEnd = Date()
@@ -108,7 +108,7 @@ class PaymentAprilActivity : BaseActivity(), View.OnClickListener {
                 dateStart = simpleDateFormat.parse("1-Mar-" + strYear)
                 datePickerDialog.datePicker.maxDate = dateEnd.time
                 datePickerDialog.datePicker.minDate = dateStart.time
-            }
+            }*/
         })
     }
 
