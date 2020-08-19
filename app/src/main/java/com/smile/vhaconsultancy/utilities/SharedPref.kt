@@ -10,7 +10,14 @@ class SharedPref private constructor(context: Context?) {
     fun getSharedPref(key: String?): String? {
         return sharedpreferences?.getString(key, "")
     }
-
+    fun getSharedPrefBool(key: String?): Boolean? {
+        return sharedpreferences?.getBoolean(key, false)
+    }
+    fun putSharedPrefBool(key: String?, value: Boolean) {
+        sharedpreferenceseditor?.putBoolean(key, value)
+        sharedpreferenceseditor?.commit()
+        sharedpreferenceseditor?.apply()
+    }
     fun getSharedPrefFloat(key: String?): Float? {
         return sharedpreferences?.getFloat(key, 0.0f)
     }

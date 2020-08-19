@@ -39,6 +39,16 @@ class MainActivity : AppCompatActivity() {
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayShowTitleEnabled(true)
+       if(!SharedPref.getInstance(this@MainActivity)?.getSharedPrefBool("terms")!!)
+       {
+           val i = Intent(this, TermsAndConditionsActivity::class.java)
+           this.startActivity(i)
+       }
+
+
+
+
+
         dialog = ProgressDialog(this)
         dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         dialog.isIndeterminate = true
@@ -103,18 +113,13 @@ class MainActivity : AppCompatActivity() {
         })
         databaseProfileReference!!.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
-                //clearing the previous artist list
-                //iterating through all the nodes
-                //getting artist
+
                 val userProfile: UserProfile? = dataSnapshot.getValue(UserProfile::class.java)
-                //adding artist to the list
                 editTextMobileNumber.text = userProfile?.mobileNumber
-                //  editTextDistrict.setText(userProfile?.district)
                 editTextName.text = userProfile?.name
                 SharedPref.getInstance(this@MainActivity)?.putSharedPrefString(getString(R.string._name), userProfile?.name)
                 dialog.dismiss()
-                // editTextTaluka.setText(userProfile?.taluka)
-                // editTextVillage.setText(userProfile?.village)
+
 
             }
 
