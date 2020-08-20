@@ -132,7 +132,7 @@
                             android:maxLines="1"
                             android:nextFocusDown="@+id/card_name_et"
                             android:paddingTop="@dimen/dimen_10dp"
-                            android:text="@string/month_mr"
+                            android:text="छाटणी:"
                             android:textColor="@color/payumoney_black"
                             android:textSize="16sp" />
 
