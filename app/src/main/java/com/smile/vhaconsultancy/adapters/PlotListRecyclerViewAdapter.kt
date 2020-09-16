@@ -139,11 +139,11 @@ class PlotListRecyclerViewAdapter(private val plots: ArrayList<Plot>) : Recycler
 */
 
             val builder = v?.context?.let { AlertDialog.Builder(it) }
-            builder?.setTitle("कामाचे नियोजन निवडा")
+            builder?.setTitle(v?.context.getString(R.string.select_work_plan))
 
 //builder.setPositiveButton("OK", DialogInterface.OnClickListener(function = x))
 
-            builder?.setNegativeButton("एप्रिल छाटणी") { dialog, which ->
+            builder?.setNegativeButton(v?.context.getString(R.string.april_pruning)) { dialog, which ->
                 if (aprilTransactioRef!!.isEmpty()) {
                     val intent: Intent? = Intent(v?.context, PaymentAprilActivity::class.java)
                     SharedPref.Companion.getInstance(v?.context)?.putSharedPrefString(v?.context?.getString(R.string.month), v?.context?.getString(R.string.april))
@@ -161,7 +161,7 @@ class PlotListRecyclerViewAdapter(private val plots: ArrayList<Plot>) : Recycler
                 }
             }
 
-            builder?.setPositiveButton("ऑक्टोबर छाटणी") { dialog, which ->
+            builder?.setPositiveButton(v?.context.getString(R.string.october_pruning)) { dialog, which ->
 
                 val octoberTransactionRef = plot?.octoberTransactionRef
                 if (octoberTransactionRef!!.isEmpty()) {

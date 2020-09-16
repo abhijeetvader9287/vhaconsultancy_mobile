@@ -20,6 +20,7 @@
     <string name="desc_generic_idp">Use a generic OAuth identity provider, like Apple, Microsoft, Yahoo, or Twitter to authenticate with Firebase.</string>
     <string name="hint_user_id">User ID</string>
     <string name="get_custom_token">Get Token</string>
+    <string name="generic_label_provider">Provider:</string>
     <string name="sign_in">Sign In</string>
     <string name="create_account">Create Account</string>
     <string name="send_link">Send Link</string>
@@ -201,4 +202,9 @@
     <string name="code_sent">कोड पाठवला</string>
     <string name="verification_falied">पडताळणी अयशस्वी</string>
     <string name="verification_success">पडताळणी यशस्वी</string>
+    <string name="app_language">app_language</string>
+    <string name="select_work_plan">कामाचे नियोजन निवडा</string>
+    <string name="april_pruning">एप्रिल छाटणी</string>
+    <string name="october_pruning">ऑक्टोबर छाटणी</string>
+    <string name="pruning_">छाटणी:</string>
 </resources>

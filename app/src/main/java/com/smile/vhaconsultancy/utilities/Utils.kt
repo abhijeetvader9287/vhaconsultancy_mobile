@@ -192,16 +192,16 @@ class Utils {
         }*/
 
         fun setLocal(context: Context) {
-            /*var str_app_lang = SharedPref.getInstance(context).getSharedPref(context.getString(R.string.app_language))
+            var str_app_lang = SharedPref.getInstance(context)?.getSharedPref(context.getString(R.string.app_language))
             if (str_app_lang.isNullOrEmpty()) {
-                str_app_lang = "nl"
-                SharedPrefWine.getInstance(context).putSharedPref(
+                str_app_lang = "en"
+                SharedPref.getInstance(context)?.putSharedPrefString(
                     context.getString(R.string.app_language),
                     str_app_lang
                 )
-            }*/
+            }
             val locale = Locale(
-                    "mr"
+                    str_app_lang
             )
             Locale.setDefault(locale)
             val config: Configuration = context.resources.configuration
