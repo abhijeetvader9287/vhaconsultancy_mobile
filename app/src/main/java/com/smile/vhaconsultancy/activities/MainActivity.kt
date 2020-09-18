@@ -4,6 +4,7 @@ import android.app.ProgressDialog
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Color
+import android.graphics.Typeface
 import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.os.Bundle
@@ -18,7 +19,10 @@ import com.smile.vhaconsultancy.BuildConfig
 import com.smile.vhaconsultancy.R
 import com.smile.vhaconsultancy.models.UserProfile
 import com.smile.vhaconsultancy.utilities.SharedPref
+import com.smile.vhaconsultancy.utilities.Utils
+import kotlinx.android.synthetic.main.activity_phone_auth.*
 import kotlinx.android.synthetic.main.content_main.*
+import kotlinx.android.synthetic.main.content_main.changeLang
 
 
 class MainActivity : AppCompatActivity() {
@@ -55,7 +59,34 @@ class MainActivity : AppCompatActivity() {
         dialog.setCancelable(false)
         dialog.show()
         dialog.setContentView(R.layout.progress_layout)
+        changeLang.setOnClickListener {
+            val builder =    AlertDialog.Builder(this@MainActivity)
+            builder?.setTitle( getString(R.string.changeLang))
+            builder?.setNegativeButton(getString(R.string.marathi)) { dialog, which ->
+                SharedPref.getInstance(this@MainActivity)?.putSharedPrefString(getString(R.string.app_language),"mr")
+                Utils.setLocal(this@MainActivity)
+                finishAffinity()
 
+                val i = Intent(this, SplashscreenActivity::class.java)
+                i.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                this.startActivity(i)
+            }
+
+            builder?.setPositiveButton(getString(R.string.english)) { dialog, which ->
+
+                SharedPref.getInstance(this@MainActivity)?.putSharedPrefString(getString(R.string.app_language),"en")
+                Utils.setLocal(this@MainActivity)
+                val i = Intent(this, SplashscreenActivity::class.java)
+                i.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                this.startActivity(i)
+            }
+            var alertDialog=       builder?.show()
+
+            alertDialog?.getButton(AlertDialog.BUTTON_POSITIVE)?.setTypeface(Typeface.DEFAULT, Typeface.BOLD)
+            alertDialog?.getButton(AlertDialog.BUTTON_NEGATIVE)?.setTypeface(Typeface.DEFAULT, Typeface.BOLD)
+            alertDialog?.getButton(AlertDialog.BUTTON_POSITIVE)?.textSize=20f
+            alertDialog?.getButton(AlertDialog.BUTTON_NEGATIVE)?.textSize=20f
+        }
         txtTermsAndCond.setOnClickListener {
             val i = Intent(this, TermsAndConditionsActivity::class.java)
             this.startActivity(i)

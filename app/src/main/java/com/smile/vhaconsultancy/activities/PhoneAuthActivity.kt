@@ -2,6 +2,7 @@ package com.smile.vhaconsultancy.activities
 
 import android.content.Context
 import android.content.Intent
+import android.graphics.Typeface
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextUtils
@@ -10,6 +11,7 @@ import android.util.Log
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.Task
@@ -20,7 +22,10 @@ import com.google.firebase.auth.*
 import com.google.firebase.auth.PhoneAuthProvider.ForceResendingToken
 import com.google.firebase.auth.PhoneAuthProvider.OnVerificationStateChangedCallbacks
 import com.smile.vhaconsultancy.R
+import com.smile.vhaconsultancy.payment.PaymentAprilActivity
+import com.smile.vhaconsultancy.payment.PaymentOctoberActivity
 import com.smile.vhaconsultancy.utilities.SharedPref
+import com.smile.vhaconsultancy.utilities.Utils
 import kotlinx.android.synthetic.main.activity_phone_auth.*
 import java.util.concurrent.TimeUnit
 
@@ -56,6 +61,34 @@ class PhoneAuthActivity constructor() : AppCompatActivity(), View.OnClickListene
                 }
             }
         })
+        changeLang.setOnClickListener {
+            val builder =    AlertDialog.Builder(this@PhoneAuthActivity)
+            builder?.setTitle( getString(R.string.changeLang))
+            builder?.setNegativeButton(getString(R.string.marathi)) { dialog, which ->
+                SharedPref.getInstance(this@PhoneAuthActivity)?.putSharedPrefString(getString(R.string.app_language),"mr")
+                Utils.setLocal(this@PhoneAuthActivity)
+                finishAffinity()
+
+                val i = Intent(this, SplashscreenActivity::class.java)
+                i.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                this.startActivity(i)
+            }
+
+            builder?.setPositiveButton(getString(R.string.english)) { dialog, which ->
+
+                SharedPref.getInstance(this@PhoneAuthActivity)?.putSharedPrefString(getString(R.string.app_language),"en")
+                Utils.setLocal(this@PhoneAuthActivity)
+                val i = Intent(this, SplashscreenActivity::class.java)
+                i.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                this.startActivity(i)
+            }
+            var alertDialog=       builder?.show()
+
+            alertDialog?.getButton(AlertDialog.BUTTON_POSITIVE)?.setTypeface(Typeface.DEFAULT, Typeface.BOLD)
+            alertDialog?.getButton(AlertDialog.BUTTON_NEGATIVE)?.setTypeface(Typeface.DEFAULT, Typeface.BOLD)
+            alertDialog?.getButton(AlertDialog.BUTTON_POSITIVE)?.textSize=20f
+            alertDialog?.getButton(AlertDialog.BUTTON_NEGATIVE)?.textSize=20f
+        }
         // [START initialize_auth]
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance()

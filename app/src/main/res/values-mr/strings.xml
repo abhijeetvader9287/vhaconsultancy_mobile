@@ -207,4 +207,7 @@
     <string name="april_pruning">एप्रिल छाटणी</string>
     <string name="october_pruning">ऑक्टोबर छाटणी</string>
     <string name="pruning_">छाटणी:</string>
+    <string name="changeLang">Change Language/भाषा बदला</string>
+    <string name="marathi">मराठी</string>
+    <string name="english">English</string>
 </resources>

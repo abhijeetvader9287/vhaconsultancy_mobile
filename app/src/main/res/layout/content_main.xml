@@ -161,7 +161,32 @@
                 android:layout_margin="@dimen/dimen_10dp"
                 android:text="@string/terms_and_conditions"
                 android:textColor="@color/white"></TextView>
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="25dp"
+                android:layout_marginEnd="25dp"
+                android:layout_marginBottom="10dp"
+                android:elevation="20dp"
+                app:cardBackgroundColor="@color/colorPrimary"
+                app:cardCornerRadius="8dp">
 
+                <Button
+                    android:id="@+id/changeLang"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center"
+                    android:background="@android:color/transparent"
+                    android:gravity="center"
+                    android:paddingStart="0dp"
+                    android:paddingEnd="15dp"
+                    android:singleLine="true"
+                    android:text="@string/changeLang"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="25sp" />
+            </androidx.cardview.widget.CardView>
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
