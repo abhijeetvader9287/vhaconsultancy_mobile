@@ -181,7 +181,7 @@ class MainActivity : AppCompatActivity() {
                             val appLink: String = dataSnapshot.value as String
                             val builder = AlertDialog.Builder(this@MainActivity)
                             //set title for alert dialog
-                            builder.setTitle(R.string.Warning)
+                          //  builder.setTitle(R.string.Warning)
                             //set message for alert dialog
                             builder.setMessage(R.string.Please_download_new_app)
                             builder.setIcon(android.R.drawable.ic_dialog_alert)

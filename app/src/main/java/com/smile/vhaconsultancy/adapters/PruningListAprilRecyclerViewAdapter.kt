@@ -70,7 +70,7 @@ class PruningListAprilRecyclerViewAdapter(private val plots: ArrayList<AprilPrun
             if (datePruning.after(dateTo)) {
                 val builder = AlertDialog.Builder(holder.checkboxWork.context)
                 //set title for alert dialog
-                builder.setTitle(R.string.Warning)
+               // builder.setTitle(R.string.Warning)
                 //set message for alert dialog
                 builder.setMessage(R.string.later_dates_not_allowed)
                 builder.setIcon(android.R.drawable.ic_dialog_alert)
@@ -106,7 +106,7 @@ class PruningListAprilRecyclerViewAdapter(private val plots: ArrayList<AprilPrun
             if (datePruning.after(dateTo)) {
                 val builder = AlertDialog.Builder(holder.checkboxWork.context)
                 //set title for alert dialog
-                builder.setTitle(R.string.Warning)
+               // builder.setTitle(R.string.Warning)
                 //set message for alert dialog
                 builder.setMessage(R.string.later_dates_not_allowed)
                 builder.setIcon(android.R.drawable.ic_dialog_alert)

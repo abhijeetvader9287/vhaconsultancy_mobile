@@ -50,7 +50,7 @@ class AddPlotActivity : AppCompatActivity() {
         btnSave.setOnClickListener {
             val builder = AlertDialog.Builder(this)
             //set title for alert dialog
-            builder.setTitle(R.string.Warning)
+           // builder.setTitle(R.string.Warning)
             //set message for alert dialog
             builder.setMessage(R.string.you_will_not_be_able_to_edit_again)
             builder.setIcon(android.R.drawable.ic_dialog_alert)

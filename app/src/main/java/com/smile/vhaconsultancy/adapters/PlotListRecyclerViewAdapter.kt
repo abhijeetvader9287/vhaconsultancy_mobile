@@ -50,7 +50,7 @@ class PlotListRecyclerViewAdapter(private val plots: ArrayList<Plot>) : Recycler
                 holder.btn_deletePlot.setOnClickListener {
                     val builder = AlertDialog.Builder(holder.btn_deletePlot.context)
                     //set title for alert dialog
-                    builder.setTitle(R.string.Warning)
+                            //   builder.setTitle(R.string.Warning)
                     //set message for alert dialog
                     builder.setMessage(R.string.you_want_to_delete)
                     builder.setIcon(android.R.drawable.ic_dialog_alert)
