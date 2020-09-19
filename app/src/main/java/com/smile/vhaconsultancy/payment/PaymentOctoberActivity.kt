@@ -8,6 +8,8 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.RadioButton
+import android.widget.RadioGroup
 import android.widget.Toast
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
@@ -31,6 +33,7 @@ class PaymentOctoberActivity : BaseActivity(), View.OnClickListener {
     private val isDisableExitConfirmation = false
     var userUid: String? = ""
     var userPhoneNumber: String? = ""
+    var radio: RadioButton?=null
     var plot_key: String? = ""
     var txnId = ""
     var database: FirebaseDatabase? = null
@@ -65,13 +68,70 @@ class PaymentOctoberActivity : BaseActivity(), View.OnClickListener {
 
         pay_now_button.setOnClickListener(this)
         //Set Up SharedPref
-        setUpUserDetails()
+        //setUpUserDetails()
+        btnVisiting.isChecked=true
+        radio = findViewById(R.id. btnVisiting)
+        amount_et!!.text = SharedPref.Companion.getInstance(this@PaymentOctoberActivity)?.getSharedPrefFloat(getString(R.string.rate)).toString()
+setUpUserDetails()
         (application as BaseApplication).appEnvironment = AppEnvironment.PRODUCTION
+        radio_group.setOnCheckedChangeListener(
+                RadioGroup.OnCheckedChangeListener { group, checkedId ->
+                      radio = findViewById(checkedId)
+
+                    if(checkedId==btnVisiting.id)
+                    {
+                        amount_et!!.text = SharedPref.Companion.getInstance(this@PaymentOctoberActivity)?.getSharedPrefFloat(getString(R.string.rate)).toString()
+                        setUpUserDetails()
+                    }else if(checkedId==btnNonVisiting.id){
+                        amount_et!!.text = SharedPref.Companion.getInstance(this@PaymentOctoberActivity)?.getSharedPrefFloat(getString(R.string.rate_nv)).toString()
+                        setUpUserDetails()
+                    }
+                })
+        pay_cash_button.setOnClickListener {
+
+            if (selectedDate != 0L) {
+                AlertDialog.Builder(this)
+                        .setCancelable(false)
+                        .setTitle("Payment in cash")
+                        .setMessage("Do you want to pay in cash?")
+                        .setPositiveButton(android.R.string.ok) { dialog, whichButton ->
+                            txnId = "TXNID" + System.currentTimeMillis() + ""
+                            octoberTransactionRefDatabaseRef?.setValue(txnId+"_cash_"+ (radio?.text  ) +"_"+amount_et!!.text)
+                            val pattern = "dd-MMM-yyyy HH:mm:ss.SSS"
+                            val simpleDateFormat = SimpleDateFormat(pattern, Locale.US)
+                            val transactionDateTime: String = simpleDateFormat.format(Date())
+                            octoberTransactionDateDatabaseRef?.setValue(transactionDateTime)
+                            octoberPruiningDateRefDatabaseRef?.setValue(pruining_date_et.text.toString())
+
+
+                            AlertDialog.Builder(this)
+                                    .setCancelable(false)
+                                    .setTitle("Payment in cash")
+                                    .setMessage("Please pay "+amount_et!!.text+" to our executive")
+                                    .setPositiveButton(android.R.string.ok) { dialog, whichButton ->
+                                        this@PaymentOctoberActivity.finish()
+                                        dialog.dismiss()
+                                    }.show()
+                        }.show()
+
+
+            } else {
+                Toast.makeText(this@PaymentOctoberActivity, getString(R.string.please_select_date_of_pruining), Toast.LENGTH_LONG).show()
+            }
+
+
+
+
+
+
+
+
+        }
     }
 
     private fun setUpUserDetails() {
+
         mobile_et!!.text = SharedPref.Companion.getInstance(this@PaymentOctoberActivity)?.getSharedPref(getString(R.string.userPhoneNumber))
-        amount_et!!.text = SharedPref.Companion.getInstance(this@PaymentOctoberActivity)?.getSharedPrefFloat(getString(R.string.rate)).toString()
         name_et!!.text = SharedPref.Companion.getInstance(this@PaymentOctoberActivity)?.getSharedPref(getString(R.string._name)).toString()
         month_et!!.text = SharedPref.Companion.getInstance(this@PaymentOctoberActivity)?.getSharedPref(getString(R.string.month)).toString()
         area_et_et!!.text = SharedPref.Companion.getInstance(this@PaymentOctoberActivity)?.getSharedPref(getString(R.string._area_in_acre)).toString()
@@ -133,7 +193,7 @@ class PaymentOctoberActivity : BaseActivity(), View.OnClickListener {
                 if (transactionResponse.transactionStatus == TransactionResponse.TransactionStatus.SUCCESSFUL) {
                     //Success Transaction
                     var payuResponse = transactionResponse.getPayuResponse()
-                    octoberTransactionRefDatabaseRef?.setValue(txnId)
+                    octoberTransactionRefDatabaseRef?.setValue(txnId+"_online_"+ (radio?.text  ) +"_"+amount_et!!.text)
                     val pattern = "dd-MMM-yyyy HH:mm:ss.SSS"
                     val simpleDateFormat = SimpleDateFormat(pattern, Locale.US)
                     val transactionDateTime: String = simpleDateFormat.format(Date())

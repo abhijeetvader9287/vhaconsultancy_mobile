@@ -36,6 +36,7 @@ class MainActivity : AppCompatActivity() {
     var database: FirebaseDatabase? = null
     var versionCodeReference: DatabaseReference? = null
     var rateReference: DatabaseReference? = null
+    var rate_nv_Reference: DatabaseReference? = null
     lateinit var dialog: ProgressDialog
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -123,6 +124,7 @@ class MainActivity : AppCompatActivity() {
         database = FirebaseDatabase.getInstance()
         versionCodeReference = database!!.getReference(getString(R.string.versionCode))
         rateReference = database!!.getReference(getString(R.string.rate))
+        rate_nv_Reference = database!!.getReference(getString(R.string.rate_nv))
         app_link_Reference = database!!.getReference(getString(R.string.app_link))
 
         userUid = SharedPref.Companion.getInstance(this@MainActivity)?.getSharedPref(getString(R.string.userUid))
@@ -138,6 +140,18 @@ class MainActivity : AppCompatActivity() {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 val rate: Double = dataSnapshot.value as Double
                 SharedPref.getInstance(this@MainActivity)?.putSharedPrefFloat(getString(R.string.rate), rate.toFloat())
+
+            }
+
+        })
+        rate_nv_Reference!!.addValueEventListener(object : ValueEventListener {
+            override fun onCancelled(p0: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                val rate: Double = dataSnapshot.value as Double
+                SharedPref.getInstance(this@MainActivity)?.putSharedPrefFloat(getString(R.string.rate_nv), rate.toFloat())
 
             }
 

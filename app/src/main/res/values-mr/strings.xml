@@ -210,4 +210,8 @@
     <string name="changeLang">Change Language/भाषा बदला</string>
     <string name="marathi">मराठी</string>
     <string name="english">English</string>
+    <string name="service_type">Service type:</string>
+    <string name="visiting">Visiting</string>
+    <string name="non_visiting">Non Visiting</string>
+    <string name="rate_nv">rate_nv</string>
 </resources>
