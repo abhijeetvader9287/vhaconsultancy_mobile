@@ -16,6 +16,7 @@ import com.smile.vhaconsultancy.listeners.showMessage
 import com.smile.vhaconsultancy.models.OctoberPruningModel
 import com.smile.vhaconsultancy.payment.PaymentBerryStageActivity
 import com.smile.vhaconsultancy.utilities.SharedPref
+import com.smile.vhaconsultancy.utilities.Utils
 import kotlinx.android.synthetic.main.activity_october_pruning_list.*
 import kotlinx.android.synthetic.main.content_october_pruning_list.*
 import java.text.SimpleDateFormat
@@ -35,6 +36,8 @@ class OctoberPruningListActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_october_pruning_list)
         setSupportActionBar(toolbar)
+        Utils.setLocal(this)
+
         supportActionBar?.setDisplayShowTitleEnabled(true)
         dialog = ProgressDialog(this)
         dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))

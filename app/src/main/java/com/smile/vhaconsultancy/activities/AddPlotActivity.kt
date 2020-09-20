@@ -13,6 +13,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.smile.vhaconsultancy.R
 import com.smile.vhaconsultancy.models.Plot
 import com.smile.vhaconsultancy.utilities.SharedPref
+import com.smile.vhaconsultancy.utilities.Utils
 import kotlinx.android.synthetic.main.activity_add_plot.*
 import kotlinx.android.synthetic.main.content_add_plot.*
 
@@ -28,6 +29,8 @@ class AddPlotActivity : AppCompatActivity() {
         setContentView(R.layout.activity_add_plot)
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayShowTitleEnabled(true)
+        Utils.setLocal(this)
+
         dialog = ProgressDialog(this);
         dialog.getWindow()?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT));
         dialog.setIndeterminate(true);

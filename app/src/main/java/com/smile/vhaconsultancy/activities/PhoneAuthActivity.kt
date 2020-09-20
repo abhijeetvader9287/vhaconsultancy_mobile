@@ -41,6 +41,8 @@ class PhoneAuthActivity constructor() : AppCompatActivity(), View.OnClickListene
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_phone_auth)
+        Utils.setLocal(this)
+
         // Restore instance state
 
         // Assign views

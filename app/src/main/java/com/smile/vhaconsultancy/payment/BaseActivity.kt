@@ -6,12 +6,15 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
 import com.smile.vhaconsultancy.R
+import com.smile.vhaconsultancy.utilities.Utils
 
 abstract class BaseActivity : AppCompatActivity() {
     var toolbar: Toolbar? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(layoutResource)
+        Utils.setLocal(this)
+
         if (toolbar != null) {
             setSupportActionBar(toolbar)
             supportActionBar!!.setDisplayShowHomeEnabled(true)

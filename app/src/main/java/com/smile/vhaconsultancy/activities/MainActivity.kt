@@ -44,7 +44,9 @@ class MainActivity : AppCompatActivity() {
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayShowTitleEnabled(true)
-       if(!SharedPref.getInstance(this@MainActivity)?.getSharedPrefBool("terms")!!)
+        Utils.setLocal(this)
+
+        if(!SharedPref.getInstance(this@MainActivity)?.getSharedPrefBool("terms")!!)
        {
            val i = Intent(this, TermsAndConditionsActivity::class.java)
            this.startActivity(i)

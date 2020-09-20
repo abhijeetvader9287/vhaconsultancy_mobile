@@ -20,6 +20,7 @@ import com.payumoney.core.entity.TransactionResponse
 import com.payumoney.sdkui.ui.utils.PayUmoneyFlowManager
 import com.smile.vhaconsultancy.R
 import com.smile.vhaconsultancy.utilities.SharedPref
+import com.smile.vhaconsultancy.utilities.Utils
 import kotlinx.android.synthetic.main.activity_october_payment.*
 import java.math.BigDecimal
 import java.math.RoundingMode
@@ -47,6 +48,7 @@ class PaymentOctoberActivity : BaseActivity(), View.OnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_october_payment)
+        Utils.setLocal(this)
 
         setSupportActionBar(custom_toolbar)
         supportActionBar?.title = getString(R.string.payment)

@@ -12,6 +12,7 @@ import com.smile.vhaconsultancy.R
 import com.smile.vhaconsultancy.adapters.PruningListAprilRecyclerViewAdapter
 import com.smile.vhaconsultancy.models.AprilPruningModel
 import com.smile.vhaconsultancy.utilities.SharedPref
+import com.smile.vhaconsultancy.utilities.Utils
 import kotlinx.android.synthetic.main.activity_april_pruning_list.*
 import kotlinx.android.synthetic.main.content_april_pruning_list.*
 import java.text.SimpleDateFormat
@@ -29,6 +30,8 @@ class AprilPruningListActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_april_pruning_list)
         setSupportActionBar(toolbar)
+        Utils.setLocal(this)
+
         supportActionBar?.setDisplayShowTitleEnabled(true)
         dialog = ProgressDialog(this)
         dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))

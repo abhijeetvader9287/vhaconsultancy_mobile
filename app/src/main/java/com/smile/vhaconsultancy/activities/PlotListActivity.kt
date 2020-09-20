@@ -12,6 +12,7 @@ import com.smile.vhaconsultancy.R
 import com.smile.vhaconsultancy.adapters.PlotListRecyclerViewAdapter
 import com.smile.vhaconsultancy.models.Plot
 import com.smile.vhaconsultancy.utilities.SharedPref
+import com.smile.vhaconsultancy.utilities.Utils
 import kotlinx.android.synthetic.main.activity_plot_list.*
 import kotlinx.android.synthetic.main.content_plot_list.*
 import java.util.*
@@ -28,6 +29,8 @@ class PlotListActivity : AppCompatActivity() {
         setContentView(R.layout.activity_plot_list)
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayShowTitleEnabled(true)
+        Utils.setLocal(this)
+
         dialog = ProgressDialog(this);
         dialog.getWindow()?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT));
         dialog.setIndeterminate(true);
