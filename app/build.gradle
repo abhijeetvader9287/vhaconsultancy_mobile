@@ -11,8 +11,8 @@ android {
         applicationId "com.smile.vhaconsultancy"
         minSdkVersion 20
         targetSdkVersion 29
-        versionCode 7
-        versionName "1.0.7"
+        versionCode 8
+        versionName "1.0.8"
         multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -35,6 +35,11 @@ android {
     }
     kotlinOptions {
         jvmTarget = "1.8"
+    }
+    bundle {
+        language {
+            enableSplit = false
+        }
     }
 }
 
