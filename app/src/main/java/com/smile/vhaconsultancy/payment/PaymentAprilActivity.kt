@@ -79,7 +79,7 @@ class PaymentAprilActivity : BaseActivity(), View.OnClickListener {
         area_et_et!!.text = SharedPref.Companion.getInstance(this@PaymentAprilActivity)?.getSharedPref(getString(R.string._area_in_acre)).toString()
         var area = area_et_et!!.text.toString().toDouble()
         if (area < 1.0) {
-            area = 1.0
+            area = 0.0
         }
         val decimal = BigDecimal(amount_et!!.text.toString().toDouble() * (area)).setScale(2, RoundingMode.HALF_EVEN)
         total_et!!.text = (decimal).toString()

@@ -6,6 +6,8 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.RadioButton
+import android.widget.RadioGroup
 import android.widget.Toast
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
@@ -17,7 +19,17 @@ import com.payumoney.sdkui.ui.utils.PayUmoneyFlowManager
 import com.smile.vhaconsultancy.R
 import com.smile.vhaconsultancy.utilities.SharedPref
 import com.smile.vhaconsultancy.utilities.Utils
-import kotlinx.android.synthetic.main.activity_berryset_payment.*
+import kotlinx.android.synthetic.main.activity_berryset_payment.amount_et
+import kotlinx.android.synthetic.main.activity_berryset_payment.area_et_et
+import kotlinx.android.synthetic.main.activity_berryset_payment.btnNonVisiting
+import kotlinx.android.synthetic.main.activity_berryset_payment.btnVisiting
+import kotlinx.android.synthetic.main.activity_berryset_payment.custom_toolbar
+import kotlinx.android.synthetic.main.activity_berryset_payment.mobile_et
+import kotlinx.android.synthetic.main.activity_berryset_payment.name_et
+import kotlinx.android.synthetic.main.activity_berryset_payment.pay_cash_button
+import kotlinx.android.synthetic.main.activity_berryset_payment.pay_now_button
+import kotlinx.android.synthetic.main.activity_berryset_payment.radio_group
+import kotlinx.android.synthetic.main.activity_berryset_payment.total_et
 import java.math.BigDecimal
 import java.math.RoundingMode
 import java.security.MessageDigest
@@ -37,7 +49,7 @@ class PaymentBerryStageActivity : BaseActivity(), View.OnClickListener {
     var plot_keyRefDatabaseRef: DatabaseReference? = null
     var berryStageTransactionDateDatabaseRef: DatabaseReference? = null
     private var mPaymentParams: PaymentParam? = null
-
+    var radio: RadioButton?=null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_berryset_payment)
@@ -62,7 +74,59 @@ class PaymentBerryStageActivity : BaseActivity(), View.OnClickListener {
 
         pay_now_button.setOnClickListener(this)
         //Set Up SharedPref
+        //setUpUserDetails()
+        btnVisiting.isChecked=true
+        radio = findViewById(R.id. btnVisiting)
+        amount_et!!.text = SharedPref.Companion.getInstance(this@PaymentBerryStageActivity)?.getSharedPrefFloat(getString(R.string.rate)).toString()
         setUpUserDetails()
+        (application as BaseApplication).appEnvironment = AppEnvironment.PRODUCTION
+        radio_group.setOnCheckedChangeListener(
+                RadioGroup.OnCheckedChangeListener { group, checkedId ->
+                    radio = findViewById(checkedId)
+
+                    if(checkedId==btnVisiting.id)
+                    {
+                        amount_et!!.text = SharedPref.Companion.getInstance(this@PaymentBerryStageActivity)?.getSharedPrefFloat(getString(R.string.rate)).toString()
+                        setUpUserDetails()
+                    }else if(checkedId==btnNonVisiting.id){
+                        amount_et!!.text = SharedPref.Companion.getInstance(this@PaymentBerryStageActivity)?.getSharedPrefFloat(getString(R.string.rate_nv)).toString()
+                        setUpUserDetails()
+                    }
+                })
+        pay_cash_button.setOnClickListener {
+
+            AlertDialog.Builder(this)
+                    .setCancelable(false)
+                    .setTitle("Payment in cash")
+                    .setMessage("Do you want to pay in cash?")
+                    .setPositiveButton(android.R.string.ok) { dialog, whichButton ->
+                        txnId = "TXNID" + System.currentTimeMillis() + ""
+                        berryStageTransactionRefDatabaseRef?.setValue(txnId+"_cash_"+ (radio?.text  ) +"_"+amount_et!!.text)
+                        val pattern = "dd-MMM-yyyy HH:mm:ss.SSS"
+                        val simpleDateFormat = SimpleDateFormat(pattern, Locale.US)
+                        val transactionDateTime: String = simpleDateFormat.format(Date())
+                        berryStageTransactionDateDatabaseRef?.setValue(transactionDateTime)
+                       // octoberPruiningDateRefDatabaseRef?.setValue(pruining_date_et.text.toString())
+
+
+                        AlertDialog.Builder(this)
+                                .setCancelable(false)
+                                .setTitle("Payment in cash")
+                                .setMessage("Please pay "+amount_et!!.text+" to our executive")
+                                .setPositiveButton(android.R.string.ok) { dialog, whichButton ->
+                                    this@PaymentBerryStageActivity.finish()
+                                    dialog.dismiss()
+                                }.show()
+                    }.show()
+
+
+
+
+
+
+
+
+        }
         (application as BaseApplication).appEnvironment = AppEnvironment.PRODUCTION
     }
 
@@ -73,7 +137,7 @@ class PaymentBerryStageActivity : BaseActivity(), View.OnClickListener {
         area_et_et!!.text = SharedPref.Companion.getInstance(this@PaymentBerryStageActivity)?.getSharedPref(getString(R.string._area_in_acre)).toString()
         var area = area_et_et!!.text.toString().toDouble()
         if (area < 1.0) {
-            area = 1.0
+            area = 0.0
         }
         val decimal = BigDecimal(amount_et!!.text.toString().toDouble() * (area)).setScale(2, RoundingMode.HALF_EVEN)
         total_et!!.text = (decimal).toString()
@@ -101,7 +165,7 @@ class PaymentBerryStageActivity : BaseActivity(), View.OnClickListener {
                 if (transactionResponse.transactionStatus == TransactionResponse.TransactionStatus.SUCCESSFUL) {
                     //Success Transaction
                     var payuResponse = transactionResponse.getPayuResponse()
-                    berryStageTransactionRefDatabaseRef?.setValue(txnId)
+                    berryStageTransactionRefDatabaseRef?.setValue(txnId+"_online_"+ (radio?.text  ) +"_"+amount_et!!.text)
                     val pattern = "dd-MMM-yyyy HH:mm:ss.SSS"
                     val simpleDateFormat = SimpleDateFormat(pattern, Locale.US)
                     val transactionDateTime: String = simpleDateFormat.format(Date())
