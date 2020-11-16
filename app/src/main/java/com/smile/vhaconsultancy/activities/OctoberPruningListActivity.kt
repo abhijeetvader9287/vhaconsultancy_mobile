@@ -99,9 +99,10 @@ class OctoberPruningListActivity : AppCompatActivity() {
                                 var strRef: String = p0.value.toString()
                                 if (strRef.isEmpty()) {
                                     txtBerrySettingStagePayment.visibility = View.VISIBLE
-
+                                    recyclerViewPruningList.visibility = View.GONE
                                 } else {
                                     txtBerrySettingStagePayment.visibility = View.GONE
+                                    recyclerViewPruningList.visibility = View.VISIBLE
 
                                 }
                             }
