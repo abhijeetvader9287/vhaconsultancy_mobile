@@ -7,6 +7,8 @@ import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
+import android.view.animation.AlphaAnimation
+import android.view.animation.Animation
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.database.*
@@ -99,6 +101,13 @@ class OctoberPruningListActivity : AppCompatActivity() {
                                 var strRef: String = p0.value.toString()
                                 if (strRef.isEmpty()) {
                                     txtBerrySettingStagePayment.visibility = View.VISIBLE
+                                    val anim: Animation = AlphaAnimation(0.0f, 1.0f)
+                                    anim.duration = 50 //You can manage the blinking time with this parameter
+
+                                    anim.startOffset = 20
+                                    anim.repeatMode = Animation.REVERSE
+                                    anim.repeatCount = Animation.INFINITE
+                                    txtBerrySettingStagePayment.startAnimation(anim)
                                     recyclerViewPruningList.visibility = View.GONE
                                 } else {
                                     txtBerrySettingStagePayment.visibility = View.GONE
