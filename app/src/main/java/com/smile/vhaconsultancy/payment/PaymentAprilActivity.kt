@@ -128,7 +128,7 @@ class PaymentAprilActivity : BaseActivity(), View.OnClickListener {
         Log.d("MainActivity", "request code $requestCode resultcode $resultCode")
         if (requestCode == PayUmoneyFlowManager.REQUEST_CODE_PAYMENT && resultCode == Activity.RESULT_OK && data !=
                 null) {
-            val transactionResponse: TransactionResponse = data.getParcelableExtra(PayUmoneyFlowManager.INTENT_EXTRA_TRANSACTION_RESPONSE)
+            val transactionResponse: TransactionResponse? = data.getParcelableExtra(PayUmoneyFlowManager.INTENT_EXTRA_TRANSACTION_RESPONSE)
             //  val resultModel: ResultModel = data.getParcelableExtra(PayUmoneyFlowManager.ARG_RESULT)
             // Check which object is non-null
             if (transactionResponse != null && transactionResponse.getPayuResponse() != null) {

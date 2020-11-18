@@ -184,12 +184,12 @@ class PhoneAuthActivity constructor() : AppCompatActivity(), View.OnClickListene
     }
 
     // [END on_start_check_user]
-    override fun onRestoreInstanceState(savedInstanceState: Bundle?) {
+   /* override fun onRestoreInstanceState(savedInstanceState: Bundle?) {
         super.onRestoreInstanceState(savedInstanceState)
         if (savedInstanceState != null) {
             mVerificationInProgress = savedInstanceState.getBoolean(KEY_VERIFY_IN_PROGRESS)
         }
-    }
+    }*/
 
     private fun startPhoneNumberVerification(phoneNumber: String) {
         // [START start_phone_auth]
