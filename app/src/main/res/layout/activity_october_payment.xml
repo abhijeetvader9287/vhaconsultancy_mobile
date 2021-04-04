@@ -334,6 +334,7 @@
                     android:paddingStart="0dp"
                     android:paddingEnd="15dp"
                     android:singleLine="true"
+                    android:enabled="false"
                     android:text="Pay Now Online"
                     android:textAllCaps="false"
                     android:textColor="@color/white"

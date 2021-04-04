@@ -17,8 +17,8 @@
         <ImageView
             android:id="@+id/icon"
             style="@style/ThemeOverlay.FirebaseIcon"
-            android:layout_width="350dp"
-            android:layout_height="350dp"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
             android:layout_margin="0dp"
             android:contentDescription="@string/desc_firebase_lockup"
             android:src="@drawable/app_icon" />
