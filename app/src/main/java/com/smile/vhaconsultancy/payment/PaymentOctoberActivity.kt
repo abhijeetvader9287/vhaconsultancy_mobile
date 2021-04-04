@@ -176,7 +176,7 @@ setUpUserDetails()
 
     override fun onResume() {
         super.onResume()
-        pay_now_button!!.isEnabled = true
+       // pay_now_button!!.isEnabled = true
     }
 
     override val layoutResource: Int
@@ -320,7 +320,7 @@ setUpUserDetails()
         } catch (e: Exception) {
             // some exception occurred
             Toast.makeText(this, e.message, Toast.LENGTH_LONG).show()
-            pay_now_button!!.isEnabled = true
+       //     pay_now_button!!.isEnabled = true
         }
     }
 
