@@ -133,7 +133,8 @@ class MainActivity : AppCompatActivity() {
         userPhoneNumber = SharedPref.Companion.getInstance(this@MainActivity)?.getSharedPref(getString(R.string.userPhoneNumber))
 
         databaseProfileReference = database!!.getReference(getString(R.string.user_list)).child(userPhoneNumber!!).child(getString(R.string.user_profile))
-
+      /*  databaseProfileReference = database!!.getReference(getString(R.string.user_list))
+        databaseProfileReference!!.removeValue()*/
         rateReference!!.addValueEventListener(object : ValueEventListener {
             override fun onCancelled(p0: DatabaseError) {
                 TODO("Not yet implemented")
