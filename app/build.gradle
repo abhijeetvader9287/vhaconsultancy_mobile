@@ -8,7 +8,7 @@ android {
     compileSdkVersion 33
     defaultConfig {
         applicationId "com.smile.vhaconsultancy"
-        minSdkVersion 30
+        minSdkVersion 31
         targetSdkVersion 33
         versionCode 10
         versionName "1.0.10"
@@ -67,11 +67,10 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.8.6'
     implementation 'com.google.firebase:firebase-perf:19.0.7'
 
-
     implementation "androidx.core:core-ktx:+"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
-    implementation 'com.payumoney.sdkui:plug-n-play:1.6.0'
+    implementation 'com.payumoney.sdkui:plug-n-play:1.6.1'
 
 }
 apply plugin: 'com.google.gms.google-services'

@@ -52,7 +52,10 @@ class MainActivity : AppCompatActivity() {
            this.startActivity(i)
        }
 
-
+action_place_order.setOnClickListener {
+    val i = Intent(this, CreateCartActivity::class.java)
+    this.startActivity(i)
+}
 
 
 

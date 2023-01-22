@@ -12,43 +12,52 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:allowBackup">
-        <activity
+        <activity  android:exported="true"
             android:name=".activities.TermsAndConditionsActivity"
             android:label="@string/terms_and_conditions"
             android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity
+        <activity  android:exported="true"
             android:name=".payment.PaymentOctoberActivity"
             android:label="@string/payment"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity
+        <activity  android:exported="true"
             android:name=".payment.PaymentBerryStageActivity"
             android:label="@string/payment"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity
+        <activity  android:exported="true"
             android:name=".payment.PaymentAprilActivity"
             android:label="@string/payment"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity
+        <activity  android:exported="true"
             android:name=".activities.ProfileActivity"
             android:label="@string/profile"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity
+        <activity  android:exported="true"
             android:name=".activities.AddPlotActivity"
             android:label="@string/add_plot"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity
+        <activity  android:exported="true"
+            android:name=".activities.CreateCartActivity"
+            android:label="@string/create_cart"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity  android:exported="true"
             android:name=".activities.PlotListActivity"
             android:label="@string/title_plot_list"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity
+        <activity  android:exported="true"
             android:name=".activities.AprilPruningListActivity"
             android:label="@string/title_pruning_list"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity
+        <activity  android:exported="true"
             android:name=".activities.OctoberPruningListActivity"
             android:label="@string/title_pruning_list"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity
+        <activity xmlns:android="http://schemas.android.com/apk/res/android"
+            android:name="com.payu.custombrowser.PreLollipopPaymentsActivity"
+            android:exported="true">
+
+        </activity>
+        <activity android:exported="true"
             android:name=".activities.MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -56,13 +65,14 @@
             android:name=".activities.SplashscreenActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/app_name"
+            android:exported="true"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
+        <activity  android:exported="true"
             android:name=".activities.PhoneAuthActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar"

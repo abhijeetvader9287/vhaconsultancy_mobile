@@ -227,4 +227,6 @@ I have read and understood all terms and conditions mentioned above and I am agr
     <string name="visiting">Visiting</string>
     <string name="non_visiting">Non Visiting</string>
     <string name="rate_nv">rate_nv</string>
+    <string name="action_place_order">Place your order</string>
+    <string name="create_cart">Create Cart</string>
 </resources>
