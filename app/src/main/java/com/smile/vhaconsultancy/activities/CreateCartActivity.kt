@@ -52,9 +52,7 @@ class CreateCartActivity : AppCompatActivity() {
 
         databaseReference = database!!.getReference(getString(R.string.user_list)).child(userPhoneNumber!!).child(getString(R.string.plot_list))
 
-        dealer_name.text= SharedPref.Companion.getInstance(this@CreateCartActivity)?.getSharedPref(getString(R.string._name)).toString()
-
-
+        edit_distribution_agency_name.setText( SharedPref.Companion.getInstance(this@CreateCartActivity)?.getSharedPref(getString(R.string._name)).toString())
 
         btnSave.setOnClickListener {
             val builder = AlertDialog.Builder(this)

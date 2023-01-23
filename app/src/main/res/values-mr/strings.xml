@@ -216,4 +216,22 @@
     <string name="rate_nv">rate_nv</string>
     <string name="action_place_order">Place your order</string>
     <string name="create_cart">Create Cart</string>
+    <string name="enter_distribution_agency_code">Enter distribution agency code</string>
+    <string name="enter_distribution_agency_city">Enter distribution agency city</string>
+    <string name="enter_distribution_agency_mobile_number">enter_distribution_agency_mobile_number</string>
+    <string name="order">Order</string>
+    <string name="enter_distribution_agency_name">enter_distribution_agency_name</string>
+    <string name="black">Black</string>
+    <string name="green">Green</string>
+    <string name="packing">Packing</string>
+    <string name="kret">Kret</string>
+    <string name="box">Box</string>
+    <string name="kret_weight">Kret Weight</string>
+    <string name="ten_kg">10 Kg</string>
+    <string name="twenty_kg">20 Kg</string>
+    <string name="box_weight">Box Weight</string>
+    <string name="five_kg">5 Kg</string>
+    <string name="four_kg">4 Kg</string>
+    <string name="two_kg">2 Kg</string>
+    <string name="view_cart">View Cart</string>
 </resources>
