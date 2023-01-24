@@ -236,4 +236,8 @@
     <string name="view_cart">View Cart</string>
     <string name="grape_variety">Grape variety</string>
     <string name="enter_number">Enter number</string>
+    <string name="Please_select_packing">Please select packing</string>
+    <string name="Please_select_box_weight">Please select box weight</string>
+    <string name="Please_select_kret_weight">Please_select_kret_weight</string>
+    <string name="Please_select_grape_variety">Please_select_grape_variety</string>
 </resources>

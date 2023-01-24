@@ -31,7 +31,8 @@ import kotlinx.android.synthetic.main.content_create_cart.*
 class CreateCartActivity : AppCompatActivity() {
     var userUid: String? = ""
     var userPhoneNumber: String? = ""
-    var radio: RadioButton?=null
+    var radioPacking: RadioButton?=null
+    var radioVariety: RadioButton?=null
     var database: FirebaseDatabase? = null
     var databaseReference: DatabaseReference? = null
     lateinit var dialog: ProgressDialog
@@ -60,7 +61,7 @@ class CreateCartActivity : AppCompatActivity() {
         edit_distribution_agency_name.setText( SharedPref.Companion.getInstance(this@CreateCartActivity)?.getSharedPref(getString(R.string._name)).toString())
 radio_group_packing.setOnCheckedChangeListener(
     RadioGroup.OnCheckedChangeListener { group, checkedId ->
-        radio = findViewById(checkedId)
+        radioPacking = findViewById(checkedId)
 
         if(checkedId==btnBox.id)
         {
@@ -72,28 +73,14 @@ radio_group_packing.setOnCheckedChangeListener(
             kretCard.visibility= View.VISIBLE
         }
     })
+        radio_group_variety.setOnCheckedChangeListener(
+    RadioGroup.OnCheckedChangeListener { group, checkedId ->
+        radioVariety = findViewById(checkedId)
+
+
+    })
         btnSave.setOnClickListener {
-            val builder = AlertDialog.Builder(this)
-            //set title for alert dialog
-           // builder.setTitle(R.string.Warning)
-            //set message for alert dialog
-            builder.setMessage(R.string.you_will_not_be_able_to_edit_again)
-            builder.setIcon(android.R.drawable.ic_dialog_alert)
-
-            //performing positive action
-            builder.setPositiveButton(getString(R.string.Yes)) { dialogInterface, which ->
-                saveFun();
-            }
-            //performing cancel action
-            builder.setNeutralButton(getString(R.string.Cancel)) { dialogInterface, which ->
-
-            }
-
-            // Create the AlertDialog
-            val alertDialog: AlertDialog = builder.create()
-            // Set other dialog properties
-            alertDialog.setCancelable(false)
-            alertDialog.show()
+           saveFun()
 
 
         }
@@ -102,17 +89,24 @@ radio_group_packing.setOnCheckedChangeListener(
 
     fun saveFun() {
         if (isValidFun()) {
-            dialog.show();
-            dialog.setContentView(R.layout.progress_layout);
-            val plot: Plot = Plot()
-            plot.area = editEnterArea.text.toString().toDouble()
-            plot.variety = editTextVariety.text.toString()
-            plot.numberOfVine = editTextNumberOfVine.text.toString().toInt()
-            plot.distance = editTextDistance.text.toString().toDouble()
-            databaseReference!!.push().setValue(plot).addOnCanceledListener {
-                dialog.dismiss();
+            val builder = AlertDialog.Builder(this)
+            //set title for alert dialog
+            // builder.setTitle(R.string.Warning)
+            //set message for alert dialog
+            builder.setMessage(R.string.you_will_not_be_able_to_edit_again)
+            builder.setIcon(android.R.drawable.ic_dialog_alert)
 
-            }
+            //performing positive action
+            builder.setPositiveButton(getString(R.string.Yes)) { dialogInterface, which ->
+                val plot: Plot = Plot()
+                plot.area = editEnterArea.text.toString().toDouble()
+                plot.variety = editTextVariety.text.toString()
+                plot.numberOfVine = editTextNumberOfVine.text.toString().toInt()
+                plot.distance = editTextDistance.text.toString().toDouble()
+                databaseReference!!.push().setValue(plot).addOnCanceledListener {
+                    dialog.dismiss();
+
+                }
                     .addOnCompleteListener {
 
                         dialog.dismiss();
@@ -135,30 +129,81 @@ radio_group_packing.setOnCheckedChangeListener(
                         Toast.makeText(this@CreateCartActivity, getString(R.string.Plot_save_successfully), Toast.LENGTH_LONG).show()
 
                     }
+            }
+            //performing cancel action
+            builder.setNeutralButton(getString(R.string.Cancel)) { dialogInterface, which ->
+
+            }
+
+            // Create the AlertDialog
+            val alertDialog: AlertDialog = builder.create()
+            // Set other dialog properties
+            alertDialog.setCancelable(false)
+            alertDialog.show()
+            dialog.show();
+            dialog.setContentView(R.layout.progress_layout);
+
         }
+
+
     }
 
     fun isValidFun(): Boolean {
         var isValid = true
-        if (editEnterArea.text.toString().isNullOrEmpty()) {
-            editEnterArea.setError(getString(R.string.Field_should_not_be_empty))
+        if (edit_distribution_agency_name.text.toString().isNullOrEmpty()) {
+            edit_distribution_agency_name.setError(getString(R.string.Field_should_not_be_empty))
             isValid = false
 
         }
-        if (editTextVariety.text.toString().isNullOrEmpty()) {
-            editTextVariety.setError(getString(R.string.Field_should_not_be_empty))
-
-            isValid = false
-
-        }
-        if (editTextDistance.text.toString().isNullOrEmpty()) {
-            editTextDistance.setError(getString(R.string.Field_should_not_be_empty))
+        if (edit_distribution_agency_code.text.toString().isNullOrEmpty()) {
+            edit_distribution_agency_code.setError(getString(R.string.Field_should_not_be_empty))
 
             isValid = false
 
         }
-        if (editTextNumberOfVine.text.toString().isNullOrEmpty()) {
-            editTextNumberOfVine.setError(getString(R.string.Field_should_not_be_empty))
+        if (edit_distribution_agency_city.text.toString().isNullOrEmpty()) {
+            edit_distribution_agency_city.setError(getString(R.string.Field_should_not_be_empty))
+
+            isValid = false
+
+        }
+        if (edit_distribution_agency_mobile_number.text.toString().isNullOrEmpty()) {
+            edit_distribution_agency_mobile_number.setError(getString(R.string.Field_should_not_be_empty))
+
+            isValid = false
+
+        }
+
+        if(radioVariety==null)
+        {
+            isValid=false
+            Toast.makeText(this@CreateCartActivity, getString(R.string.Please_select_grape_variety), Toast.LENGTH_LONG).show()
+        }
+        if(radioPacking==null)
+        {
+            isValid=false
+            Toast.makeText(this@CreateCartActivity, getString(R.string.Please_select_packing), Toast.LENGTH_LONG).show()
+
+        }else{
+            if(radioPacking!!.id==btnBox.id)
+            {
+                if(!radio_group_box_weight.isSelected)
+                {
+                    isValid=false
+                    Toast.makeText(this@CreateCartActivity, getString(R.string.Please_select_box_weight), Toast.LENGTH_LONG).show()
+                }
+
+            }else if(radioPacking!!.id==btnKret.id){
+                if(!radio_group_kret_weight.isSelected)
+                {
+                    isValid=false
+                    Toast.makeText(this@CreateCartActivity, getString(R.string.Please_select_kret_weight), Toast.LENGTH_LONG).show()
+                }
+            }
+
+        }
+        if (edit_number.text.toString().isNullOrEmpty()) {
+            edit_number.setError(getString(R.string.Field_should_not_be_empty))
 
             isValid = false
 
