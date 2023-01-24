@@ -214,7 +214,7 @@
                     android:maxLines="1"
                     android:nextFocusDown="@+id/card_name_et"
                     android:paddingTop="15dp"
-                    android:text="@string/variety"
+                    android:text="@string/grape_variety"
                     android:textColor="@color/textColor"
                     android:textSize="16sp" />
 
@@ -293,6 +293,8 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/kretCard"
+            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginStart="25dp"
@@ -348,6 +350,8 @@
             </LinearLayout>
         </androidx.cardview.widget.CardView>
         <androidx.cardview.widget.CardView
+            android:id="@+id/boxCard"
+            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginStart="25dp"
@@ -407,7 +411,41 @@
         </androidx.cardview.widget.CardView>
 
 
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="25dp"
+            android:layout_marginBottom="10dp"
+            android:elevation="20dp"
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="8dp">
 
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:textColorHint="@color/textColorHint">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edit_number"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:background="@null"
+                    android:gravity="center_vertical"
+                    android:hint="@string/enter_number"
+                    android:imeOptions="actionNext"
+                    android:paddingStart="15dp"
+                    android:paddingEnd="15dp"
+                    android:selectAllOnFocus="true"
+                    android:singleLine="true"
+                    android:textColor="@color/textColor"
+                    android:textColorHint="@color/textColor"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+            </com.google.android.material.textfield.TextInputLayout>
+        </androidx.cardview.widget.CardView>
 
         <LinearLayout
             android:layout_width="match_parent"

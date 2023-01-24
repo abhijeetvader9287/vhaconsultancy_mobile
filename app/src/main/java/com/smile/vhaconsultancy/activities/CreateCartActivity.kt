@@ -3,8 +3,12 @@ package com.smile.vhaconsultancy.activities
 import android.app.ProgressDialog
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.opengl.Visibility
 import android.os.Bundle
 import android.view.MenuItem
+import android.view.View
+import android.widget.RadioButton
+import android.widget.RadioGroup
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -27,6 +31,7 @@ import kotlinx.android.synthetic.main.content_create_cart.*
 class CreateCartActivity : AppCompatActivity() {
     var userUid: String? = ""
     var userPhoneNumber: String? = ""
+    var radio: RadioButton?=null
     var database: FirebaseDatabase? = null
     var databaseReference: DatabaseReference? = null
     lateinit var dialog: ProgressDialog
@@ -53,7 +58,20 @@ class CreateCartActivity : AppCompatActivity() {
         databaseReference = database!!.getReference(getString(R.string.user_list)).child(userPhoneNumber!!).child(getString(R.string.plot_list))
 
         edit_distribution_agency_name.setText( SharedPref.Companion.getInstance(this@CreateCartActivity)?.getSharedPref(getString(R.string._name)).toString())
+radio_group_packing.setOnCheckedChangeListener(
+    RadioGroup.OnCheckedChangeListener { group, checkedId ->
+        radio = findViewById(checkedId)
 
+        if(checkedId==btnBox.id)
+        {
+            boxCard.visibility= View.VISIBLE
+            kretCard.visibility= View.GONE
+
+        }else if(checkedId==btnKret.id){
+            boxCard.visibility= View.GONE
+            kretCard.visibility= View.VISIBLE
+        }
+    })
         btnSave.setOnClickListener {
             val builder = AlertDialog.Builder(this)
             //set title for alert dialog

@@ -247,5 +247,7 @@ I have read and understood all terms and conditions mentioned above and I am agr
     <string name="four_kg">4 Kg</string>
     <string name="two_kg">2 Kg</string>
     <string name="view_cart">View Cart</string>
+    <string name="grape_variety">Grape variety</string>
+    <string name="enter_number">Enter number</string>
 
 </resources>
