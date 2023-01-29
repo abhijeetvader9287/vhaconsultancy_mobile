@@ -20,5 +20,5 @@
             app:popupTheme="@style/AppTheme.PopupOverlay"></androidx.appcompat.widget.Toolbar>
     </com.google.android.material.appbar.AppBarLayout>
 
-    <include layout="@layout/content_create_cart" />
+    <include android:id="@+id/content_create_cart" layout="@layout/content_create_cart" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

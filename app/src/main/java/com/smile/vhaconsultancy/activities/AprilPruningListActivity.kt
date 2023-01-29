@@ -10,11 +10,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.database.*
 import com.smile.vhaconsultancy.R
 import com.smile.vhaconsultancy.adapters.PruningListAprilRecyclerViewAdapter
+import com.smile.vhaconsultancy.databinding.ActivityAddPlotBinding
+import com.smile.vhaconsultancy.databinding.ActivityAprilPruningListBinding
 import com.smile.vhaconsultancy.models.AprilPruningModel
 import com.smile.vhaconsultancy.utilities.SharedPref
 import com.smile.vhaconsultancy.utilities.Utils
-import kotlinx.android.synthetic.main.activity_april_pruning_list.*
-import kotlinx.android.synthetic.main.content_april_pruning_list.*
+
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -26,10 +27,16 @@ class AprilPruningListActivity : AppCompatActivity() {
     var database: FirebaseDatabase? = null
     var databasePlotListReference: DatabaseReference? = null
     lateinit var dialog: ProgressDialog
+
+    private lateinit var binding: ActivityAprilPruningListBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_april_pruning_list)
-        setSupportActionBar(toolbar)
+        binding = ActivityAprilPruningListBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
+        setSupportActionBar(binding.toolbar)
+       /* setContentView(R.layout.activity_april_pruning_list)
+        setSupportActionBar(toolbar)*/
         Utils.setLocal(this)
 
         supportActionBar?.setDisplayShowTitleEnabled(true)
@@ -81,8 +88,8 @@ class AprilPruningListActivity : AppCompatActivity() {
                     }
                 }
                 val pruningListRecyclerViewAdapter = PruningListAprilRecyclerViewAdapter(plots)
-                recyclerViewPruningList.layoutManager = LinearLayoutManager(this@AprilPruningListActivity)
-                recyclerViewPruningList.adapter = pruningListRecyclerViewAdapter
+                binding.contentAprilPruningList.  recyclerViewPruningList.layoutManager = LinearLayoutManager(this@AprilPruningListActivity)
+                binding.contentAprilPruningList.  recyclerViewPruningList.adapter = pruningListRecyclerViewAdapter
                 dialog.dismiss()
             }
 

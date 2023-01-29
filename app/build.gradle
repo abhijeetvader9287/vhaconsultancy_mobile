@@ -1,6 +1,5 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
 apply plugin: 'com.google.gms.google-services'
 
 apply plugin: 'com.google.firebase.firebase-perf'
@@ -26,7 +25,9 @@ android {
     }
 // To inline the bytecode built with JVM target 1.8 into
 // bytecode that is being built with JVM target 1.6. (e.g. navArgs)
-
+    buildFeatures {
+        viewBinding true
+    }
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -40,6 +41,7 @@ android {
             enableSplit = false
         }
     }
+    namespace 'com.smile.vhaconsultancy'
 }
 
 dependencies {

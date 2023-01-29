@@ -10,11 +10,11 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.google.firebase.database.*
 import com.smile.vhaconsultancy.R
 import com.smile.vhaconsultancy.adapters.PlotListRecyclerViewAdapter
+import com.smile.vhaconsultancy.databinding.ActivityPhoneAuthBinding
+import com.smile.vhaconsultancy.databinding.ActivityPlotListBinding
 import com.smile.vhaconsultancy.models.Plot
 import com.smile.vhaconsultancy.utilities.SharedPref
 import com.smile.vhaconsultancy.utilities.Utils
-import kotlinx.android.synthetic.main.activity_plot_list.*
-import kotlinx.android.synthetic.main.content_plot_list.*
 import java.util.*
 
 
@@ -24,10 +24,14 @@ class PlotListActivity : AppCompatActivity() {
     var database: FirebaseDatabase? = null
     var databasePlotListReference: DatabaseReference? = null
     lateinit var dialog: ProgressDialog
+    private lateinit var binding: ActivityPlotListBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_plot_list)
-        setSupportActionBar(toolbar)
+        binding = ActivityPlotListBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
+       // setContentView(R.layout.activity_plot_list)
+        setSupportActionBar(binding.toolbar)
         supportActionBar?.setDisplayShowTitleEnabled(true)
         Utils.setLocal(this)
 
@@ -60,8 +64,8 @@ class PlotListActivity : AppCompatActivity() {
                     plot?.let { plots.add(it) }
                 }
                 val plotListRecyclerViewAdapter = PlotListRecyclerViewAdapter(plots)
-                recyclerViewPlotList.setLayoutManager(GridLayoutManager(this@PlotListActivity, 2))
-                recyclerViewPlotList.setAdapter(plotListRecyclerViewAdapter)
+                binding.contentPlotList.     recyclerViewPlotList.setLayoutManager(GridLayoutManager(this@PlotListActivity, 2))
+                binding.contentPlotList.     recyclerViewPlotList.setAdapter(plotListRecyclerViewAdapter)
                 dialog.dismiss()
             }
 

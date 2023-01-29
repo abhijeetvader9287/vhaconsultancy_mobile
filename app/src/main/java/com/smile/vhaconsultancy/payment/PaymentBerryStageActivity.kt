@@ -17,19 +17,11 @@ import com.payumoney.core.PayUmoneySdkInitializer.PaymentParam
 import com.payumoney.core.entity.TransactionResponse
 import com.payumoney.sdkui.ui.utils.PayUmoneyFlowManager
 import com.smile.vhaconsultancy.R
+import com.smile.vhaconsultancy.databinding.ActivityAprilPaymentBinding
+import com.smile.vhaconsultancy.databinding.ActivityBerrysetPaymentBinding
 import com.smile.vhaconsultancy.utilities.SharedPref
 import com.smile.vhaconsultancy.utilities.Utils
-import kotlinx.android.synthetic.main.activity_berryset_payment.amount_et
-import kotlinx.android.synthetic.main.activity_berryset_payment.area_et_et
-import kotlinx.android.synthetic.main.activity_berryset_payment.btnNonVisiting
-import kotlinx.android.synthetic.main.activity_berryset_payment.btnVisiting
-import kotlinx.android.synthetic.main.activity_berryset_payment.custom_toolbar
-import kotlinx.android.synthetic.main.activity_berryset_payment.mobile_et
-import kotlinx.android.synthetic.main.activity_berryset_payment.name_et
-import kotlinx.android.synthetic.main.activity_berryset_payment.pay_cash_button
-import kotlinx.android.synthetic.main.activity_berryset_payment.pay_now_button
-import kotlinx.android.synthetic.main.activity_berryset_payment.radio_group
-import kotlinx.android.synthetic.main.activity_berryset_payment.total_et
+
 import java.math.BigDecimal
 import java.math.RoundingMode
 import java.security.MessageDigest
@@ -50,12 +42,16 @@ class PaymentBerryStageActivity : BaseActivity(), View.OnClickListener {
     var berryStageTransactionDateDatabaseRef: DatabaseReference? = null
     private var mPaymentParams: PaymentParam? = null
     var radio: RadioButton?=null
+    private lateinit var binding: ActivityBerrysetPaymentBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_berryset_payment)
+        binding = ActivityBerrysetPaymentBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
+       // setContentView(R.layout.activity_berryset_payment)
         Utils.setLocal(this)
 
-        setSupportActionBar(custom_toolbar)
+        setSupportActionBar(binding.customToolbar)
         supportActionBar?.title = getString(R.string.payment)
 
         userUid = SharedPref.Companion.getInstance(this@PaymentBerryStageActivity)?.getSharedPref(getString(R.string.userUid))
@@ -72,28 +68,28 @@ class PaymentBerryStageActivity : BaseActivity(), View.OnClickListener {
         ).child("berryStageTransactionDate")
 
 
-        pay_now_button.setOnClickListener(this)
+        binding.   payNowButton.setOnClickListener(this)
         //Set Up SharedPref
         //setUpUserDetails()
-        btnVisiting.isChecked=true
+        binding.    btnVisiting.isChecked=true
         radio = findViewById(R.id. btnVisiting)
-        amount_et!!.text = SharedPref.Companion.getInstance(this@PaymentBerryStageActivity)?.getSharedPrefFloat(getString(R.string.rate)).toString()
+        binding.    amountEt!!.text = SharedPref.Companion.getInstance(this@PaymentBerryStageActivity)?.getSharedPrefFloat(getString(R.string.rate)).toString()
         setUpUserDetails()
         (application as BaseApplication).appEnvironment = AppEnvironment.PRODUCTION
-        radio_group.setOnCheckedChangeListener(
+        binding.    radioGroup.setOnCheckedChangeListener(
                 RadioGroup.OnCheckedChangeListener { group, checkedId ->
                     radio = findViewById(checkedId)
 
-                    if(checkedId==btnVisiting.id)
+                    if(checkedId==binding.btnVisiting.id)
                     {
-                        amount_et!!.text = SharedPref.Companion.getInstance(this@PaymentBerryStageActivity)?.getSharedPrefFloat(getString(R.string.rate)).toString()
+                        binding. amountEt!!.text = SharedPref.Companion.getInstance(this@PaymentBerryStageActivity)?.getSharedPrefFloat(getString(R.string.rate)).toString()
                         setUpUserDetails()
-                    }else if(checkedId==btnNonVisiting.id){
-                        amount_et!!.text = SharedPref.Companion.getInstance(this@PaymentBerryStageActivity)?.getSharedPrefFloat(getString(R.string.rate_nv)).toString()
+                    }else if(checkedId==binding.btnNonVisiting.id){
+                        binding. amountEt!!.text = SharedPref.Companion.getInstance(this@PaymentBerryStageActivity)?.getSharedPrefFloat(getString(R.string.rate_nv)).toString()
                         setUpUserDetails()
                     }
                 })
-        pay_cash_button.setOnClickListener {
+        binding.  payCashButton.setOnClickListener {
 
             AlertDialog.Builder(this)
                     .setCancelable(false)
@@ -101,7 +97,7 @@ class PaymentBerryStageActivity : BaseActivity(), View.OnClickListener {
                     .setMessage("Do you want to pay in cash?")
                     .setPositiveButton(android.R.string.ok) { dialog, whichButton ->
                         txnId = "TXNID" + System.currentTimeMillis() + ""
-                        berryStageTransactionRefDatabaseRef?.setValue(txnId+"_cash_"+ (radio?.text  ) +"_"+amount_et!!.text)
+                        berryStageTransactionRefDatabaseRef?.setValue(txnId+"_cash_"+ (radio?.text  ) +"_"+binding.amountEt!!.text)
                         val pattern = "dd-MMM-yyyy HH:mm:ss.SSS"
                         val simpleDateFormat = SimpleDateFormat(pattern, Locale.US)
                         val transactionDateTime: String = simpleDateFormat.format(Date())
@@ -112,7 +108,7 @@ class PaymentBerryStageActivity : BaseActivity(), View.OnClickListener {
                         AlertDialog.Builder(this)
                                 .setCancelable(false)
                                 .setTitle("Payment in cash")
-                                .setMessage("Please pay "+amount_et!!.text+" to our executive")
+                                .setMessage("Please pay "+binding.amountEt!!.text+" to our executive")
                                 .setPositiveButton(android.R.string.ok) { dialog, whichButton ->
                                     this@PaymentBerryStageActivity.finish()
                                     dialog.dismiss()
@@ -131,22 +127,22 @@ class PaymentBerryStageActivity : BaseActivity(), View.OnClickListener {
     }
 
     private fun setUpUserDetails() {
-        mobile_et!!.text = SharedPref.Companion.getInstance(this@PaymentBerryStageActivity)?.getSharedPref(getString(R.string.userPhoneNumber))
-        amount_et!!.text = SharedPref.Companion.getInstance(this@PaymentBerryStageActivity)?.getSharedPrefFloat(getString(R.string.rate)).toString()
-        name_et!!.text = SharedPref.Companion.getInstance(this@PaymentBerryStageActivity)?.getSharedPref(getString(R.string._name)).toString()
-        area_et_et!!.text = SharedPref.Companion.getInstance(this@PaymentBerryStageActivity)?.getSharedPref(getString(R.string._area_in_acre)).toString()
-        var area = area_et_et!!.text.toString().toDouble()
+        binding.   mobileEt!!.text = SharedPref.Companion.getInstance(this@PaymentBerryStageActivity)?.getSharedPref(getString(R.string.userPhoneNumber))
+        binding.    amountEt!!.text = SharedPref.Companion.getInstance(this@PaymentBerryStageActivity)?.getSharedPrefFloat(getString(R.string.rate)).toString()
+        binding.    nameEt!!.text = SharedPref.Companion.getInstance(this@PaymentBerryStageActivity)?.getSharedPref(getString(R.string._name)).toString()
+        binding.   areaEtEt!!.text = SharedPref.Companion.getInstance(this@PaymentBerryStageActivity)?.getSharedPref(getString(R.string._area_in_acre)).toString()
+        var area = binding.areaEtEt!!.text.toString().toDouble()
         if (area < 1.0) {
             area = 0.0
         }
-        val decimal = BigDecimal(amount_et!!.text.toString().toDouble() * (area)).setScale(2, RoundingMode.HALF_EVEN)
-        total_et!!.text = (decimal).toString()
+        val decimal = BigDecimal(binding.amountEt!!.text.toString().toDouble() * (area)).setScale(2, RoundingMode.HALF_EVEN)
+        binding.  totalEt!!.text = (decimal).toString()
 
     }
 
     override fun onResume() {
         super.onResume()
-        pay_now_button!!.isEnabled = true
+        binding. payNowButton!!.isEnabled = true
     }
 
     override val layoutResource: Int
@@ -165,7 +161,7 @@ class PaymentBerryStageActivity : BaseActivity(), View.OnClickListener {
                 if (transactionResponse.transactionStatus == TransactionResponse.TransactionStatus.SUCCESSFUL) {
                     //Success Transaction
                     var payuResponse = transactionResponse.getPayuResponse()
-                    berryStageTransactionRefDatabaseRef?.setValue(txnId+"_online_"+ (radio?.text  ) +"_"+amount_et!!.text)
+                    berryStageTransactionRefDatabaseRef?.setValue(txnId+"_online_"+ (radio?.text  ) +"_"+binding.amountEt!!.text)
                     val pattern = "dd-MMM-yyyy HH:mm:ss.SSS"
                     val simpleDateFormat = SimpleDateFormat(pattern, Locale.US)
                     val transactionDateTime: String = simpleDateFormat.format(Date())
@@ -200,7 +196,7 @@ class PaymentBerryStageActivity : BaseActivity(), View.OnClickListener {
         when (v.id) {
             R.id.pay_now_button -> {
 
-                pay_now_button!!.isEnabled = false
+                binding.payNowButton!!.isEnabled = false
                 launchPayUMoneyFlow()
 
             }
@@ -226,15 +222,15 @@ class PaymentBerryStageActivity : BaseActivity(), View.OnClickListener {
         val builder = PaymentParam.Builder()
         var amount = 0.0
         try {
-            amount = total_et!!.text.toString().toDouble()
+            amount = binding.totalEt!!.text.toString().toDouble()
         } catch (e: Exception) {
             e.printStackTrace()
         }
         txnId = "TXNID" + System.currentTimeMillis() + ""
         //String txnId = "TXNID720431525261327973";
-        val phone = mobile_et!!.text.toString()
+        val phone = binding.mobileEt!!.text.toString()
         val productName = getString(R.string.app_name)
-        val firstName = name_et!!.text.toString()
+        val firstName =binding. nameEt!!.text.toString()
         val email = "amap.patil@gmail.com"
         val udf1 = ""
         val udf2 = ""
@@ -287,7 +283,7 @@ class PaymentBerryStageActivity : BaseActivity(), View.OnClickListener {
         } catch (e: Exception) {
             // some exception occurred
             Toast.makeText(this, e.message, Toast.LENGTH_LONG).show()
-            pay_now_button!!.isEnabled = true
+            binding.payNowButton!!.isEnabled = true
         }
     }
 

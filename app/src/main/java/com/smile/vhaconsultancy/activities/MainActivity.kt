@@ -17,12 +17,11 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import com.smile.vhaconsultancy.BuildConfig
 import com.smile.vhaconsultancy.R
+import com.smile.vhaconsultancy.databinding.ActivityCreateCartBinding
+import com.smile.vhaconsultancy.databinding.ActivityMainBinding
 import com.smile.vhaconsultancy.models.UserProfile
 import com.smile.vhaconsultancy.utilities.SharedPref
 import com.smile.vhaconsultancy.utilities.Utils
-import kotlinx.android.synthetic.main.activity_phone_auth.*
-import kotlinx.android.synthetic.main.content_main.*
-import kotlinx.android.synthetic.main.content_main.changeLang
 
 
 class MainActivity : AppCompatActivity() {
@@ -38,11 +37,16 @@ class MainActivity : AppCompatActivity() {
     var rateReference: DatabaseReference? = null
     var rate_nv_Reference: DatabaseReference? = null
     lateinit var dialog: ProgressDialog
+
+    private lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        val toolbar: Toolbar = findViewById(R.id.toolbar)
-        setSupportActionBar(toolbar)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
+       // setContentView(R.layout.activity_main)
+   //     val toolbar: Toolbar = findViewById(R.id.toolbar)
+        setSupportActionBar(binding.appBarMain.toolbar)
         supportActionBar?.setDisplayShowTitleEnabled(true)
         Utils.setLocal(this)
 
@@ -52,7 +56,7 @@ class MainActivity : AppCompatActivity() {
            this.startActivity(i)
        }
 
-action_place_order.setOnClickListener {
+        binding.appBarMain.contentMain.actionPlaceOrder.setOnClickListener {
     val i = Intent(this, CreateCartActivity::class.java)
     this.startActivity(i)
 }
@@ -65,7 +69,7 @@ action_place_order.setOnClickListener {
         dialog.setCancelable(false)
         dialog.show()
         dialog.setContentView(R.layout.progress_layout)
-        changeLang.setOnClickListener {
+        binding.appBarMain.contentMain.  changeLang.setOnClickListener {
             val builder =    AlertDialog.Builder(this@MainActivity)
             builder?.setTitle( getString(R.string.changeLang))
             builder?.setNegativeButton(getString(R.string.marathi)) { dialog, which ->
@@ -93,26 +97,26 @@ action_place_order.setOnClickListener {
             alertDialog?.getButton(AlertDialog.BUTTON_POSITIVE)?.textSize=20f
             alertDialog?.getButton(AlertDialog.BUTTON_NEGATIVE)?.textSize=20f
         }
-        txtTermsAndCond.setOnClickListener {
+        binding.appBarMain.contentMain.    txtTermsAndCond.setOnClickListener {
             val i = Intent(this, TermsAndConditionsActivity::class.java)
             this.startActivity(i)
         }
-        action_profile.setOnClickListener {
+        binding.appBarMain.contentMain.     actionProfile.setOnClickListener {
             val i = Intent(this, ProfileActivity::class.java)
             this.startActivity(i)
             true
         }
-        action_add_plot.setOnClickListener {
+        binding.appBarMain.contentMain.   actionAddPlot.setOnClickListener {
             val i = Intent(this, AddPlotActivity::class.java)
             this.startActivity(i)
             true
         }
-        action_list_plot.setOnClickListener {
+        binding.appBarMain.contentMain.   actionListPlot.setOnClickListener {
             val i = Intent(this, PlotListActivity::class.java)
             this.startActivity(i)
             true
         }
-        action_logout.setOnClickListener {
+        binding.appBarMain.contentMain.      actionLogout.setOnClickListener {
             mAuth?.signOut()
             finishAffinity()
 
@@ -166,8 +170,8 @@ action_place_order.setOnClickListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
 
                 val userProfile: UserProfile? = dataSnapshot.getValue(UserProfile::class.java)
-                editTextMobileNumber.text = userProfile?.mobileNumber
-                editTextName.text = userProfile?.name
+                binding.appBarMain.contentMain.  editTextMobileNumber.text = userProfile?.mobileNumber
+                binding.appBarMain.contentMain.    editTextName.text = userProfile?.name
                 SharedPref.getInstance(this@MainActivity)?.putSharedPrefString(getString(R.string._name), userProfile?.name)
                 dialog.dismiss()
 
@@ -180,7 +184,7 @@ action_place_order.setOnClickListener {
 
             }
         })
-        action_whatsapp.setOnClickListener { openWhatsApp() }
+        binding.appBarMain.contentMain.  actionWhatsapp.setOnClickListener { openWhatsApp() }
         versionCodeReference!!.addValueEventListener(object : ValueEventListener {
             override fun onCancelled(p0: DatabaseError) {
                 TODO("Not yet implemented")

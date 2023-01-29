@@ -241,4 +241,7 @@
     <string name="Please_select_kret_weight">Please_select_kret_weight</string>
     <string name="Please_select_grape_variety">Please_select_grape_variety</string>
     <string name="order_list">order_list</string>
+
+    <string name="order_save_failed">order_save_failed</string>
+    <string name="order_save_successfully">order_save_successfully</string>
 </resources>
