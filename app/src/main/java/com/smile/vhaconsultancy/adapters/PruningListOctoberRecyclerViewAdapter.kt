@@ -24,7 +24,7 @@ class PruningListOctoberRecyclerViewAdapter(private val showMessage: showMessage
     var databasePlotListReference: DatabaseReference? = null
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
-                .inflate(R.layout.pruning_item, parent, false)
+            .inflate(R.layout.pruning_item, parent, false)
         database = FirebaseDatabase.getInstance()
 
         userPhoneNumber = SharedPref.Companion.getInstance(parent.context)?.getSharedPref(parent.context.getString(R.string.userPhoneNumber))
@@ -110,7 +110,7 @@ class PruningListOctoberRecyclerViewAdapter(private val showMessage: showMessage
             if (datePruning.after(dateTo)) {
                 val builder = AlertDialog.Builder(holder.checkboxWork.context)
                 //set title for alert dialog
-               // builder.setTitle(R.string.Warning)
+                // builder.setTitle(R.string.Warning)
                 //set message for alert dialog
                 builder.setMessage(R.string.later_dates_not_allowed)
                 builder.setIcon(android.R.drawable.ic_dialog_alert)

@@ -2,8 +2,6 @@ package com.smile.vhaconsultancy.activities
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.smile.vhaconsultancy.R
-import com.smile.vhaconsultancy.databinding.ActivitySplashscreenBinding
 import com.smile.vhaconsultancy.databinding.ActivityTermsAndConditionsBinding
 import com.smile.vhaconsultancy.utilities.SharedPref
 import com.smile.vhaconsultancy.utilities.Utils
@@ -17,13 +15,13 @@ class TermsAndConditionsActivity : AppCompatActivity() {
         binding = ActivityTermsAndConditionsBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
-      //  setContentView(R.layout.activity_terms_and_conditions)
+        //  setContentView(R.layout.activity_terms_and_conditions)
         setSupportActionBar(binding.toolbar)
 
         Utils.setLocal(this)
 
-      binding.contentTermsAndConditions.btnIAgree  .setOnClickListener {
-            SharedPref.getInstance(this@TermsAndConditionsActivity)?.putSharedPrefBool("terms",true);
+        binding.contentTermsAndConditions.btnIAgree.setOnClickListener {
+            SharedPref.getInstance(this@TermsAndConditionsActivity)?.putSharedPrefBool("terms", true);
             finish()
         }
 

@@ -52,13 +52,12 @@
         android:layout_height="0dp"
         android:layout_weight="2.0"
         android:gravity="top">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:paddingBottom="10dp"
-             >
-
+            android:paddingBottom="10dp">
 
 
             <Button
@@ -71,6 +70,7 @@
                 android:text="@string/changeLang"
                 android:textColor="@color/white" />
         </LinearLayout>
+
         <LinearLayout
             android:id="@+id/phoneAuthFields"
             android:layout_width="match_parent"

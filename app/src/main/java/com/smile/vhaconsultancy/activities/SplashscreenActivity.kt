@@ -8,7 +8,6 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.smile.vhaconsultancy.BuildConfig
 import com.smile.vhaconsultancy.R
-import com.smile.vhaconsultancy.databinding.ActivityProfileBinding
 import com.smile.vhaconsultancy.databinding.ActivitySplashscreenBinding
 import com.smile.vhaconsultancy.utilities.SharedPref
 import com.smile.vhaconsultancy.utilities.Utils
@@ -27,7 +26,7 @@ class SplashscreenActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
-       // setContentView(R.layout.activity_splashscreen)
+        // setContentView(R.layout.activity_splashscreen)
         mAuth = FirebaseAuth.getInstance()
 
         Utils.setLocal(this)
@@ -35,7 +34,7 @@ class SplashscreenActivity : AppCompatActivity() {
             // val pInfo: PackageInfo = getPackageManager().getPackageInfo(packageName, 0)
             // val version = pInfo.versionName
             val versno = BuildConfig.VERSION_CODE
-            binding.txtVersion   .text = "Version: " + versno.toString()
+            binding.txtVersion.text = "Version: " + versno.toString()
         } catch (e: PackageManager.NameNotFoundException) {
             e.printStackTrace()
         }

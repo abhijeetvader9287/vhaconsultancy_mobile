@@ -21,11 +21,7 @@ import com.google.firebase.FirebaseTooManyRequestsException
 import com.google.firebase.auth.*
 import com.google.firebase.auth.PhoneAuthProvider.ForceResendingToken
 import com.google.firebase.auth.PhoneAuthProvider.OnVerificationStateChangedCallbacks
-import com.smile.vhaconsultancy.R
-import com.smile.vhaconsultancy.databinding.ActivityOctoberPruningListBinding
 import com.smile.vhaconsultancy.databinding.ActivityPhoneAuthBinding
-import com.smile.vhaconsultancy.payment.PaymentAprilActivity
-import com.smile.vhaconsultancy.payment.PaymentOctoberActivity
 import com.smile.vhaconsultancy.utilities.SharedPref
 import com.smile.vhaconsultancy.utilities.Utils
 import java.util.concurrent.TimeUnit
@@ -45,17 +41,17 @@ class PhoneAuthActivity constructor() : AppCompatActivity(), View.OnClickListene
         binding = ActivityPhoneAuthBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
-      //  setContentView(R.layout.activity_phone_auth)
+        //  setContentView(R.layout.activity_phone_auth)
         Utils.setLocal(this)
 
         // Restore instance state
 
         // Assign views
         // Assign click listeners
-        binding.   buttonStartVerification.setOnClickListener(this)
-        binding.    buttonVerifyPhone.setOnClickListener(this)
-        binding.    buttonResend.setOnClickListener(this)
-        binding.    fieldPhoneNumber.addTextChangedListener(object : TextWatcher {
+        binding.buttonStartVerification.setOnClickListener(this)
+        binding.buttonVerifyPhone.setOnClickListener(this)
+        binding.buttonResend.setOnClickListener(this)
+        binding.fieldPhoneNumber.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(p0: Editable?) {
             }
 
@@ -64,15 +60,15 @@ class PhoneAuthActivity constructor() : AppCompatActivity(), View.OnClickListene
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
                 if (p0?.length == 10) {
-                    hideSoftKeyBoard(this@PhoneAuthActivity,   binding.  fieldPhoneNumber)
+                    hideSoftKeyBoard(this@PhoneAuthActivity, binding.fieldPhoneNumber)
                 }
             }
         })
-        binding.    changeLang.setOnClickListener {
-            val builder =    AlertDialog.Builder(this@PhoneAuthActivity)
-            builder?.setTitle( getString(R.string.changeLang))
+        binding.changeLang.setOnClickListener {
+            val builder = AlertDialog.Builder(this@PhoneAuthActivity)
+            builder?.setTitle(getString(R.string.changeLang))
             builder?.setNegativeButton(getString(R.string.marathi)) { dialog, which ->
-                SharedPref.getInstance(this@PhoneAuthActivity)?.putSharedPrefString(getString(R.string.app_language),"mr")
+                SharedPref.getInstance(this@PhoneAuthActivity)?.putSharedPrefString(getString(R.string.app_language), "mr")
                 Utils.setLocal(this@PhoneAuthActivity)
                 finishAffinity()
 
@@ -83,18 +79,18 @@ class PhoneAuthActivity constructor() : AppCompatActivity(), View.OnClickListene
 
             builder?.setPositiveButton(getString(R.string.english)) { dialog, which ->
 
-                SharedPref.getInstance(this@PhoneAuthActivity)?.putSharedPrefString(getString(R.string.app_language),"en")
+                SharedPref.getInstance(this@PhoneAuthActivity)?.putSharedPrefString(getString(R.string.app_language), "en")
                 Utils.setLocal(this@PhoneAuthActivity)
                 val i = Intent(this, SplashscreenActivity::class.java)
                 i.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                 this.startActivity(i)
             }
-            var alertDialog=       builder?.show()
+            var alertDialog = builder?.show()
 
             alertDialog?.getButton(AlertDialog.BUTTON_POSITIVE)?.setTypeface(Typeface.DEFAULT, Typeface.BOLD)
             alertDialog?.getButton(AlertDialog.BUTTON_NEGATIVE)?.setTypeface(Typeface.DEFAULT, Typeface.BOLD)
-            alertDialog?.getButton(AlertDialog.BUTTON_POSITIVE)?.textSize=20f
-            alertDialog?.getButton(AlertDialog.BUTTON_NEGATIVE)?.textSize=20f
+            alertDialog?.getButton(AlertDialog.BUTTON_POSITIVE)?.textSize = 20f
+            alertDialog?.getButton(AlertDialog.BUTTON_NEGATIVE)?.textSize = 20f
         }
         // [START initialize_auth]
         // Initialize Firebase Auth
@@ -139,13 +135,15 @@ class PhoneAuthActivity constructor() : AppCompatActivity(), View.OnClickListene
                 if (e is FirebaseAuthInvalidCredentialsException) {
                     // Invalid request
                     // [START_EXCLUDE]
-                    binding.  fieldPhoneNumber.setError("Invalid phone number.")
+                    binding.fieldPhoneNumber.setError("Invalid phone number.")
                     // [END_EXCLUDE]
                 } else if (e is FirebaseTooManyRequestsException) {
                     // The SMS quota for the project has been exceeded
                     // [START_EXCLUDE]
-                    Snackbar.make(findViewById(android.R.id.content), "Quota exceeded.",
-                            Snackbar.LENGTH_SHORT).show()
+                    Snackbar.make(
+                        findViewById(android.R.id.content), "Quota exceeded.",
+                        Snackbar.LENGTH_SHORT
+                    ).show()
                     // [END_EXCLUDE]
                 }
                 // Show a message and update the UI
@@ -178,7 +176,7 @@ class PhoneAuthActivity constructor() : AppCompatActivity(), View.OnClickListene
         updateUI(currentUser)
         // [START_EXCLUDE]
         if (mVerificationInProgress && validatePhoneNumber()) {
-            startPhoneNumberVerification(getString(R.string.country_code) +   binding.  fieldPhoneNumber.getText().toString())
+            startPhoneNumberVerification(getString(R.string.country_code) + binding.fieldPhoneNumber.getText().toString())
         }
         // [END_EXCLUDE]
     }
@@ -189,21 +187,22 @@ class PhoneAuthActivity constructor() : AppCompatActivity(), View.OnClickListene
     }
 
     // [END on_start_check_user]
-   /* override fun onRestoreInstanceState(savedInstanceState: Bundle?) {
-        super.onRestoreInstanceState(savedInstanceState)
-        if (savedInstanceState != null) {
-            mVerificationInProgress = savedInstanceState.getBoolean(KEY_VERIFY_IN_PROGRESS)
-        }
-    }*/
+    /* override fun onRestoreInstanceState(savedInstanceState: Bundle?) {
+         super.onRestoreInstanceState(savedInstanceState)
+         if (savedInstanceState != null) {
+             mVerificationInProgress = savedInstanceState.getBoolean(KEY_VERIFY_IN_PROGRESS)
+         }
+     }*/
 
     private fun startPhoneNumberVerification(phoneNumber: String) {
         // [START start_phone_auth]
         PhoneAuthProvider.getInstance().verifyPhoneNumber(
-                phoneNumber,  // Phone number to verify
-                60,  // Timeout duration
-                TimeUnit.SECONDS,  // Unit of timeout
-                this,  // Activity (for callback binding)
-                mCallbacks) // OnVerificationStateChangedCallbacks
+            phoneNumber,  // Phone number to verify
+            60,  // Timeout duration
+            TimeUnit.SECONDS,  // Unit of timeout
+            this,  // Activity (for callback binding)
+            mCallbacks
+        ) // OnVerificationStateChangedCallbacks
         // [END start_phone_auth]
         mVerificationInProgress = true
     }
@@ -216,46 +215,49 @@ class PhoneAuthActivity constructor() : AppCompatActivity(), View.OnClickListene
     }
 
     // [START resend_verification]
-    private fun resendVerificationCode(phoneNumber: String,
-                                       token: ForceResendingToken?) {
+    private fun resendVerificationCode(
+        phoneNumber: String,
+        token: ForceResendingToken?
+    ) {
         PhoneAuthProvider.getInstance().verifyPhoneNumber(
-                phoneNumber,  // Phone number to verify
-                60,  // Timeout duration
-                TimeUnit.SECONDS,  // Unit of timeout
-                this,  // Activity (for callback binding)
-                mCallbacks,  // OnVerificationStateChangedCallbacks
-                token) // ForceResendingToken from callbacks
+            phoneNumber,  // Phone number to verify
+            60,  // Timeout duration
+            TimeUnit.SECONDS,  // Unit of timeout
+            this,  // Activity (for callback binding)
+            mCallbacks,  // OnVerificationStateChangedCallbacks
+            token
+        ) // ForceResendingToken from callbacks
     }
 
     // [END resend_verification]
     // [START sign_in_with_phone]
     private fun signInWithPhoneAuthCredential(credential: PhoneAuthCredential) {
         mAuth?.signInWithCredential(credential)
-                ?.addOnCompleteListener(this, object : OnCompleteListener<AuthResult?> {
-                    public override fun onComplete(task: Task<AuthResult?>) {
-                        if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-                            Log.d(TAG, "signInWithCredential:success")
-                            val user: FirebaseUser? = task.getResult()?.getUser()
-                            // [START_EXCLUDE]
-                            updateUI(STATE_SIGNIN_SUCCESS, user)
-                            // [END_EXCLUDE]
-                        } else {
-                            // Sign in failed, display a message and update the UI
-                            Log.w(TAG, "signInWithCredential:failure", task.getException())
-                            if (task.getException() is FirebaseAuthInvalidCredentialsException) {
-                                // The verification code entered was invalid
-                                // [START_EXCLUDE silent]
-                                binding.     fieldVerificationCode?.setError("Invalid code.")
-                                // [END_EXCLUDE]
-                            }
+            ?.addOnCompleteListener(this, object : OnCompleteListener<AuthResult?> {
+                public override fun onComplete(task: Task<AuthResult?>) {
+                    if (task.isSuccessful()) {
+                        // Sign in success, update UI with the signed-in user's information
+                        Log.d(TAG, "signInWithCredential:success")
+                        val user: FirebaseUser? = task.getResult()?.getUser()
+                        // [START_EXCLUDE]
+                        updateUI(STATE_SIGNIN_SUCCESS, user)
+                        // [END_EXCLUDE]
+                    } else {
+                        // Sign in failed, display a message and update the UI
+                        Log.w(TAG, "signInWithCredential:failure", task.getException())
+                        if (task.getException() is FirebaseAuthInvalidCredentialsException) {
+                            // The verification code entered was invalid
                             // [START_EXCLUDE silent]
-                            // Update UI
-                            updateUI(STATE_SIGNIN_FAILED)
+                            binding.fieldVerificationCode?.setError("Invalid code.")
                             // [END_EXCLUDE]
                         }
+                        // [START_EXCLUDE silent]
+                        // Update UI
+                        updateUI(STATE_SIGNIN_FAILED)
+                        // [END_EXCLUDE]
                     }
-                })
+                }
+            })
     }
 
     // [END sign_in_with_phone]
@@ -280,60 +282,62 @@ class PhoneAuthActivity constructor() : AppCompatActivity(), View.OnClickListene
         when (uiState) {
             STATE_INITIALIZED -> {
                 // Initialized state, show only the phone number field and start button
-                enableViews(  binding.  buttonStartVerification,  binding.   fieldPhoneNumber)
-                disableViews(  binding.  buttonVerifyPhone,  binding.   buttonResend,  binding.   fieldVerificationCode)
-                binding.  detail?.setText(null)
+                enableViews(binding.buttonStartVerification, binding.fieldPhoneNumber)
+                disableViews(binding.buttonVerifyPhone, binding.buttonResend, binding.fieldVerificationCode)
+                binding.detail?.setText(null)
             }
             STATE_CODE_SENT -> {
                 // Code sent state, show the verification field, the
-                enableViews(  binding.  buttonVerifyPhone,   binding.  buttonResend,   binding.  fieldPhoneNumber,   binding.  fieldVerificationCode)
-                disableViews(  binding.  buttonStartVerification)
-                binding.    detail?.setText(R.string.status_code_sent)
+                enableViews(binding.buttonVerifyPhone, binding.buttonResend, binding.fieldPhoneNumber, binding.fieldVerificationCode)
+                disableViews(binding.buttonStartVerification)
+                binding.detail?.setText(R.string.status_code_sent)
                 Toast.makeText(applicationContext, getString(R.string.code_sent), Toast.LENGTH_LONG).show()
 
             }
             STATE_VERIFY_FAILED -> {
                 // Verification has failed, show all options
-                enableViews(  binding.  buttonStartVerification,  binding.   buttonVerifyPhone,   binding.  buttonResend,  binding.   fieldPhoneNumber,
-                    binding.   fieldVerificationCode)
-                binding.      detail?.setText(R.string.status_verification_failed)
+                enableViews(
+                    binding.buttonStartVerification, binding.buttonVerifyPhone, binding.buttonResend, binding.fieldPhoneNumber,
+                    binding.fieldVerificationCode
+                )
+                binding.detail?.setText(R.string.status_verification_failed)
                 Toast.makeText(applicationContext, getString(R.string.verification_falied), Toast.LENGTH_LONG).show()
 
             }
             STATE_VERIFY_SUCCESS -> {
                 // Verification has succeeded, proceed to firebase sign in
-                disableViews(  binding.  buttonStartVerification,   binding.  buttonVerifyPhone,  binding.   buttonResend,  binding.   fieldPhoneNumber,   binding.  fieldVerificationCode)
-                binding.    detail?.setText(R.string.status_verification_succeeded)
+                disableViews(binding.buttonStartVerification, binding.buttonVerifyPhone, binding.buttonResend, binding.fieldPhoneNumber, binding.fieldVerificationCode)
+                binding.detail?.setText(R.string.status_verification_succeeded)
                 Toast.makeText(applicationContext, getString(R.string.verification_success), Toast.LENGTH_LONG).show()
 
                 // Set the verification text based on the credential
                 if (cred != null) {
                     if (cred.getSmsCode() != null) {
-                        binding.    fieldVerificationCode?.setText(cred.getSmsCode())
+                        binding.fieldVerificationCode?.setText(cred.getSmsCode())
                     } else {
-                        binding.    fieldVerificationCode?.setText(R.string.instant_validation)
+                        binding.fieldVerificationCode?.setText(R.string.instant_validation)
                     }
                 }
             }
             STATE_SIGNIN_FAILED ->                 // No-op, handled by sign-in check
-                binding.   detail?.setText(R.string.status_sign_in_failed)
+                binding.detail?.setText(R.string.status_sign_in_failed)
             STATE_SIGNIN_SUCCESS -> {
             }
         }
         if (user == null) {
             // Signed out
-            binding.     phoneAuthFields?.setVisibility(View.VISIBLE)
-            binding.     status?.setText(R.string.signed_out)
+            binding.phoneAuthFields?.setVisibility(View.VISIBLE)
+            binding.status?.setText(R.string.signed_out)
         } else {
             // Signed in
             finish()
 
-            binding.    phoneAuthFields?.setVisibility(View.GONE)
-            enableViews(  binding.  fieldPhoneNumber,  binding.   fieldVerificationCode)
-            binding.    fieldPhoneNumber.setText(null)
-            binding.    fieldVerificationCode?.setText(null)
-            binding.     status?.setText(R.string.signed_in)
-            binding.     detail?.setText(getString(R.string.firebase_status_fmt, user.getUid()))
+            binding.phoneAuthFields?.setVisibility(View.GONE)
+            enableViews(binding.fieldPhoneNumber, binding.fieldVerificationCode)
+            binding.fieldPhoneNumber.setText(null)
+            binding.fieldVerificationCode?.setText(null)
+            binding.status?.setText(R.string.signed_in)
+            binding.detail?.setText(getString(R.string.firebase_status_fmt, user.getUid()))
             val intent: Intent? = Intent(this@PhoneAuthActivity, MainActivity::class.java)
             SharedPref.Companion.getInstance(this@PhoneAuthActivity)?.putSharedPrefString(getString(R.string.userUid), user.getUid())
             SharedPref.Companion.getInstance(this@PhoneAuthActivity)?.putSharedPrefString(getString(R.string.userPhoneNumber), user.getPhoneNumber())
@@ -342,9 +346,9 @@ class PhoneAuthActivity constructor() : AppCompatActivity(), View.OnClickListene
     }
 
     private fun validatePhoneNumber(): Boolean {
-        val phoneNumber: String? =   binding.  fieldPhoneNumber.getText().toString()
+        val phoneNumber: String? = binding.fieldPhoneNumber.getText().toString()
         if (TextUtils.isEmpty(phoneNumber)) {
-            binding.    fieldPhoneNumber.setError("Invalid phone number.")
+            binding.fieldPhoneNumber.setError("Invalid phone number.")
             return false
         }
         return true
@@ -368,13 +372,13 @@ class PhoneAuthActivity constructor() : AppCompatActivity(), View.OnClickListene
                 if (!validatePhoneNumber()) {
                     return
                 }
-                startPhoneNumberVerification(getString(R.string.country_code) +  binding.   fieldPhoneNumber.getText().toString())
+                startPhoneNumberVerification(getString(R.string.country_code) + binding.fieldPhoneNumber.getText().toString())
             }
             R.id.buttonVerifyPhone -> {
                 if (mVerificationId != null) {
-                    val code: String =   binding.  fieldVerificationCode?.getText().toString()
+                    val code: String = binding.fieldVerificationCode?.getText().toString()
                     if (TextUtils.isEmpty(code)) {
-                        binding.    fieldVerificationCode?.setError("Cannot be empty.")
+                        binding.fieldVerificationCode?.setError("Cannot be empty.")
                         return
                     }
                     verifyPhoneNumberWithCode(mVerificationId, code)
@@ -382,7 +386,7 @@ class PhoneAuthActivity constructor() : AppCompatActivity(), View.OnClickListene
             }
             R.id.buttonResend ->
                 if (mResendToken != null) {
-                    resendVerificationCode(getString(R.string.country_code) +  binding.   fieldPhoneNumber.getText().toString(), mResendToken)
+                    resendVerificationCode(getString(R.string.country_code) + binding.fieldPhoneNumber.getText().toString(), mResendToken)
                 }
         }
     }

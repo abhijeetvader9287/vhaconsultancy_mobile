@@ -11,13 +11,10 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
 import androidx.navigation.ui.AppBarConfiguration
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import com.smile.vhaconsultancy.BuildConfig
-import com.smile.vhaconsultancy.R
-import com.smile.vhaconsultancy.databinding.ActivityCreateCartBinding
 import com.smile.vhaconsultancy.databinding.ActivityMainBinding
 import com.smile.vhaconsultancy.models.UserProfile
 import com.smile.vhaconsultancy.utilities.SharedPref
@@ -44,22 +41,21 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
-       // setContentView(R.layout.activity_main)
-   //     val toolbar: Toolbar = findViewById(R.id.toolbar)
+        // setContentView(R.layout.activity_main)
+        //     val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(binding.appBarMain.toolbar)
         supportActionBar?.setDisplayShowTitleEnabled(true)
         Utils.setLocal(this)
 
-        if(!SharedPref.getInstance(this@MainActivity)?.getSharedPrefBool("terms")!!)
-       {
-           val i = Intent(this, TermsAndConditionsActivity::class.java)
-           this.startActivity(i)
-       }
+        if (!SharedPref.getInstance(this@MainActivity)?.getSharedPrefBool("terms")!!) {
+            val i = Intent(this, TermsAndConditionsActivity::class.java)
+            this.startActivity(i)
+        }
 
         binding.appBarMain.contentMain.actionPlaceOrder.setOnClickListener {
-    val i = Intent(this, CreateCartActivity::class.java)
-    this.startActivity(i)
-}
+            val i = Intent(this, CreateCartActivity::class.java)
+            this.startActivity(i)
+        }
 
 
 
@@ -69,11 +65,11 @@ class MainActivity : AppCompatActivity() {
         dialog.setCancelable(false)
         dialog.show()
         dialog.setContentView(R.layout.progress_layout)
-        binding.appBarMain.contentMain.  changeLang.setOnClickListener {
-            val builder =    AlertDialog.Builder(this@MainActivity)
-            builder?.setTitle( getString(R.string.changeLang))
+        binding.appBarMain.contentMain.changeLang.setOnClickListener {
+            val builder = AlertDialog.Builder(this@MainActivity)
+            builder?.setTitle(getString(R.string.changeLang))
             builder?.setNegativeButton(getString(R.string.marathi)) { dialog, which ->
-                SharedPref.getInstance(this@MainActivity)?.putSharedPrefString(getString(R.string.app_language),"mr")
+                SharedPref.getInstance(this@MainActivity)?.putSharedPrefString(getString(R.string.app_language), "mr")
                 Utils.setLocal(this@MainActivity)
                 finishAffinity()
 
@@ -84,39 +80,39 @@ class MainActivity : AppCompatActivity() {
 
             builder?.setPositiveButton(getString(R.string.english)) { dialog, which ->
 
-                SharedPref.getInstance(this@MainActivity)?.putSharedPrefString(getString(R.string.app_language),"en")
+                SharedPref.getInstance(this@MainActivity)?.putSharedPrefString(getString(R.string.app_language), "en")
                 Utils.setLocal(this@MainActivity)
                 val i = Intent(this, SplashscreenActivity::class.java)
                 i.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                 this.startActivity(i)
             }
-            var alertDialog=       builder?.show()
+            var alertDialog = builder?.show()
 
             alertDialog?.getButton(AlertDialog.BUTTON_POSITIVE)?.setTypeface(Typeface.DEFAULT, Typeface.BOLD)
             alertDialog?.getButton(AlertDialog.BUTTON_NEGATIVE)?.setTypeface(Typeface.DEFAULT, Typeface.BOLD)
-            alertDialog?.getButton(AlertDialog.BUTTON_POSITIVE)?.textSize=20f
-            alertDialog?.getButton(AlertDialog.BUTTON_NEGATIVE)?.textSize=20f
+            alertDialog?.getButton(AlertDialog.BUTTON_POSITIVE)?.textSize = 20f
+            alertDialog?.getButton(AlertDialog.BUTTON_NEGATIVE)?.textSize = 20f
         }
-        binding.appBarMain.contentMain.    txtTermsAndCond.setOnClickListener {
+        binding.appBarMain.contentMain.txtTermsAndCond.setOnClickListener {
             val i = Intent(this, TermsAndConditionsActivity::class.java)
             this.startActivity(i)
         }
-        binding.appBarMain.contentMain.     actionProfile.setOnClickListener {
+        binding.appBarMain.contentMain.actionProfile.setOnClickListener {
             val i = Intent(this, ProfileActivity::class.java)
             this.startActivity(i)
             true
         }
-        binding.appBarMain.contentMain.   actionAddPlot.setOnClickListener {
+        binding.appBarMain.contentMain.actionAddPlot.setOnClickListener {
             val i = Intent(this, AddPlotActivity::class.java)
             this.startActivity(i)
             true
         }
-        binding.appBarMain.contentMain.   actionListPlot.setOnClickListener {
+        binding.appBarMain.contentMain.actionListPlot.setOnClickListener {
             val i = Intent(this, PlotListActivity::class.java)
             this.startActivity(i)
             true
         }
-        binding.appBarMain.contentMain.      actionLogout.setOnClickListener {
+        binding.appBarMain.contentMain.actionLogout.setOnClickListener {
             mAuth?.signOut()
             finishAffinity()
 
@@ -140,8 +136,8 @@ class MainActivity : AppCompatActivity() {
         userPhoneNumber = SharedPref.Companion.getInstance(this@MainActivity)?.getSharedPref(getString(R.string.userPhoneNumber))
 
         databaseProfileReference = database!!.getReference(getString(R.string.user_list)).child(userPhoneNumber!!).child(getString(R.string.user_profile))
-      /*  databaseProfileReference = database!!.getReference(getString(R.string.user_list))
-        databaseProfileReference!!.removeValue()*/
+        /*  databaseProfileReference = database!!.getReference(getString(R.string.user_list))
+          databaseProfileReference!!.removeValue()*/
         rateReference!!.addValueEventListener(object : ValueEventListener {
             override fun onCancelled(p0: DatabaseError) {
                 TODO("Not yet implemented")
@@ -170,8 +166,8 @@ class MainActivity : AppCompatActivity() {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
 
                 val userProfile: UserProfile? = dataSnapshot.getValue(UserProfile::class.java)
-                binding.appBarMain.contentMain.  editTextMobileNumber.text = userProfile?.mobileNumber
-                binding.appBarMain.contentMain.    editTextName.text = userProfile?.name
+                binding.appBarMain.contentMain.editTextMobileNumber.text = userProfile?.mobileNumber
+                binding.appBarMain.contentMain.editTextName.text = userProfile?.name
                 SharedPref.getInstance(this@MainActivity)?.putSharedPrefString(getString(R.string._name), userProfile?.name)
                 dialog.dismiss()
 
@@ -184,7 +180,7 @@ class MainActivity : AppCompatActivity() {
 
             }
         })
-        binding.appBarMain.contentMain.  actionWhatsapp.setOnClickListener { openWhatsApp() }
+        binding.appBarMain.contentMain.actionWhatsapp.setOnClickListener { openWhatsApp() }
         versionCodeReference!!.addValueEventListener(object : ValueEventListener {
             override fun onCancelled(p0: DatabaseError) {
                 TODO("Not yet implemented")
@@ -205,7 +201,7 @@ class MainActivity : AppCompatActivity() {
                             val appLink: String = dataSnapshot.value as String
                             val builder = AlertDialog.Builder(this@MainActivity)
                             //set title for alert dialog
-                          //  builder.setTitle(R.string.Warning)
+                            //  builder.setTitle(R.string.Warning)
                             //set message for alert dialog
                             builder.setMessage(R.string.Please_download_new_app)
                             builder.setIcon(android.R.drawable.ic_dialog_alert)

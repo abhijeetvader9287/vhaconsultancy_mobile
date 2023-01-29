@@ -17,7 +17,6 @@ import com.smile.vhaconsultancy.utilities.SharedPref
 import com.smile.vhaconsultancy.utilities.Utils
 
 
-
 class AddPlotActivity : AppCompatActivity() {
     var userUid: String? = ""
     var userPhoneNumber: String? = ""
@@ -54,10 +53,10 @@ class AddPlotActivity : AppCompatActivity() {
 
 
 
-    binding.contentAddPlot .   btnSave.setOnClickListener {
+        binding.contentAddPlot.btnSave.setOnClickListener {
             val builder = AlertDialog.Builder(this)
             //set title for alert dialog
-           // builder.setTitle(R.string.Warning)
+            // builder.setTitle(R.string.Warning)
             //set message for alert dialog
             builder.setMessage(R.string.you_will_not_be_able_to_edit_again)
             builder.setIcon(android.R.drawable.ic_dialog_alert)
@@ -87,60 +86,60 @@ class AddPlotActivity : AppCompatActivity() {
             dialog.show();
             dialog.setContentView(R.layout.progress_layout);
             val plot: Plot = Plot()
-            plot.area = binding.contentAddPlot . editEnterArea.text.toString().toDouble()
-            plot.variety =binding.contentAddPlot .  editTextVariety.text.toString()
-            plot.numberOfVine =binding.contentAddPlot .  editTextNumberOfVine.text.toString().toInt()
-            plot.distance = binding.contentAddPlot . editTextDistance.text.toString().toDouble()
+            plot.area = binding.contentAddPlot.editEnterArea.text.toString().toDouble()
+            plot.variety = binding.contentAddPlot.editTextVariety.text.toString()
+            plot.numberOfVine = binding.contentAddPlot.editTextNumberOfVine.text.toString().toInt()
+            plot.distance = binding.contentAddPlot.editTextDistance.text.toString().toDouble()
             databaseReference!!.push().setValue(plot).addOnCanceledListener {
                 dialog.dismiss();
 
             }
-                    .addOnCompleteListener {
+                .addOnCompleteListener {
 
-                        dialog.dismiss();
+                    dialog.dismiss();
 
-                    }.addOnFailureListener {
-                        dialog.dismiss();
-                    binding.contentAddPlot .   editEnterArea.setText("")
-                    binding.contentAddPlot .   editTextVariety.setText("")
-                    binding.contentAddPlot .   editTextNumberOfVine.setText("")
-                    binding.contentAddPlot .   editTextDistance.setText("")
+                }.addOnFailureListener {
+                    dialog.dismiss();
+                    binding.contentAddPlot.editEnterArea.setText("")
+                    binding.contentAddPlot.editTextVariety.setText("")
+                    binding.contentAddPlot.editTextNumberOfVine.setText("")
+                    binding.contentAddPlot.editTextDistance.setText("")
 
-                        Toast.makeText(this@AddPlotActivity, getString(R.string.Plot_save_failed) + it.localizedMessage, Toast.LENGTH_LONG).show()
+                    Toast.makeText(this@AddPlotActivity, getString(R.string.Plot_save_failed) + it.localizedMessage, Toast.LENGTH_LONG).show()
 
-                    }.addOnSuccessListener {
-                        dialog.dismiss();
-                    binding.contentAddPlot .     editEnterArea.setText("")
-                    binding.contentAddPlot .     editTextVariety.setText("")
-                    binding.contentAddPlot .     editTextNumberOfVine.setText("")
-                    binding.contentAddPlot .     editTextDistance.setText("")
-                        Toast.makeText(this@AddPlotActivity, getString(R.string.Plot_save_successfully), Toast.LENGTH_LONG).show()
+                }.addOnSuccessListener {
+                    dialog.dismiss();
+                    binding.contentAddPlot.editEnterArea.setText("")
+                    binding.contentAddPlot.editTextVariety.setText("")
+                    binding.contentAddPlot.editTextNumberOfVine.setText("")
+                    binding.contentAddPlot.editTextDistance.setText("")
+                    Toast.makeText(this@AddPlotActivity, getString(R.string.Plot_save_successfully), Toast.LENGTH_LONG).show()
 
-                    }
+                }
         }
     }
 
     fun isValidFun(): Boolean {
         var isValid = true
-        if (binding.contentAddPlot . editEnterArea.text.toString().isNullOrEmpty()) {
-            binding.contentAddPlot . editEnterArea.setError(getString(R.string.Field_should_not_be_empty))
+        if (binding.contentAddPlot.editEnterArea.text.toString().isNullOrEmpty()) {
+            binding.contentAddPlot.editEnterArea.setError(getString(R.string.Field_should_not_be_empty))
             isValid = false
 
         }
-        if (binding.contentAddPlot . editTextVariety.text.toString().isNullOrEmpty()) {
-            binding.contentAddPlot . editTextVariety.setError(getString(R.string.Field_should_not_be_empty))
-
-            isValid = false
-
-        }
-        if (binding.contentAddPlot . editTextDistance.text.toString().isNullOrEmpty()) {
-            binding.contentAddPlot . editTextDistance.setError(getString(R.string.Field_should_not_be_empty))
+        if (binding.contentAddPlot.editTextVariety.text.toString().isNullOrEmpty()) {
+            binding.contentAddPlot.editTextVariety.setError(getString(R.string.Field_should_not_be_empty))
 
             isValid = false
 
         }
-        if (binding.contentAddPlot . editTextNumberOfVine.text.toString().isNullOrEmpty()) {
-            binding.contentAddPlot . editTextNumberOfVine.setError(getString(R.string.Field_should_not_be_empty))
+        if (binding.contentAddPlot.editTextDistance.text.toString().isNullOrEmpty()) {
+            binding.contentAddPlot.editTextDistance.setError(getString(R.string.Field_should_not_be_empty))
+
+            isValid = false
+
+        }
+        if (binding.contentAddPlot.editTextNumberOfVine.text.toString().isNullOrEmpty()) {
+            binding.contentAddPlot.editTextNumberOfVine.setError(getString(R.string.Field_should_not_be_empty))
 
             isValid = false
 

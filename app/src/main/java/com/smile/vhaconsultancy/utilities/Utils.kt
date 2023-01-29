@@ -32,10 +32,10 @@ class Utils {
 
         fun runAnimation(recyclerView: RecyclerView) {
             val controller =
-                    AnimationUtils.loadLayoutAnimation(
-                            recyclerView.context,
-                            R.anim.layout_animation_left_to_right
-                    )
+                AnimationUtils.loadLayoutAnimation(
+                    recyclerView.context,
+                    R.anim.layout_animation_left_to_right
+                )
 
             recyclerView.layoutAnimation = controller
             recyclerView.adapter?.notifyDataSetChanged()
@@ -64,11 +64,11 @@ class Utils {
          * @return the string currency
          */
         fun getStringCurrency(
-                context: Context?,
-                amount: Double?
+            context: Context?,
+            amount: Double?
         ): String? {
             val format = NumberFormat.getCurrencyInstance(
-                    Locale("nl")
+                Locale("nl")
             )
             format.currency = Currency.getInstance("EUR")
             format.minimumFractionDigits = 2
@@ -76,22 +76,22 @@ class Utils {
         }
 
         fun getStringNumber(
-                context: Context?,
-                amount: Double?
+            context: Context?,
+            amount: Double?
         ): String? {
             val format = NumberFormat.getNumberInstance(
-                    //getCurrentLocale(context!!)
+                //getCurrentLocale(context!!)
             )
             format.minimumFractionDigits = 2
             return format.format(amount)
         }
 
         fun getStringNumberOnePre(
-                context: Context?,
-                amount: Double?
+            context: Context?,
+            amount: Double?
         ): String? {
             val format = NumberFormat.getNumberInstance(
-                    // getCurrentLocale(context!!)
+                // getCurrentLocale(context!!)
             )
             format.minimumFractionDigits = 1
             return format.format(amount)
@@ -135,11 +135,11 @@ class Utils {
 
         fun getPressedColorSelector(normalColor: Int, pressedColor: Int): ColorStateList? {
             return ColorStateList(
-                    arrayOf(
-                            intArrayOf()
-                    ), intArrayOf(
+                arrayOf(
+                    intArrayOf()
+                ), intArrayOf(
                     pressedColor
-            )
+                )
             )
         }
 
@@ -150,14 +150,14 @@ class Utils {
         }
 
         fun changeDrawableColor(
-                drawableRes: Int,
-                colorRes: Int,
-                context: Context
+            drawableRes: Int,
+            colorRes: Int,
+            context: Context
         ): Drawable? { //Convert drawable res to bitmap
             val bitmap = BitmapFactory.decodeResource(context.resources, drawableRes)
             val resultBitmap = Bitmap.createBitmap(
-                    bitmap, 0, 0,
-                    bitmap.width - 1, bitmap.height - 1
+                bitmap, 0, 0,
+                bitmap.width - 1, bitmap.height - 1
             )
             val p = Paint()
             val canvas = Canvas(resultBitmap)
@@ -165,8 +165,8 @@ class Utils {
             //Create new drawable based on bitmap
             val drawable: Drawable = BitmapDrawable(context.resources, resultBitmap)
             drawable.colorFilter = PorterDuffColorFilter(
-                    colorRes,
-                    PorterDuff.Mode.MULTIPLY
+                colorRes,
+                PorterDuff.Mode.MULTIPLY
             )
             return drawable
         }
@@ -201,14 +201,14 @@ class Utils {
                 )
             }
             val locale = Locale(
-                    str_app_lang
+                str_app_lang
             )
             Locale.setDefault(locale)
             val config: Configuration = context.resources.configuration
             config.setLocale(locale)
             context.resources.updateConfiguration(
-                    config,
-                    context.resources.displayMetrics
+                config,
+                context.resources.displayMetrics
             )
         }
     }

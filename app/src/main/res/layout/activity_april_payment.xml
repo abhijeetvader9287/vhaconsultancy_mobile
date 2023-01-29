@@ -181,6 +181,7 @@
                             android:textColor="@color/blue"
                             android:textSize="16sp" />
                     </LinearLayout>
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -203,19 +204,24 @@
                             android:id="@+id/radio_group"
 
                             android:layout_width="match_parent"
-                            android:orientation="horizontal"
-                            android:layout_height="wrap_content">
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
                             <RadioButton
                                 android:id="@+id/btnVisiting"
                                 android:layout_width="wrap_content"
-                                android:layout_height="wrap_content" android:text="@string/visiting"></RadioButton>
+                                android:layout_height="wrap_content"
+                                android:text="@string/visiting"></RadioButton>
+
                             <RadioButton
                                 android:id="@+id/btnNonVisiting"
                                 android:layout_width="wrap_content"
-                                android:layout_height="wrap_content" android:text="@string/non_visiting"></RadioButton>
+                                android:layout_height="wrap_content"
+                                android:text="@string/non_visiting"></RadioButton>
 
                         </RadioGroup>
                     </LinearLayout>
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -330,16 +336,17 @@
                     android:layout_height="50dp"
                     android:layout_gravity="center"
                     android:background="@android:color/transparent"
+                    android:enabled="false"
                     android:gravity="center"
                     android:paddingStart="0dp"
                     android:paddingEnd="15dp"
                     android:singleLine="true"
-                    android:enabled="false"
                     android:text="Pay Now Online"
                     android:textAllCaps="false"
                     android:textColor="@color/white"
                     android:textSize="25sp" />
             </androidx.cardview.widget.CardView>
+
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
