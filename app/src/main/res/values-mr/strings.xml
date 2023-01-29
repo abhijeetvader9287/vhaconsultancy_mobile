@@ -240,4 +240,5 @@
     <string name="Please_select_box_weight">Please select box weight</string>
     <string name="Please_select_kret_weight">Please_select_kret_weight</string>
     <string name="Please_select_grape_variety">Please_select_grape_variety</string>
+    <string name="order_list">order_list</string>
 </resources>

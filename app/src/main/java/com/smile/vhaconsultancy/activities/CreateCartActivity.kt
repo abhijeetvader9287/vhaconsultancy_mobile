@@ -1,9 +1,11 @@
 package com.smile.vhaconsultancy.activities
 
 import android.app.ProgressDialog
+import android.content.Intent
+import android.content.pm.PackageManager
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
-import android.opengl.Visibility
+import android.net.Uri
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
@@ -15,17 +17,16 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.smile.vhaconsultancy.R
-import com.smile.vhaconsultancy.models.Plot
+import com.smile.vhaconsultancy.models.Order
 import com.smile.vhaconsultancy.utilities.SharedPref
 import com.smile.vhaconsultancy.utilities.Utils
 import kotlinx.android.synthetic.main.activity_add_plot.*
 import kotlinx.android.synthetic.main.activity_berryset_payment.*
 import kotlinx.android.synthetic.main.content_add_plot.*
 import kotlinx.android.synthetic.main.content_add_plot.btnSave
-import kotlinx.android.synthetic.main.content_add_plot.editTextDistance
-import kotlinx.android.synthetic.main.content_add_plot.editTextNumberOfVine
-import kotlinx.android.synthetic.main.content_add_plot.editTextVariety
 import kotlinx.android.synthetic.main.content_create_cart.*
+import java.net.URLEncoder
+
 
 
 class CreateCartActivity : AppCompatActivity() {
@@ -33,6 +34,7 @@ class CreateCartActivity : AppCompatActivity() {
     var userPhoneNumber: String? = ""
     var radioPacking: RadioButton?=null
     var radioVariety: RadioButton?=null
+    var radioWeight: RadioButton?=null
     var database: FirebaseDatabase? = null
     var databaseReference: DatabaseReference? = null
     lateinit var dialog: ProgressDialog
@@ -56,7 +58,7 @@ class CreateCartActivity : AppCompatActivity() {
 
         database = FirebaseDatabase.getInstance()
 
-        databaseReference = database!!.getReference(getString(R.string.user_list)).child(userPhoneNumber!!).child(getString(R.string.plot_list))
+        databaseReference = database!!.getReference(getString(R.string.user_list)).child(userPhoneNumber!!).child(getString(R.string.order_list))
 
         edit_distribution_agency_name.setText( SharedPref.Companion.getInstance(this@CreateCartActivity)?.getSharedPref(getString(R.string._name)).toString())
 radio_group_packing.setOnCheckedChangeListener(
@@ -79,6 +81,18 @@ radio_group_packing.setOnCheckedChangeListener(
 
 
     })
+        radio_group_kret_weight.setOnCheckedChangeListener(
+            RadioGroup.OnCheckedChangeListener { group, checkedId ->
+                radioWeight = findViewById(checkedId)
+
+
+            })
+        radio_group_box_weight.setOnCheckedChangeListener(
+            RadioGroup.OnCheckedChangeListener { group, checkedId ->
+                radioWeight = findViewById(checkedId)
+
+
+            })
         btnSave.setOnClickListener {
            saveFun()
 
@@ -88,6 +102,19 @@ radio_group_packing.setOnCheckedChangeListener(
     }
 
     fun saveFun() {
+        val packageManager: PackageManager =  getPackageManager()
+        val i = Intent(Intent.ACTION_VIEW)
+
+        try {
+            val url = "https://api.whatsapp.com/send?phone=9762764597" + "&text=" + URLEncoder.encode("Hi", "UTF-8")
+            i.setPackage("com.whatsapp")
+            i.setData(Uri.parse(url))
+            if (i.resolveActivity(packageManager) != null) {
+                 startActivity(i)
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
         if (isValidFun()) {
             val builder = AlertDialog.Builder(this)
             //set title for alert dialog
@@ -98,12 +125,17 @@ radio_group_packing.setOnCheckedChangeListener(
 
             //performing positive action
             builder.setPositiveButton(getString(R.string.Yes)) { dialogInterface, which ->
-                val plot: Plot = Plot()
-                plot.area = editEnterArea.text.toString().toDouble()
-                plot.variety = editTextVariety.text.toString()
-                plot.numberOfVine = editTextNumberOfVine.text.toString().toInt()
-                plot.distance = editTextDistance.text.toString().toDouble()
-                databaseReference!!.push().setValue(plot).addOnCanceledListener {
+                val order: Order = Order()
+                order.distribution_code = edit_distribution_agency_code.text.toString()
+                order.distribution_name = edit_distribution_agency_name.text.toString()
+                order.distribution_city = edit_distribution_agency_city.text.toString()
+                order.distribution_mobile = edit_distribution_agency_mobile_number.text.toString()
+                order.packing_type = radioPacking!!.text.toString()
+                order.grape_type = radioVariety!!.text.toString()
+                order.weight = radioWeight!!.text.toString()
+                order.quantity = edit_number.text.toString()
+
+                databaseReference!!.push().setValue(order).addOnCanceledListener {
                     dialog.dismiss();
 
                 }
@@ -113,19 +145,13 @@ radio_group_packing.setOnCheckedChangeListener(
 
                     }.addOnFailureListener {
                         dialog.dismiss();
-                        editEnterArea.setText("")
-                        editTextVariety.setText("")
-                        editTextNumberOfVine.setText("")
-                        editTextDistance.setText("")
+
 
                         Toast.makeText(this@CreateCartActivity, getString(R.string.Plot_save_failed) + it.localizedMessage, Toast.LENGTH_LONG).show()
 
                     }.addOnSuccessListener {
                         dialog.dismiss();
-                        editEnterArea.setText("")
-                        editTextVariety.setText("")
-                        editTextNumberOfVine.setText("")
-                        editTextDistance.setText("")
+
                         Toast.makeText(this@CreateCartActivity, getString(R.string.Plot_save_successfully), Toast.LENGTH_LONG).show()
 
                     }
@@ -187,14 +213,14 @@ radio_group_packing.setOnCheckedChangeListener(
         }else{
             if(radioPacking!!.id==btnBox.id)
             {
-                if(!radio_group_box_weight.isSelected)
+                if(radioWeight==null)
                 {
                     isValid=false
                     Toast.makeText(this@CreateCartActivity, getString(R.string.Please_select_box_weight), Toast.LENGTH_LONG).show()
                 }
 
             }else if(radioPacking!!.id==btnKret.id){
-                if(!radio_group_kret_weight.isSelected)
+                if(radioWeight==null)
                 {
                     isValid=false
                     Toast.makeText(this@CreateCartActivity, getString(R.string.Please_select_kret_weight), Toast.LENGTH_LONG).show()
