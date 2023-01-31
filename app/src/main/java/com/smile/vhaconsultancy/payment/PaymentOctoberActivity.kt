@@ -19,9 +19,11 @@ import com.payumoney.core.PayUmoneySdkInitializer.PaymentParam
 import com.payumoney.core.entity.TransactionResponse
 import com.payumoney.sdkui.ui.utils.PayUmoneyFlowManager
 import com.smile.vhaconsultancy.R
+import com.smile.vhaconsultancy.databinding.ActivityBerrysetPaymentBinding
 import com.smile.vhaconsultancy.databinding.ActivityOctoberPaymentBinding
 import com.smile.vhaconsultancy.utilities.SharedPref
 import com.smile.vhaconsultancy.utilities.Utils
+
 import java.math.BigDecimal
 import java.math.RoundingMode
 import java.security.MessageDigest
@@ -34,7 +36,7 @@ class PaymentOctoberActivity : BaseActivity(), View.OnClickListener {
     private val isDisableExitConfirmation = false
     var userUid: String? = ""
     var userPhoneNumber: String? = ""
-    var radio: RadioButton? = null
+    var radio: RadioButton?=null
     var plot_key: String? = ""
     var txnId = ""
     var database: FirebaseDatabase? = null
@@ -51,7 +53,7 @@ class PaymentOctoberActivity : BaseActivity(), View.OnClickListener {
         binding = ActivityOctoberPaymentBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
-        // setContentView(R.layout.activity_october_payment)
+            // setContentView(R.layout.activity_october_payment)
         Utils.setLocal(this)
 
         setSupportActionBar(binding.customToolbar)
@@ -64,63 +66,61 @@ class PaymentOctoberActivity : BaseActivity(), View.OnClickListener {
         plot_key = SharedPref.Companion.getInstance(this@PaymentOctoberActivity)?.getSharedPref(getString(R.string.plot_key))
         plot_keyRefDatabaseRef = database!!.getReference(getString(R.string.user_list)).child(userPhoneNumber!!).child(getString(R.string.plot_list)).child(SharedPref.Companion.getInstance(this@PaymentOctoberActivity)?.getSharedPref(getString(R.string.plot_key)).toString()).child("plotKey")
         plot_keyRefDatabaseRef!!.setValue(plot_key)
-        octoberTransactionRefDatabaseRef = database!!.getReference(getString(R.string.user_list)).child(userPhoneNumber!!).child(getString(R.string.plot_list)).child(
-            SharedPref.Companion.getInstance(this@PaymentOctoberActivity)?.getSharedPref(getString(R.string.plot_key)).toString()
+        octoberTransactionRefDatabaseRef = database!!.getReference(getString(R.string.user_list)).child(userPhoneNumber!!).child(getString(R.string.plot_list)).child(SharedPref.Companion.getInstance(this@PaymentOctoberActivity)?.getSharedPref(getString(R.string.plot_key)).toString()
         ).child("octoberTransactionRef")
 
-        octoberTransactionDateDatabaseRef = database!!.getReference(getString(R.string.user_list)).child(userPhoneNumber!!).child(getString(R.string.plot_list)).child(
-            SharedPref.Companion.getInstance(this@PaymentOctoberActivity)?.getSharedPref(getString(R.string.plot_key)).toString()
+        octoberTransactionDateDatabaseRef = database!!.getReference(getString(R.string.user_list)).child(userPhoneNumber!!).child(getString(R.string.plot_list)).child(SharedPref.Companion.getInstance(this@PaymentOctoberActivity)?.getSharedPref(getString(R.string.plot_key)).toString()
         ).child("octoberTransactionDate")
-        octoberPruiningDateRefDatabaseRef = database!!.getReference(getString(R.string.user_list)).child(userPhoneNumber!!).child(getString(R.string.plot_list)).child(
-            SharedPref.Companion.getInstance(this@PaymentOctoberActivity)?.getSharedPref(getString(R.string.plot_key)).toString()
+        octoberPruiningDateRefDatabaseRef = database!!.getReference(getString(R.string.user_list)).child(userPhoneNumber!!).child(getString(R.string.plot_list)).child(SharedPref.Companion.getInstance(this@PaymentOctoberActivity)?.getSharedPref(getString(R.string.plot_key)).toString()
         ).child("octoberPruiningDate")
 
-        binding.payNowButton.setOnClickListener(this)
+        binding.  payNowButton.setOnClickListener(this)
         //Set Up SharedPref
         //setUpUserDetails()
-        binding.btnVisiting.isChecked = true
-        radio = findViewById(R.id.btnVisiting)
-        binding.amountEt!!.text = SharedPref.Companion.getInstance(this@PaymentOctoberActivity)?.getSharedPrefFloat(getString(R.string.rate)).toString()
-        setUpUserDetails()
+        binding.   btnVisiting.isChecked=true
+        radio = findViewById(R.id. btnVisiting)
+        binding.   amountEt!!.text = SharedPref.Companion.getInstance(this@PaymentOctoberActivity)?.getSharedPrefFloat(getString(R.string.rate)).toString()
+setUpUserDetails()
         (application as BaseApplication).appEnvironment = AppEnvironment.PRODUCTION
-        binding.radioGroup.setOnCheckedChangeListener(
-            RadioGroup.OnCheckedChangeListener { group, checkedId ->
-                radio = findViewById(checkedId)
+        binding.    radioGroup.setOnCheckedChangeListener(
+                RadioGroup.OnCheckedChangeListener { group, checkedId ->
+                      radio = findViewById(checkedId)
 
-                if (checkedId == binding.btnVisiting.id) {
-                    binding.amountEt!!.text = SharedPref.Companion.getInstance(this@PaymentOctoberActivity)?.getSharedPrefFloat(getString(R.string.rate)).toString()
-                    setUpUserDetails()
-                } else if (checkedId == binding.btnNonVisiting.id) {
-                    binding.amountEt!!.text = SharedPref.Companion.getInstance(this@PaymentOctoberActivity)?.getSharedPrefFloat(getString(R.string.rate_nv)).toString()
-                    setUpUserDetails()
-                }
-            })
-        binding.payCashButton.setOnClickListener {
+                    if(checkedId==binding.btnVisiting.id)
+                    {
+                        binding. amountEt!!.text = SharedPref.Companion.getInstance(this@PaymentOctoberActivity)?.getSharedPrefFloat(getString(R.string.rate)).toString()
+                        setUpUserDetails()
+                    }else if(checkedId==binding.btnNonVisiting.id){
+                        binding. amountEt!!.text = SharedPref.Companion.getInstance(this@PaymentOctoberActivity)?.getSharedPrefFloat(getString(R.string.rate_nv)).toString()
+                        setUpUserDetails()
+                    }
+                })
+        binding.  payCashButton.setOnClickListener {
 
             if (selectedDate != 0L) {
                 AlertDialog.Builder(this)
-                    .setCancelable(false)
-                    .setTitle("Payment in cash")
-                    .setMessage("Do you want to pay in cash?")
-                    .setPositiveButton(android.R.string.ok) { dialog, whichButton ->
-                        txnId = "TXNID" + System.currentTimeMillis() + ""
-                        octoberTransactionRefDatabaseRef?.setValue(txnId + "_cash_" + (radio?.text) + "_" + binding.amountEt!!.text)
-                        val pattern = "dd-MMM-yyyy HH:mm:ss.SSS"
-                        val simpleDateFormat = SimpleDateFormat(pattern, Locale.US)
-                        val transactionDateTime: String = simpleDateFormat.format(Date())
-                        octoberTransactionDateDatabaseRef?.setValue(transactionDateTime)
-                        octoberPruiningDateRefDatabaseRef?.setValue(binding.pruiningDateEt.text.toString())
+                        .setCancelable(false)
+                        .setTitle("Payment in cash")
+                        .setMessage("Do you want to pay in cash?")
+                        .setPositiveButton(android.R.string.ok) { dialog, whichButton ->
+                            txnId = "TXNID" + System.currentTimeMillis() + ""
+                            octoberTransactionRefDatabaseRef?.setValue(txnId+"_cash_"+ (radio?.text  ) +"_"+binding.amountEt!!.text)
+                            val pattern = "dd-MMM-yyyy HH:mm:ss.SSS"
+                            val simpleDateFormat = SimpleDateFormat(pattern, Locale.US)
+                            val transactionDateTime: String = simpleDateFormat.format(Date())
+                            octoberTransactionDateDatabaseRef?.setValue(transactionDateTime)
+                            octoberPruiningDateRefDatabaseRef?.setValue(binding.pruiningDateEt.text.toString())
 
 
-                        AlertDialog.Builder(this)
-                            .setCancelable(false)
-                            .setTitle("Payment in cash")
-                            .setMessage("Please pay " + binding.amountEt!!.text + " to our executive")
-                            .setPositiveButton(android.R.string.ok) { dialog, whichButton ->
-                                this@PaymentOctoberActivity.finish()
-                                dialog.dismiss()
-                            }.show()
-                    }.show()
+                            AlertDialog.Builder(this)
+                                    .setCancelable(false)
+                                    .setTitle("Payment in cash")
+                                    .setMessage("Please pay "+binding.amountEt!!.text+" to our executive")
+                                    .setPositiveButton(android.R.string.ok) { dialog, whichButton ->
+                                        this@PaymentOctoberActivity.finish()
+                                        dialog.dismiss()
+                                    }.show()
+                        }.show()
 
 
             } else {
@@ -128,56 +128,61 @@ class PaymentOctoberActivity : BaseActivity(), View.OnClickListener {
             }
 
 
+
+
+
+
+
+
         }
     }
 
     private fun setUpUserDetails() {
 
-        binding.mobileEt!!.text = SharedPref.Companion.getInstance(this@PaymentOctoberActivity)?.getSharedPref(getString(R.string.userPhoneNumber))
-        binding.nameEt!!.text = SharedPref.Companion.getInstance(this@PaymentOctoberActivity)?.getSharedPref(getString(R.string._name)).toString()
-        binding.monthEt!!.text = SharedPref.Companion.getInstance(this@PaymentOctoberActivity)?.getSharedPref(getString(R.string.month)).toString()
-        binding.areaEtEt!!.text = SharedPref.Companion.getInstance(this@PaymentOctoberActivity)?.getSharedPref(getString(R.string._area_in_acre)).toString()
+        binding.   mobileEt!!.text = SharedPref.Companion.getInstance(this@PaymentOctoberActivity)?.getSharedPref(getString(R.string.userPhoneNumber))
+        binding.    nameEt!!.text = SharedPref.Companion.getInstance(this@PaymentOctoberActivity)?.getSharedPref(getString(R.string._name)).toString()
+        binding.    monthEt!!.text = SharedPref.Companion.getInstance(this@PaymentOctoberActivity)?.getSharedPref(getString(R.string.month)).toString()
+        binding.    areaEtEt!!.text = SharedPref.Companion.getInstance(this@PaymentOctoberActivity)?.getSharedPref(getString(R.string._area_in_acre)).toString()
         var area = binding.areaEtEt!!.text.toString().toDouble()
         if (area < 1.0) {
             area = 0.0
         }
         val decimal = BigDecimal(binding.amountEt!!.text.toString().toDouble() * (area)).setScale(2, RoundingMode.HALF_EVEN)
-        binding.totalEt!!.text = (decimal).toString()
-        binding.pruiningDateEt.setOnClickListener(View.OnClickListener {
+        binding. totalEt!!.text = (decimal).toString()
+        binding. pruiningDateEt.setOnClickListener(View.OnClickListener {
             pruning_date = Calendar.getInstance()
             val mYear: Int = pruning_date.get(Calendar.YEAR)
             val mMonth: Int = pruning_date.get(Calendar.MONTH)
             val mDay: Int = pruning_date.get(Calendar.DAY_OF_MONTH)
             val datePickerDialog = DatePickerDialog(this@PaymentOctoberActivity,
-                OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
-                    pruning_date.set(year, monthOfYear, dayOfMonth)
-                    val simpleDateFormat = SimpleDateFormat("dd-MMM-yyyy", Locale.US)
-                    val strDate = simpleDateFormat.format(Date(pruning_date.timeInMillis))
-                    selectedDate = pruning_date.timeInMillis
-                    binding.pruiningDateEt.text = strDate
+                    OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
+                        pruning_date.set(year, monthOfYear, dayOfMonth)
+                        val simpleDateFormat = SimpleDateFormat("dd-MMM-yyyy", Locale.US)
+                        val strDate = simpleDateFormat.format(Date(pruning_date.timeInMillis))
+                        selectedDate = pruning_date.timeInMillis
+                        binding.pruiningDateEt.text = strDate
 
-                }, mYear, mMonth, mDay
-            )
+                    }, mYear, mMonth, mDay)
             var stroctober = getString(R.string.october)
 
             datePickerDialog.show()
-            /* if (month_et.text.toString().equals(stroctober)) {
-                 var simpleDateFormat = SimpleDateFormat("dd-MMM-yyyy", Locale.US)
+           /* if (month_et.text.toString().equals(stroctober)) {
+                var simpleDateFormat = SimpleDateFormat("dd-MMM-yyyy", Locale.US)
 
-                 var dateEnd = Date()
-                 var dateStart = Date()
-                 var strYear = +dateEnd.year + 1900
-                 dateEnd = simpleDateFormat.parse("31-Oct-" + strYear)
-                 dateStart = simpleDateFormat.parse("1-Sep-" + strYear)
-                 datePickerDialog.datePicker.maxDate = dateEnd.time
-                 datePickerDialog.datePicker.minDate = dateStart.time
-             }*/
+                var dateEnd = Date()
+                var dateStart = Date()
+                var strYear = +dateEnd.year + 1900
+                dateEnd = simpleDateFormat.parse("31-Oct-" + strYear)
+                dateStart = simpleDateFormat.parse("1-Sep-" + strYear)
+                datePickerDialog.datePicker.maxDate = dateEnd.time
+                datePickerDialog.datePicker.minDate = dateStart.time
+            }*/
         })
     }
 
     override fun onResume() {
         super.onResume()
-        // pay_now_button!!.isEnabled = true
+       // pay_now_button!!.isEnabled = true
     }
 
     override val layoutResource: Int
@@ -188,8 +193,7 @@ class PaymentOctoberActivity : BaseActivity(), View.OnClickListener {
         // Result Code is -1 send from Payumoney activity
         Log.d("MainActivity", "request code $requestCode resultcode $resultCode")
         if (requestCode == PayUmoneyFlowManager.REQUEST_CODE_PAYMENT && resultCode == Activity.RESULT_OK && data !=
-            null
-        ) {
+                null) {
             val transactionResponse: TransactionResponse? = data.getParcelableExtra(PayUmoneyFlowManager.INTENT_EXTRA_TRANSACTION_RESPONSE)
             //  val resultModel: ResultModel = data.getParcelableExtra(PayUmoneyFlowManager.ARG_RESULT)
             // Check which object is non-null
@@ -197,28 +201,28 @@ class PaymentOctoberActivity : BaseActivity(), View.OnClickListener {
                 if (transactionResponse.transactionStatus == TransactionResponse.TransactionStatus.SUCCESSFUL) {
                     //Success Transaction
                     var payuResponse = transactionResponse.getPayuResponse()
-                    octoberTransactionRefDatabaseRef?.setValue(txnId + "_online_" + (radio?.text) + "_" + binding.amountEt!!.text)
+                    octoberTransactionRefDatabaseRef?.setValue(txnId+"_online_"+ (radio?.text  ) +"_"+  binding.amountEt!!.text)
                     val pattern = "dd-MMM-yyyy HH:mm:ss.SSS"
                     val simpleDateFormat = SimpleDateFormat(pattern, Locale.US)
                     val transactionDateTime: String = simpleDateFormat.format(Date())
                     octoberTransactionDateDatabaseRef?.setValue(transactionDateTime)
-                    octoberPruiningDateRefDatabaseRef?.setValue(binding.pruiningDateEt.text.toString())
+                    octoberPruiningDateRefDatabaseRef?.setValue(  binding.pruiningDateEt.text.toString())
                     AlertDialog.Builder(this)
-                        .setCancelable(false)
-                        .setTitle("Payment successfully recieved")
-                        .setMessage("Transaction id:" + txnId)
-                        .setPositiveButton(android.R.string.ok) { dialog, whichButton ->
-                            this@PaymentOctoberActivity.finish()
-                            dialog.dismiss()
-                        }.show()
+                            .setCancelable(false)
+                            .setTitle("Payment successfully recieved")
+                            .setMessage("Transaction id:" + txnId)
+                            .setPositiveButton(android.R.string.ok) { dialog, whichButton ->
+                                this@PaymentOctoberActivity.finish()
+                                dialog.dismiss()
+                            }.show()
 
                 } else {
                     //Failure Transaction
                     AlertDialog.Builder(this)
-                        .setCancelable(false)
-                        .setTitle("Payment failed")
+                            .setCancelable(false)
+                            .setTitle("Payment failed")
 
-                        .setPositiveButton(android.R.string.ok) { dialog, whichButton -> dialog.dismiss() }.show()
+                            .setPositiveButton(android.R.string.ok) { dialog, whichButton -> dialog.dismiss() }.show()
                 }
                 // Response from Payumoney
 
@@ -261,15 +265,15 @@ class PaymentOctoberActivity : BaseActivity(), View.OnClickListener {
         val builder = PaymentParam.Builder()
         var amount = 0.0
         try {
-            amount = binding.totalEt!!.text.toString().toDouble()
+            amount =   binding.totalEt!!.text.toString().toDouble()
         } catch (e: Exception) {
             e.printStackTrace()
         }
         txnId = "TXNID" + System.currentTimeMillis() + ""
         //String txnId = "TXNID720431525261327973";
-        val phone = binding.mobileEt!!.text.toString()
+        val phone =   binding.mobileEt!!.text.toString()
         val productName = getString(R.string.app_name)
-        val firstName = binding.nameEt!!.text.toString()
+        val firstName =  binding. nameEt!!.text.toString()
         val email = "amap.patil@gmail.com"
         val udf1 = ""
         val udf2 = ""
@@ -283,26 +287,26 @@ class PaymentOctoberActivity : BaseActivity(), View.OnClickListener {
         val udf10 = ""
         val appEnvironment = (application as BaseApplication).appEnvironment
         builder.setAmount(amount.toString())
-            .setTxnId(txnId)
-            .setPhone(phone)
-            .setProductName(productName)
-            .setFirstName(firstName)
-            .setEmail(email)
-            .setsUrl(appEnvironment!!.surl())
-            .setfUrl(appEnvironment.furl())
-            .setUdf1(udf1)
-            .setUdf2(udf2)
-            .setUdf3(udf3)
-            .setUdf4(udf4)
-            .setUdf5(udf5)
-            .setUdf6(udf6)
-            .setUdf7(udf7)
-            .setUdf8(udf8)
-            .setUdf9(udf9)
-            .setUdf10(udf10)
-            .setIsDebug(appEnvironment.debug())
-            .setKey(appEnvironment.merchant_Key())
-            .setMerchantId(appEnvironment.merchant_ID())
+                .setTxnId(txnId)
+                .setPhone(phone)
+                .setProductName(productName)
+                .setFirstName(firstName)
+                .setEmail(email)
+                .setsUrl(appEnvironment!!.surl())
+                .setfUrl(appEnvironment.furl())
+                .setUdf1(udf1)
+                .setUdf2(udf2)
+                .setUdf3(udf3)
+                .setUdf4(udf4)
+                .setUdf5(udf5)
+                .setUdf6(udf6)
+                .setUdf7(udf7)
+                .setUdf8(udf8)
+                .setUdf9(udf9)
+                .setUdf10(udf10)
+                .setIsDebug(appEnvironment.debug())
+                .setKey(appEnvironment.merchant_Key())
+                .setMerchantId(appEnvironment.merchant_ID())
         try {
             mPaymentParams = builder.build()
 
@@ -322,7 +326,7 @@ class PaymentOctoberActivity : BaseActivity(), View.OnClickListener {
         } catch (e: Exception) {
             // some exception occurred
             Toast.makeText(this, e.message, Toast.LENGTH_LONG).show()
-            //     pay_now_button!!.isEnabled = true
+       //     pay_now_button!!.isEnabled = true
         }
     }
 

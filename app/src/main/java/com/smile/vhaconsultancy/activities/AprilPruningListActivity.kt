@@ -8,11 +8,14 @@ import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.database.*
+import com.smile.vhaconsultancy.R
 import com.smile.vhaconsultancy.adapters.PruningListAprilRecyclerViewAdapter
+import com.smile.vhaconsultancy.databinding.ActivityAddPlotBinding
 import com.smile.vhaconsultancy.databinding.ActivityAprilPruningListBinding
 import com.smile.vhaconsultancy.models.AprilPruningModel
 import com.smile.vhaconsultancy.utilities.SharedPref
 import com.smile.vhaconsultancy.utilities.Utils
+
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -32,8 +35,8 @@ class AprilPruningListActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
         setSupportActionBar(binding.toolbar)
-        /* setContentView(R.layout.activity_april_pruning_list)
-         setSupportActionBar(toolbar)*/
+       /* setContentView(R.layout.activity_april_pruning_list)
+        setSupportActionBar(toolbar)*/
         Utils.setLocal(this)
 
         supportActionBar?.setDisplayShowTitleEnabled(true)
@@ -85,8 +88,8 @@ class AprilPruningListActivity : AppCompatActivity() {
                     }
                 }
                 val pruningListRecyclerViewAdapter = PruningListAprilRecyclerViewAdapter(plots)
-                binding.contentAprilPruningList.recyclerViewPruningList.layoutManager = LinearLayoutManager(this@AprilPruningListActivity)
-                binding.contentAprilPruningList.recyclerViewPruningList.adapter = pruningListRecyclerViewAdapter
+                binding.contentAprilPruningList.  recyclerViewPruningList.layoutManager = LinearLayoutManager(this@AprilPruningListActivity)
+                binding.contentAprilPruningList.  recyclerViewPruningList.adapter = pruningListRecyclerViewAdapter
                 dialog.dismiss()
             }
 

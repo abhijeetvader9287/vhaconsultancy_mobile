@@ -12,7 +12,9 @@ import android.view.animation.Animation
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.database.*
+import com.smile.vhaconsultancy.R
 import com.smile.vhaconsultancy.adapters.PruningListOctoberRecyclerViewAdapter
+import com.smile.vhaconsultancy.databinding.ActivityMainBinding
 import com.smile.vhaconsultancy.databinding.ActivityOctoberPruningListBinding
 import com.smile.vhaconsultancy.listeners.showMessage
 import com.smile.vhaconsultancy.models.OctoberPruningModel
@@ -38,7 +40,7 @@ class OctoberPruningListActivity : AppCompatActivity() {
         binding = ActivityOctoberPruningListBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
-        //   setContentView(R.layout.activity_october_pruning_list)
+     //   setContentView(R.layout.activity_october_pruning_list)
         setSupportActionBar(binding.toolbar)
         Utils.setLocal(this)
 
@@ -102,18 +104,18 @@ class OctoberPruningListActivity : AppCompatActivity() {
                             override fun onDataChange(p0: DataSnapshot) {
                                 var strRef: String = p0.value.toString()
                                 if (strRef.isEmpty()) {
-                                    binding.contentOctoberPruningList.txtBerrySettingStagePayment.visibility = View.VISIBLE
+                                    binding. contentOctoberPruningList.          txtBerrySettingStagePayment.visibility = View.VISIBLE
                                     val anim: Animation = AlphaAnimation(0.0f, 1.0f)
                                     anim.duration = 50 //You can manage the blinking time with this parameter
 
                                     anim.startOffset = 20
                                     anim.repeatMode = Animation.REVERSE
                                     anim.repeatCount = Animation.INFINITE
-                                    binding.contentOctoberPruningList.txtBerrySettingStagePayment.startAnimation(anim)
-                                    binding.contentOctoberPruningList.recyclerViewPruningList.visibility = View.GONE
+                                    binding. contentOctoberPruningList.     txtBerrySettingStagePayment.startAnimation(anim)
+                                    binding. contentOctoberPruningList.    recyclerViewPruningList.visibility = View.GONE
                                 } else {
-                                    binding.contentOctoberPruningList.txtBerrySettingStagePayment.visibility = View.GONE
-                                    binding.contentOctoberPruningList.recyclerViewPruningList.visibility = View.VISIBLE
+                                    binding. contentOctoberPruningList.     txtBerrySettingStagePayment.visibility = View.GONE
+                                    binding. contentOctoberPruningList.     recyclerViewPruningList.visibility = View.VISIBLE
 
                                 }
                             }
@@ -122,15 +124,15 @@ class OctoberPruningListActivity : AppCompatActivity() {
                     }
 
                 }, plots)
-                binding.contentOctoberPruningList.recyclerViewPruningList.layoutManager = LinearLayoutManager(this@OctoberPruningListActivity)
-                binding.contentOctoberPruningList.recyclerViewPruningList.adapter = pruningListRecyclerViewAdapter
+                binding. contentOctoberPruningList.     recyclerViewPruningList.layoutManager = LinearLayoutManager(this@OctoberPruningListActivity)
+                binding. contentOctoberPruningList.     recyclerViewPruningList.adapter = pruningListRecyclerViewAdapter
                 dialog.dismiss()
             }
 
             override fun onCancelled(databaseError: DatabaseError) {}
         })
 
-        binding.contentOctoberPruningList.txtBerrySettingStagePayment.setOnClickListener {
+        binding. contentOctoberPruningList.    txtBerrySettingStagePayment.setOnClickListener {
             val intent: Intent? = Intent(this@OctoberPruningListActivity, PaymentBerryStageActivity::class.java)
             //  SharedPref.Companion.getInstance(this@OctoberPruningListActivity)?.putSharedPrefString(v?.context?.getString(R.string.month), v?.context?.getString(R.string.october))
             SharedPref.Companion.getInstance(this@OctoberPruningListActivity)?.putSharedPrefString(this@OctoberPruningListActivity.getString(R.string._area_in_acre), area_in_acre);

@@ -8,7 +8,9 @@ import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import com.google.firebase.database.*
+import com.smile.vhaconsultancy.R
 import com.smile.vhaconsultancy.adapters.PlotListRecyclerViewAdapter
+import com.smile.vhaconsultancy.databinding.ActivityPhoneAuthBinding
 import com.smile.vhaconsultancy.databinding.ActivityPlotListBinding
 import com.smile.vhaconsultancy.models.Plot
 import com.smile.vhaconsultancy.utilities.SharedPref
@@ -28,7 +30,7 @@ class PlotListActivity : AppCompatActivity() {
         binding = ActivityPlotListBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
-        // setContentView(R.layout.activity_plot_list)
+       // setContentView(R.layout.activity_plot_list)
         setSupportActionBar(binding.toolbar)
         supportActionBar?.setDisplayShowTitleEnabled(true)
         Utils.setLocal(this)
@@ -62,8 +64,8 @@ class PlotListActivity : AppCompatActivity() {
                     plot?.let { plots.add(it) }
                 }
                 val plotListRecyclerViewAdapter = PlotListRecyclerViewAdapter(plots)
-                binding.contentPlotList.recyclerViewPlotList.setLayoutManager(GridLayoutManager(this@PlotListActivity, 2))
-                binding.contentPlotList.recyclerViewPlotList.setAdapter(plotListRecyclerViewAdapter)
+                binding.contentPlotList.     recyclerViewPlotList.setLayoutManager(GridLayoutManager(this@PlotListActivity, 2))
+                binding.contentPlotList.     recyclerViewPlotList.setAdapter(plotListRecyclerViewAdapter)
                 dialog.dismiss()
             }
 
