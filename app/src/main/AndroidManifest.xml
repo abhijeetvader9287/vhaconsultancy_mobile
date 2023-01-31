@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.smile.vhaconsultancy"
+
     xmlns:tools="http://schemas.android.com/tools">
 
     <application
@@ -42,6 +44,10 @@
         <activity  android:exported="true"
             android:name=".activities.PlotListActivity"
             android:label="@string/title_plot_list"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity  android:exported="true"
+            android:name=".activities.OrderListActivity"
+            android:label="@string/title_order_list"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity  android:exported="true"
             android:name=".activities.AprilPruningListActivity"

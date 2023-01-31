@@ -84,6 +84,11 @@ class CreateCartActivity : AppCompatActivity() {
 
 
     })
+        binding.contentCreateCart.btnOrderList.setOnClickListener {
+            val i = Intent(this,OrderListActivity::class.java)
+            this.startActivity(i)
+            true
+        }
         binding.contentCreateCart.radioGroupKretWeight.setOnCheckedChangeListener(
             RadioGroup.OnCheckedChangeListener { group, checkedId ->
                 radioWeight = findViewById(checkedId)

@@ -10,6 +10,6 @@ class Order {
     var packing_type: String = ""
     var weight: String = ""
     var quantity: String = ""
-
+    var orderKey: String? = ""
 
 }

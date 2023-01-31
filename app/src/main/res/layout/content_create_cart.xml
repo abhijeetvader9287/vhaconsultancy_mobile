@@ -493,7 +493,7 @@
                 app:cardBackgroundColor="@color/colorPrimary"
                 app:cardCornerRadius="8dp">
             <Button
-                android:id="@+id/btnViewCart"
+                android:id="@+id/btnOrderList"
                 android:layout_width="150dp"
                 android:layout_height="50dp"
                 android:layout_gravity="center"
