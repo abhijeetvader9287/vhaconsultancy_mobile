@@ -67,7 +67,7 @@ class OrderListActivity : AppCompatActivity() {
                     plot?.let { plots.add(it) }
                 }
                 val orderListRecyclerViewAdapter = OrderListRecyclerViewAdapter(plots)
-                binding.contentOrderList.     recyclerViewOrderList.setLayoutManager(GridLayoutManager(this@OrderListActivity, 2))
+                binding.contentOrderList.     recyclerViewOrderList.setLayoutManager(GridLayoutManager(this@OrderListActivity, 1))
                 binding.contentOrderList.     recyclerViewOrderList.setAdapter(orderListRecyclerViewAdapter)
                 dialog.dismiss()
             }

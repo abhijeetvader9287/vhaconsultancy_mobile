@@ -23,7 +23,7 @@ import java.util.*
 
 class OrderListRecyclerViewAdapter(private val orders: ArrayList<Order>) : RecyclerView.Adapter<OrderListRecyclerViewAdapter.ViewHolder>() {
     var database: FirebaseDatabase? = null
-    var databasePlotListReference: DatabaseReference? = null
+    var databaseOrderListReference: DatabaseReference? = null
     var userPhoneNumber: String? = ""
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -36,13 +36,13 @@ class OrderListRecyclerViewAdapter(private val orders: ArrayList<Order>) : Recyc
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val plot = orders[position]
-        databasePlotListReference = database!!.getReference(holder.txtArea.context.getString(R.string.user_list)).child(userPhoneNumber!!).child(holder.txtArea.context.getString(R.string.plot_list)).child(plot.orderKey.toString().toString())
-        databasePlotListReference!!.child("orderKey").setValue(plot.orderKey.toString())
-        holder.txtArea.text = plot.grape_type.toString() + ""
-        holder.txtVariety.text = plot.grape_type + ""
-        holder.txtDistance.text = plot.grape_type.toString() + ""
-        holder.txtNumerOfVine.text = plot.grape_type.toString() + ""
+        val order = orders[position]
+        databaseOrderListReference = database!!.getReference(holder.txtGrapeType.context.getString(R.string.user_list)).child(userPhoneNumber!!).child(holder.txtGrapeType.context.getString(R.string.order_list)).child(order.orderKey.toString().toString())
+        databaseOrderListReference!!.child("orderKey").setValue(order.orderKey.toString())
+        holder.txtGrapeType.text = order.grape_type.toString() + ""
+        holder.txtPackingType.text = order.packing_type + ""
+        holder.txtWeight.text = order.weight.toString() + ""
+        holder.txtQuantity.text = order.quantity.toString() + ""
 
 
     }
@@ -52,21 +52,26 @@ class OrderListRecyclerViewAdapter(private val orders: ArrayList<Order>) : Recyc
     }
 
     inner class ViewHolder(val mView: View) : RecyclerView.ViewHolder(mView) {
-        val txtArea: TextView
-        val txtVariety: TextView
-        val txtDistance: TextView
-        val txtNumerOfVine: TextView
-        val btn_deletePlot: Button
+       /* var grape_type: String = ""
+        var packing_type: String = ""
+        var weight: String = ""
+        var quantity: String = ""*/
+
+        val txtGrapeType: TextView
+        val txtPackingType: TextView
+        val txtWeight: TextView
+        val txtQuantity: TextView
+        val btn_OrderStatus: Button
         override fun toString(): String {
             return super.toString() + " '"
         }
 
         init {
-            txtArea = mView.findViewById<View>(R.id.txtArea) as TextView
-            txtVariety = mView.findViewById<View>(R.id.txtVariety) as TextView
-            txtDistance = mView.findViewById<View>(R.id.txtDistance) as TextView
-            txtNumerOfVine = mView.findViewById<View>(R.id.txtNumerOfVine) as TextView
-            btn_deletePlot = mView.findViewById<View>(R.id.btn_deletePlot) as Button
+            txtGrapeType = mView.findViewById<View>(R.id.txtGrapeType) as TextView
+            txtPackingType = mView.findViewById<View>(R.id.txtPackingType) as TextView
+            txtWeight = mView.findViewById<View>(R.id.txtWeight) as TextView
+            txtQuantity = mView.findViewById<View>(R.id.txtQuantity) as TextView
+            btn_OrderStatus = mView.findViewById<View>(R.id.btn_OrderStatus) as Button
         }
     }
 

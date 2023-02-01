@@ -26,15 +26,15 @@
                 android:weightSum="2">
 
                 <TextView
-                    android:id="@+id/txtAreaLable"
+                    android:id="@+id/txtGrapeTypeLabel"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="@string/area_in_acer"
+                    android:text="@string/grape_variety"
                     android:textColor="@color/textColorHint"></TextView>
 
                 <TextView
-                    android:id="@+id/txtArea"
+                    android:id="@+id/txtGrapeType"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -49,15 +49,15 @@
                 android:weightSum="2">
 
                 <TextView
-                    android:id="@+id/txtVarietyLable"
+                    android:id="@+id/txtPackingTypeLable"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="@string/variety"
+                    android:text="@string/packing"
                     android:textColor="@color/textColorHint"></TextView>
 
                 <TextView
-                    android:id="@+id/txtVariety"
+                    android:id="@+id/txtPackingType"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -72,15 +72,15 @@
                 android:weightSum="2">
 
                 <TextView
-                    android:id="@+id/txtDistanceLable"
+                    android:id="@+id/txtWeightLable"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="@string/distance"
+                    android:text="@string/weight"
                     android:textColor="@color/textColorHint"></TextView>
 
                 <TextView
-                    android:id="@+id/txtDistance"
+                    android:id="@+id/txtWeight"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -95,15 +95,15 @@
                 android:weightSum="2">
 
                 <TextView
-                    android:id="@+id/txtNumerOfVineLable"
+                    android:id="@+id/txtQuantityLable"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="@string/number_of_vine"
+                    android:text="@string/quantity"
                     android:textColor="@color/textColorHint"></TextView>
 
                 <TextView
-                    android:id="@+id/txtNumerOfVine"
+                    android:id="@+id/txtQuantity"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -122,6 +122,7 @@
                 <Button
                     android:id="@+id/btn_OrderStatus"
                     android:layout_width="0dp"
+                    android:textSize="15sp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/order_placed"

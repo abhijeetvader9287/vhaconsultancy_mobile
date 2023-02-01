@@ -32,4 +32,6 @@
     <string name="order_save_successfully">order_save_successfully</string>
     <string name="title_order_list">Order List</string>
     <string name="order_placed">order_placed</string>
+    <string name="weight">weight</string>
+    <string name="quantity">Quantity</string>
 </resources>
