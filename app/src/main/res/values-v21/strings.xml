@@ -1,18 +1,246 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="app_name">Grape line consultancy</string>
+    <string name="label_google_sign_in">Firebase + Google Sign In</string>
+    <string name="desc_google_sign_in">Use a Google Sign In credential to authenticate with Firebase.</string>
+    <string name="label_facebook_login">Firebase + Facebook Login</string>
+    <string name="desc_facebook_login">Use a Facebook Login credential to authenticate with Firebase.</string>
+    <string name="label_emailpassword">Email/Password Authentication</string>
+    <string name="desc_emailpassword">Use an email and password to authenticate with Firebase.</string>
+    <string name="label_passwordless">Passwordless Authentication</string>
+    <string name="desc_passwordless">Use only an email to authenticate with Firebase.</string>
+    <string name="label_phone_auth">Phone Number Authentication</string>
+    <string name="desc_phone_auth">Use a phone number to authenticate with Firebase.</string>
+    <string name="label_anonymous_auth">Anonymous Authentication</string>
+    <string name="desc_anonymous_auth">Sign in anonymously and then later upgrade to a full Firebase Auth user.</string>
+    <string name="label_custom_auth">Custom Authentication</string>
+    <string name="desc_custom_auth">Use a custom token signed by your own server to authenticate with Firebase.</string>
+    <string name="label_firebase_ui">FirebaseUI Auth</string>
+    <string name="desc_firebase_ui">Use the FirebaseUI-Android library to authenticate with Firebase.</string>
+    <string name="label_generic_idp">Generic OAuth</string>
+    <string name="desc_generic_idp">Use a generic OAuth identity provider, like Apple, Microsoft, Yahoo, or Twitter to authenticate with Firebase.</string>
+    <string name="hint_user_id">User ID</string>
+    <string name="get_custom_token">Get Token</string>
+    <string name="sign_in">Sign In</string>
+    <string name="create_account">Create Account</string>
+    <string name="send_link">Send Link</string>
+    <string name="sign_out">Sign Out</string>
+    <string name="verify_email">Verify Email</string>
+    <string name="disconnect">Disconnect</string>
+    <string name="loading">Loading…</string>
+    <string name="custom_token">Custom Token</string>
+    <string name="signed_in">Signed In</string>
+    <string name="signed_out">Signed Out</string>
+    <string name="token_null">Token: null</string>
+    <string name="hint_email">Email</string>
+    <string name="hint_password">Password</string>
+    <string name="desc_firebase_lockup">Firebase logo and name</string>
+    <string name="auth_failed">Authentication failed</string>
+    <string name="start_phone_auth">Login</string>
+    <string name="verify_phone_auth">Verify</string>
+    <string name="resend_phone_auth">Resend</string>
+    <string name="hint_phone_number">Mobile Number</string>
+    <string name="hint_verification_code">Verification code</string>
+    <string name="status_code_sent">Code Sent</string>
+    <string name="status_verification_failed">Verification failed</string>
+    <string name="status_verification_succeeded">Verification succeeded</string>
+    <string name="status_sign_in_failed">Sign-in failed</string>
+    <string name="instant_validation">(instant validation)</string>
+    <string name="firebase_status_fmt">Firebase UID: %s</string>
+    <string name="firebase_user_management">Firebase User Management</string>
+    <string name="google_status_fmt">Google User: %s</string>
+    <string name="google_title_text">Google Sign In</string>
+    <string name="facebook_status_fmt">Facebook User: %s</string>
+    <string name="facebook_title_text">Facebook Login</string>
+    <string name="emailpassword_status_fmt">Email User: %1$s (verified: %2$b)</string>
+    <string name="emailpassword_title_text">Email and Password</string>
+    <string name="passwordless_status_fmt">Email User: %1$s (verified: %2$b)</string>
+    <string name="passwordless_title_text">Passwordless Sign In</string>
+    <string name="status_email_not_sent">Send link to your email to get started.</string>
+    <string name="status_email_sent">Link sent, check your email to continue.</string>
+    <string name="status_link_found">Link received, enter email to sign in.</string>
+    <string name="phone_title_text">Phone Number</string>
+    <string name="twitter_status_fmt">Twitter User: %s</string>
+    <string name="twitter_title_text">Twitter Login</string>
+    <string name="firebaseui_status_fmt">Firebase User: %s</string>
+    <string name="firebaseui_title_text">FirebaseUI Auth</string>
+    <string name="generic_title_text">OAuth Sign In</string>
+    <string name="generic_label_provider">Provider:</string>
+    <string name="custom_auth_signin_status_failed">Error: sign in failed</string>
+    <string name="error_sign_in_failed">Sign in failed, see logs for details.</string>
+    <string name="country_code">+91</string>
+    <string name="userUid">userUid</string>
+    <string name="userPhoneNumber">userPhoneNumber</string>
+    <string name="enter_payment">Enter payment:</string>
+    <string name="enter_mobile_number">Enter mobile number:</string>
+    <string name="enter_name">Enter name:</string>
+    <string name="add_labour">Add labour</string>
+    <string name="str_name"><![CDATA[<b>Name:\t</b>]]></string>
+    <string name="str_mobile_number"><![CDATA[<b>Mobile number:\t</b>]]></string>
+    <string name="edit">Edit</string>
+    <string name="delete">Delete</string>
+    <string name="credit">Credit</string>
+    <string name="payment">Payment</string>
+    <string name="add_payment">Add payment</string>
+    <string name="str_payment"><![CDATA[<b>Payment:\t</b>]]></string>
+    <string name="click_to_select_date">Click to Select Date</string>
+    <string name="payment_list">Payment list</string>
+    <string name="credit_list">Credit list</string>
+    <string name="enter_credit">Enter credit:</string>
+    <string name="add_credit">Add credit</string>
+    <string name="str_total_credit"><![CDATA[<b>Total Credit:\t</b>]]></string>
+    <string name="str_total_payment"> Total Payment: </string>
+    <string name="title_activity_attendance">AttendanceActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="str_date">Date:</string>
+    <string name="title_activity_report">ReportActivity</string>
+    <string name="attendance_list">Attendance list</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+    <string name="home_second">Home Second</string>
+    <string name="action_profile">Your Profile</string>
+    <string name="action_add_plot">Add Plot</string>
+    <string name="action_list_plot">Plot List</string>
+    <string name="action_logout">Log out</string>
+    <string name="title_activity_profile">ProfileActivity</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="profile">Profile</string>
+    <string name="name">Name:</string>
+    <string name="mobile_number">Mobile number:</string>
+    <string name="village">Village:</string>
+    <string name="taluka">Tal:</string>
+    <string name="district">Dist:</string>
+    <string name="address">Address:</string>
+    <string name="save">Save</string>
+    <string name="Field_should_not_be_empty">Field should not be empty!</string>
+    <string name="user_profile">user_profile</string>
+    <string name="User_profile_save_cancelled">User profile save cancelled</string>
+    <string name="User_profile_save_successfully">User profile saved successfully</string>
+    <string name="User_profile_save_failed">User profile save failed</string>
+    <string name="User_profile_complete">User_profile_complete</string>
+    <string name="add_plot">Add Plot</string>
+    <string name="plot_list">plot_list</string>
+    <string name="title_plot_list">Plot list</string>
+    <string name="enter_area_in_acer">Enter area in acer</string>
+    <string name="enter_distance">Enter distance</string>
+    <string name="enter_variety">Enter vine type</string>
+    <string name="enter_number_of_vine">Enter vine number</string>
+    <string name="Plot_save_failed">Plot saving failed</string>
+    <string name="Plot_save_successfully">Plot saved successfully</string>
+
+    <string name="you_will_not_be_able_to_edit_again">Do you want to save? You will not be able to edit again!</string>
+    <string name="area_in_acer">Area in acer :</string>
+    <string name="variety">Vine type :</string>
+    <string name="distance">Distance :</string>
+    <string name="number_of_vine">Number :</string>
+    <string name="user_list">user_list</string>
+    <string name="versionCode">versionCode</string>
+    <string name="Please_download_new_app">Please download latest version!</string>
+    <string name="rate">rate</string>
+    <string name="month">month</string>
+    <string name="april">April</string>
+    <string name="log_out_user">Log out user</string>
+    <string name="_name">_name</string>
+    <string name="_area_in_acre">_area_in_acre</string>
+    <string name="month_mr">Month :</string>
+    <string name="rate_mr">Rate :</string>
+    <string name="str_total_payment_mr">Total Payment :</string>
+    <string name="plot_key">plot_key</string>
+    <string name="date_of_pruining">Pruning date:</string>
+    <string name="please_select_date_of_pruining">Please select date of pruning</string>
+    <string name="select_date">Select date</string>
+    <string name="title_pruning_list">Work Plan </string>
+    <string name="day_after_pruning">Day after pruning:</string>
+    <string name="date_after_pruning">Date:</string>
+    <string name="work_spray">Work / Spray:</string>
+    <string name="fertilizer">Fertilizer:</string>
+    <string name="work_spray_done">Work/Spray done</string>
+    <string name="fertilizer_done">Fertilizer done</string>
+    <string name="later_dates_not_allowed">Later dates not allowed!</string>
+    <string name="Ok">Okay!</string>
+    <string name="Yes">Yes</string>
+    <string name="Cancel">Cancel</string>
+    <string name="tagline">Grape line\n Grape growers Helpline..!\n9657738048</string>
+    <string name="adharnumber">Adhar Number:</string>
+    <string name="phoneNumber">919657738048</string>
+    <string name="action_whatsapp">Ask your questions?</string>
+    <string name="deleteplot">Delete plot</string>
+    <string name="you_want_to_delete">You want to delete</string>
+    <string name="app_link">app_link</string>
+    <string name="october">october</string>
+    <string name="terms_and_conditions">* Terms and Conditions</string>
+    <string name="grapeline_terms_and_conditions">Grape Line Consultancy\'s  Terms and Conditions are as following:
+        \n1)We only recommend chemicals included in Annexure-5 published by NRC of grape,Manjari,Dist-Pune for export quality grape production.
+
+\n2)Consequently will not be responsible in case of failure of sample for export and detection found.
+
+\n3)Guidance and advice given by Grape Line Consultancy for controlling disease and pest, nutrients management and answers to farmers are only based on prior knowledge and experience of Consultancy Experts.
+
+\n4)Consultancy will not be responsible for any abnormal casualties caused in field of farmers.
+
+\n5)Soil, Water, Micro climate ,Groth stages of grape vines, Particular use of chemicals and spraying methods in field of farmers are not in control of consultancy so make sure not to consider consultancy as guaranteed for expected production and results.
+
+\n6)In this app. we give plan for use of chemicals based on date of pruning,Soil sample collected and weather forecast.
+
+\n7)Farmers can get satisfying answers to their questions and queries through the app and a perfect plan to produce export quality grapes.
+
+\n8)We give scientific advice on integrated nutrients management considering the soil and water sample reports collected from field of farmer.
+
+\n9)We assure farmers to give scientific and satisfying answers to all queries of farmers and help the to grow export quality grapes.
+
+\n10)Rights to decide fees and payment options are reserved only upto consultancy. Payment will not be refunded to farmers at any cost once paid.
+
+\n11)The information we provide is collected from authentic government sources and personal experiences. Though the information is correct and trustworthy from our side, consultancy will not  responsible for further use of this knowledge by farmers.
+
+\n12)If any technical issue caused in app. while its maintenance, our technical team will try to resolve that as soon as possible.
+But consultancy is not responsible for such technical glitches.
+
+
+I have read and understood all terms and conditions mentioned above and I am agree with all the terms and conditions of Grape Line Consultancy.
+    </string>
+    <string name="i_agree">I agree</string>
+    <string name="code_sent">Code sent</string>
+    <string name="verification_falied">Verification falied</string>
+    <string name="verification_success">Verification success</string>
+    <string name="app_language">app_language</string>
+    <string name="select_work_plan">Select work plan</string>
+    <string name="april_pruning">April pruning</string>
+    <string name="october_pruning">October pruning</string>
+    <string name="pruning_">Pruning:</string>
+    <string name="changeLang">Change Language/भाषा बदला</string>
+    <string name="marathi">मराठी</string>
+    <string name="english">English</string>
+    <string name="service_type">Service type:</string>
+    <string name="visiting">Visiting</string>
+    <string name="non_visiting">Non Visiting</string>
+    <string name="rate_nv">rate_nv</string>
     <string name="action_place_order">Place your order</string>
     <string name="create_cart">Create Cart</string>
     <string name="enter_distribution_agency_code">Enter distribution agency code</string>
     <string name="enter_distribution_agency_city">Enter distribution agency city</string>
-    <string name="enter_distribution_agency_mobile_number">enter_distribution_agency_mobile_number</string>
+    <string name="enter_distribution_agency_mobile_number">Enter distribution agency mobile number</string>
     <string name="order">Order</string>
-    <string name="enter_distribution_agency_name">enter_distribution_agency_name</string>
+    <string name="enter_distribution_agency_name">Ente distribution agency name</string>
     <string name="black">Black</string>
     <string name="green">Green</string>
     <string name="packing">Packing</string>
-    <string name="kret">Kret</string>
+    <string name="kret">Cret</string>
     <string name="box">Box</string>
-    <string name="kret_weight">Kret Weight</string>
+    <string name="kret_weight">Cret Weight</string>
     <string name="ten_kg">10 Kg</string>
     <string name="twenty_kg">20 Kg</string>
     <string name="box_weight">Box Weight</string>
@@ -24,14 +252,14 @@
     <string name="enter_number">Enter number</string>
     <string name="Please_select_packing">Please select packing</string>
     <string name="Please_select_box_weight">Please select box weight</string>
-    <string name="Please_select_kret_weight">Please_select_kret_weight</string>
-    <string name="Please_select_grape_variety">Please_select_grape_variety</string>
+    <string name="Please_select_kret_weight">Please select Cret weight</string>
+    <string name="Please_select_grape_variety">Please select grape_variety</string>
     <string name="order_list">order_list</string>
-
-    <string name="order_save_failed">order_save_failed</string>
-    <string name="order_save_successfully">order_save_successfully</string>
+    <string name="order_save_failed">Order failed</string>
+    <string name="order_save_successfully">Order saved successfully</string>
     <string name="title_order_list">Order List</string>
-    <string name="order_placed">order_placed</string>
+    <string name="order_placed">Order placed</string>
     <string name="weight">weight</string>
     <string name="quantity">Quantity</string>
+    <string name="view_order_list">Order list</string>
 </resources>

@@ -502,10 +502,10 @@
                 android:layout_margin="15dp"
 
                 android:singleLine="true"
-                android:text="@string/view_cart"
+                android:text="@string/view_order_list"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
-                android:textSize="25sp" /></androidx.cardview.widget.CardView>
+                android:textSize="20sp" /></androidx.cardview.widget.CardView>
         </LinearLayout>
     </LinearLayout>
 </ScrollView>
