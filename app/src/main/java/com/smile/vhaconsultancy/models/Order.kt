@@ -11,5 +11,6 @@ class Order {
     var weight: String = ""
     var quantity: String = ""
     var orderKey: String? = ""
+    var order_status: String? = ""
 
 }

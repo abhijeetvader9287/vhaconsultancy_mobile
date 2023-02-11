@@ -144,6 +144,7 @@ class CreateCartActivity : AppCompatActivity() {
                 order.grape_type = radioVariety!!.text.toString()
                 order.weight = radioWeight!!.text.toString()
                 order.quantity =   binding.contentCreateCart.editNumber.text.toString()
+                order.order_status =   "order_placed"
 
                 databaseReference!!.push().setValue(order).addOnCanceledListener {
                     dialog.dismiss();
